@@ -1,0 +1,679 @@
+<title>Engraving Cell Lab Visit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  --paper: #eef1f3;
+  --sheet: #ffffff;
+  --ink: #15202b;
+  --ink-2: #4a5866;
+  --rule: #c9d1d8;
+  --rule-soft: #e4e8ec;
+  --accent: #1f5fa0;
+  --accent-soft: #e7eef6;
+  --pred: #f1f4f7;
+  --miss: #a8241c;
+  --miss-soft: #fbeae8;
+  --hazard: #e3b100;
+  --hazard-ink: #17171a;
+  --write: #fbfcfd;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d1318;
+    --sheet: #141c24;
+    --ink: #e3e9ef;
+    --ink-2: #9aa8b5;
+    --rule: #2f3c48;
+    --rule-soft: #222d37;
+    --accent: #83b3e8;
+    --accent-soft: #1a2939;
+    --pred: #1a242e;
+    --miss: #f08a80;
+    --miss-soft: #38201f;
+    --write: #18212a;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d1318;
+  --sheet: #141c24;
+  --ink: #e3e9ef;
+  --ink-2: #9aa8b5;
+  --rule: #2f3c48;
+  --rule-soft: #222d37;
+  --accent: #83b3e8;
+  --accent-soft: #1a2939;
+  --pred: #1a242e;
+  --miss: #f08a80;
+  --miss-soft: #38201f;
+  --write: #18212a;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 15px/1.55 var(--body);
+  padding-block: 28px 56px;
+  padding-inline: 16px;
+}
+.sheet {
+  max-width: 880px;
+  margin: 0 auto;
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  padding: 40px 48px 48px;
+  display: grid;
+  gap: 40px;
+}
+@media (max-width: 640px) {
+  .sheet { padding: 24px 18px 32px; gap: 32px; }
+}
+
+/* ---------- type ---------- */
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.05; }
+h1 { font-size: 44px; font-weight: 700; letter-spacing: 0.005em; }
+h2 { font-size: 26px; font-weight: 600; letter-spacing: 0.01em; }
+h3 { font-size: 19px; font-weight: 600; letter-spacing: 0.015em; }
+p { margin: 0; max-width: 68ch; }
+.label {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+code, .tag {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--accent-soft);
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+strong { font-weight: 600; }
+.muted { color: var(--ink-2); }
+.num { font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 0.9em; }
+ul, ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; max-width: 70ch; }
+.stack { display: grid; gap: 14px; }
+.stack-lg { display: grid; gap: 22px; }
+
+/* ---------- masthead ---------- */
+.mast { display: grid; gap: 18px; }
+.mast-top {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 14px;
+}
+.mast-top .label { color: var(--accent); }
+.print-btn {
+  font: 600 14px/1 var(--display);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--sheet); background: var(--ink);
+  border: 0; border-radius: 3px; padding: 10px 16px; cursor: pointer;
+}
+.print-btn:hover { background: var(--accent); }
+.print-btn:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--rule);
+}
+.meta > div { padding: 10px 12px; border-right: 1px solid var(--rule); display: grid; gap: 2px; }
+.meta > div:last-child { border-right: 0; }
+.meta .v { font-family: var(--mono); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.meta .blank { border-bottom: 1px solid var(--ink-2); min-height: 1.3em; }
+@media (max-width: 640px) {
+  .meta { grid-template-columns: 1fr 1fr; }
+  .meta > div:nth-child(2) { border-right: 0; }
+  .meta > div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+/* ---------- priority list ---------- */
+.top3 { counter-reset: t; list-style: none; padding: 0; gap: 0; max-width: none; border-top: 1px solid var(--rule); }
+.top3 li {
+  counter-increment: t;
+  display: grid; grid-template-columns: 44px 1fr; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--rule);
+}
+.top3 li::before {
+  content: counter(t);
+  font: 700 34px/1 var(--display);
+  color: var(--accent);
+}
+.note {
+  background: var(--accent-soft);
+  padding: 12px 14px;
+  border-radius: 3px;
+  max-width: none;
+}
+
+/* ---------- safety ---------- */
+.hazard { border: 1px solid var(--rule); }
+.hazard-band {
+  height: 12px;
+  background: repeating-linear-gradient(-45deg, var(--hazard) 0 12px, var(--hazard-ink) 12px 24px);
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.hazard-body { padding: 18px 20px 20px; display: grid; gap: 12px; }
+.hazard ul { gap: 8px; }
+
+/* ---------- checklists ---------- */
+.checks { list-style: none; padding: 0; gap: 8px; }
+.checks label { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; cursor: pointer; }
+.checks input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); }
+
+/* ---------- jobs ---------- */
+.part-head { display: grid; gap: 6px; border-bottom: 1px solid var(--ink); padding-bottom: 8px; }
+.job { display: grid; gap: 16px; padding-top: 6px; }
+.job + .job { border-top: 1px solid var(--rule); padding-top: 28px; }
+.job-head { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: start; break-after: avoid; }
+.job-no {
+  font: 700 36px/1 var(--display);
+  border: 2px solid var(--ink);
+  height: 64px;
+  display: grid; place-items: center;
+}
+.job-title { display: grid; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: 500 12.5px/1 var(--mono);
+  border: 1px solid var(--rule);
+  padding: 5px 8px; border-radius: 2px; color: var(--ink-2);
+}
+.chip.hot { border-color: var(--accent); color: var(--accent); }
+.fields { display: grid; grid-template-columns: 120px 1fr; gap: 12px 18px; margin: 0; }
+.fields dt { padding-top: 2px; }
+.fields dd { margin: 0; display: grid; gap: 8px; }
+@media (max-width: 640px) {
+  .fields { grid-template-columns: 1fr; gap: 4px; }
+  .fields dd { margin-bottom: 10px; }
+  .job-head { grid-template-columns: 48px 1fr; gap: 12px; }
+  .job-no { height: 48px; font-size: 28px; }
+}
+
+/* ---------- tables ---------- */
+.tbl { overflow-x: auto; break-inside: avoid; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+caption { text-align: left; padding-bottom: 8px; }
+th, td { border: 1px solid var(--rule); padding: 7px 9px; text-align: left; vertical-align: top; }
+thead th {
+  font: 600 12.5px/1.2 var(--display);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-2); background: var(--pred);
+  vertical-align: bottom;
+}
+td.m, td.r { font-family: var(--mono); font-size: 13px; }
+td.m { white-space: nowrap; }
+td.m { background: var(--pred); font-weight: 500; }
+tr.miss td { background: var(--miss-soft); }
+tr.miss td.m { color: var(--miss); }
+tr.total td { border-top: 2px solid var(--ink); font-weight: 600; }
+.flag { font: 600 11.5px/1 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--miss); white-space: nowrap; }
+table.write td { height: 2.4em; background: var(--write); }
+table.write td:first-child { background: var(--pred); font-family: var(--mono); text-align: center; width: 3em; }
+table.write.valves td:first-child { width: 7em; }
+.blank-line { display: inline-block; min-width: 9em; border-bottom: 1px solid var(--ink-2); }
+
+pre {
+  font: 400 13px/1.55 var(--mono);
+  background: var(--pred);
+  border: 1px solid var(--rule);
+  padding: 12px 14px; margin: 0;
+  overflow-x: auto;
+}
+.foot { border-top: 3px solid var(--ink); padding-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+/* ---------- print ---------- */
+@page { size: A4; margin: 12mm 12mm 14mm; }
+@media print {
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --paper: #fff; --sheet: #fff; --ink: #000; --ink-2: #3c4750;
+    --rule: #9aa5ae; --rule-soft: #cfd5da; --accent: #1f5fa0; --accent-soft: #eef3f8;
+    --pred: #f2f4f6; --miss: #a8241c; --miss-soft: #f9e6e4; --write: #fff;
+  }
+  body { font-size: 10.5pt; padding: 0; background: #fff; }
+  .sheet { border: 0; padding: 0; max-width: none; gap: 22px; }
+  .print-btn { display: none; }
+  h1 { font-size: 30pt; }
+  h2 { font-size: 18pt; }
+  .page-break { break-before: page; }
+  table { font-size: 9.5pt; }
+  table.write td { height: 9mm; }
+  .job, .hazard, .tbl, pre, .fields { break-inside: avoid; }
+  thead th, td.m, tr.miss td, .note, code { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main class="sheet">
+
+  <header class="mast">
+    <div class="mast-top">
+      <div class="stack" style="gap:6px">
+        <span class="label">Laser-engraving cell · digital twin · field sheet</span>
+        <h1>Lab visit, Monday 21 September 2026</h1>
+      </div>
+      <button class="print-btn" id="print-btn" type="button" onclick="window.print()">Print this sheet</button>
+    </div>
+    <div class="meta">
+      <div><span class="label">Engraved cycle, model</span><span class="v">75.65 s</span></div>
+      <div><span class="label">Bypass cycle, model</span><span class="v">29.74 s</span></div>
+      <div><span class="label">Recording started</span><span class="blank"></span></div>
+      <div><span class="label">Restart due at</span><span class="blank"></span></div>
+    </div>
+    <p class="muted">The jobs are ranked, so stopping at any point still leaves the most valuable data. Each job says how, what to write down, and what the model predicts, so a disagreement shows on the spot. Written 2026-09-15 from the plan's §4 list, the open blocks of the lab-day runbook, and a fresh model run.</p>
+  </header>
+
+  <section class="stack">
+    <h2>The three things that matter most</h2>
+    <ol class="top3">
+      <li><p><strong>Find out why the block never takes the engraving route</strong> (job 1). On 2026-09-10 every automatic cycle stalled. Prox 7 never saw the block, which ran on to prox 8, and neither cylinder A (SV7) nor the bypass (SV11) fired. On 2026-09-07 the same route worked in 7 cycles. Without the engraving route there is nothing to engrave and nothing to time.</p></li>
+      <li><p><strong>Run five or more engraved cycles, with the recorder on and a stopwatch</strong> (job 2). <strong>Time the laser on → off several times for each job.</strong> The laser takes a different time for each job, so one reading is not enough.</p></li>
+      <li><p><strong>Run one bypass cycle</strong> (job 3), and write down which HMI setting selects it.</p></li>
+    </ol>
+    <p class="note">Jobs 5 and 5a take two minutes each. <strong>Ask them as soon as the maintainer is free</strong>; don't wait for their turn in the list.</p>
+  </section>
+
+  <section class="stack">
+    <h2>Before you leave home</h2>
+    <ul class="checks">
+      <li><label><input type="checkbox" id="pre-kit"><span>Copy <code>Project_Notes/to_scada_pc_round4/</code> to the USB stick (five files)</span></label></li>
+      <li><label><input type="checkbox" id="pre-sheet"><span>This sheet printed, or open on the phone</span></label></li>
+      <li><label><input type="checkbox" id="pre-phone"><span>Phone charged, with a stopwatch app that does <strong>laps</strong></span></label></li>
+      <li><label><input type="checkbox" id="pre-kit2"><span>Tape measure, torch, pen, a spare 100 × 100 mm block</span></label></li>
+      <li><label><input type="checkbox" id="pre-laptop"><span>Laptop with MATLAB, if you want to run the model at the cell (last section)</span></label></li>
+    </ul>
+  </section>
+
+  <section class="hazard" aria-labelledby="rules-h">
+    <div class="hazard-band" aria-hidden="true"></div>
+    <div class="hazard-body">
+      <h2 id="rules-h">Rules at the machine</h2>
+      <ul>
+        <li><strong>Read-only on every computer.</strong> Never write a PLC tag. Never change the PLC program, the portal code or its config. TIA Portal is for <strong>reading</strong> only: open blocks and watch tables, but do not download, force or modify anything.</li>
+        <li><strong>Never type a password</strong> into anything we keep, and never into <code>Physics_Framework.xlsx</code> (it is in git). Write down only <em>whether</em> a login was needed.</li>
+        <li><strong>SV7/SV8 and SV9/SV10 are latching valves.</strong> Every extend needs its retract before moving on, or the next cycle starts with a rod out.</li>
+        <li><strong>Do not touch any flow-control needle valve.</strong> They set the rod speeds the model is timed against.</li>
+        <li><strong>Do not change the PLC program or <code>engraving_power</code>.</strong> Only the person responsible for the cell switches things on.</li>
+        <li><strong>The laser:</strong> follow the lab's own rules. Keep the enclosure closed while it runs, and never look into the beam. Film only from outside.</li>
+        <li><strong>Manual button tests go after the automatic cycles</strong>, never in between. On 2026-09-10 a cycle record ran on into manual tests. The new extractor cuts those off, but a clean record needs no cut.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h2>First 15 minutes: set up the recording</h2>
+    <p class="muted">At the SCADA PC.</p>
+    <ul class="checks">
+      <li><label><input type="checkbox" id="set-kit"><span>Copy the round-4 folder onto the PC. Open Claude there, in that folder, and paste the block from <code>PROMPT.txt</code>.</span></label></li>
+      <li><label><input type="checkbox" id="set-real"><span>Dashboard: it must <strong>not</strong> say <code>SIMULATED</code>, and supply pressure should read <strong>about 4.3 bar</strong>. <strong>Exactly 6.2 bar means the simulator</strong>: stop and reconnect.</span></label></li>
+      <li><label><input type="checkbox" id="set-wide"><span>Start a <strong>wide recording: all tags, 0.1 s</strong>. Write the start time in the box at the top.</span></label></li>
+      <li><label><input type="checkbox" id="set-alarm"><span><strong>Set a phone alarm for 55 minutes.</strong> Recordings stop at one hour. On 2026-09-10 nothing was recorded from 15:31 to 16:50 because of this.</span></label></li>
+      <li><label><input type="checkbox" id="set-check"><span>Ask Claude on the SCADA PC to do step 1 (the recorder check).</span></label></li>
+    </ul>
+  </section>
+
+  <section class="stack-lg page-break">
+    <div class="part-head">
+      <span class="label">In priority order</span>
+      <h2>The jobs</h2>
+    </div>
+    <p class="muted">Model numbers come from a run on 2026-09-15: the nominal engraved cycle, with an operator dwell of 12.5 s <code>[PLH]</code>. Shaded cells are the model's.</p>
+
+    <!-- JOB 1 -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">1</div>
+        <div class="job-title">
+          <h3>Why is the engraving route never taken?</h3>
+          <div class="chips"><span class="chip hot">~20 min</span><span class="chip">TIA Portal · read-only</span><span class="chip">plan §4 item 1</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">What we know</dt>
+        <dd>
+          <p>px7 works (the maintainer, 2026-09-11). Belt 2 does not reverse. Re-extracting 2026-09-10 today gives this:</p>
+          <ul>
+            <li>four cycles reached prox 8 (conveyor 2 → prox 8 in <span class="num">2.26 s</span>, n = 4), and <strong>none went on to SV7 or SV11</strong>;</li>
+            <li>three stopped at PLC step 16 and one at step 3;</li>
+            <li>in C0004-165150 the block sat on prox 8 for <span class="num">49 s</span>;</li>
+            <li><strong>prox 7 was being recorded in those cycles and never changed.</strong> Conveyor 2 stopped as the block left prox 8, <span class="num">0.24–0.54 s</span> after prox 8 fired. Conveyor 3 never came on.</li>
+          </ul>
+          <p><strong>On 2026-09-07 the route worked</strong>, in 7 real cycles:</p>
+          <ul>
+            <li>in the one that recorded prox 7 (C0003-180221), conveyor 2 stopped <span class="num">0.52 s</span> after prox 7 fired, and SV7 followed;</li>
+            <li>two other cycles that day also stalled at step 16. The prox sensors were not recorded then.</li>
+          </ul>
+          <p><strong>The timings disagree with each other.</strong> On 2026-09-07 the block reached prox 7 <span class="num">2.62 s</span> after conveyor 2 started (n = 1). On 2026-09-10 it reached prox 8, 22 cm further on, in <span class="num">2.26 s</span> (n = 4). So either belt 2 ran at different speeds on the two days, or prox 7 fires late when it fires at all. A late prox 7 would also stretch the engraved belt-2 run, the model's largest known miss (3.00 s against 1.44 s). <em>Inference, not checked.</em></p>
+          <p class="note"><strong>So the question narrows to: why does prox 7 sometimes not see the block?</strong> <em>Inference, not checked:</em> step 16 is the PLC waiting for prox 7. Both days' stalls stop there, and the one cycle that recorded prox 7 went past it.</p>
+        </dd>
+        <dt class="label">How, at the cell</dt>
+        <dd>
+          <ol>
+            <li>Watch prox 7's LED as the block passes in an automatic cycle. Note where the block rides across the belt, and <strong>where along the belt it is when the LED lights</strong>. A video with the belt and the LED in frame settles both.</li>
+            <li>If the LED stays off: measure prox 7's trip distance with the spare block (runbook E4), measure the gap from its face to the block's path, and photograph the sensor and its bracket.</li>
+          </ol>
+        </dd>
+        <dt class="label">Then in TIA</dt>
+        <dd>
+          <p>Open <strong>FC6</strong> (the main sequence). Look at the networks after prox 8 / prox 7, and read what the PLC waits for before it commands <strong>cylinder A, SV7</strong> (the engraving route) and <strong>the bypass, SV11</strong>.</p>
+          <p>While you're in there, look at:</p>
+          <ul>
+            <li><strong>step 16</strong>: is it the wait for prox 7? And what stops conveyor 2 at prox 8?</li>
+            <li><strong><code>engraving_power</code> (%Q3.5)</strong>: what switches it on, and does the route wait for it?</li>
+            <li>what starts the <code>T#10S</code> beside <code>CMD_START</code>;</li>
+            <li><strong>product selection</strong>: which bit or HMI setting chooses engrave or skip?</li>
+          </ul>
+          <p>If they aren't known yet, these three reads take a minute each while FC6 is open:</p>
+          <ul>
+            <li><strong>D1:</strong> what the <code>T#12S</code> on <code>pgm_cylA</code> is timed from;</li>
+            <li><strong>D2:</strong> the <strong>scan time</strong> (Online &amp; diagnostics → Cycle time). The model assumes 10 ms;</li>
+            <li><strong>D3:</strong> whether outputs are written at the <strong>end of the scan</strong> or immediately (CPU properties).</li>
+          </ul>
+        </dd>
+        <dt class="label">Write down</dt>
+        <dd><p>For each condition: the network number and the condition as written. <strong>Photograph the screen.</strong> For D1–D3, the value.</p></dd>
+        <dt class="label">Settles</dt>
+        <dd><p>Whether today can have any engraved cycles at all.</p></dd>
+      </dl>
+    </article>
+
+    <!-- JOB 2 -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">2</div>
+        <div class="job-title">
+          <h3>Five or more engraved cycles, with a stopwatch</h3>
+          <div class="chips"><span class="chip hot">~40 min</span><span class="chip">recorder running</span><span class="chip">only if the engraver works</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">How</dt>
+        <dd>
+          <ol>
+            <li>Run each cycle from a <strong>cold start at the magazine</strong>.</li>
+            <li>Write each cycle's start and end clock time in <code>LAB_HOUR_LOG.md</code>, and which job it engraved.</li>
+            <li>For each cycle, stopwatch the four parts in the table below with laps. Use one video with a stopwatch in frame as the cross-check.</li>
+            <li><strong>Laser time:</strong> time the laser <strong>on → off</strong> at least <strong>three times for each job</strong>. Write down <strong>the job itself</strong>: file or design name, engraved size in mm, and speed and power if the engraver's software shows them. If the software shows a job timer, photograph it each time.</li>
+          </ol>
+        </dd>
+        <dt class="label">Why the job</dt>
+        <dd><p>The laser time depends on the job, so a time is only useful with its job. The model waits <strong class="num">4.65 s</strong> <code>[PLH]</code> in manual mode. The only footage with the laser on suggests at least about 3.0 s. <strong>Your readings will replace it.</strong></p></dd>
+        <dt class="label">One cheap extra</dt>
+        <dd><p>The portal does <strong>not</strong> record <code>engraving_power</code> (%Q3.5): the 2026-09-10 database has no such tag, so the recorder cannot time the laser. The PLC's output LEDs might, if they can be seen <strong>without opening anything</strong>. If %Q3.5's LED is visible, film it next to the laser once. It may only mean "engraver powered", not "laser firing", so note what it did.</p></dd>
+        <dt class="label">If it doesn't work</dt>
+        <dd><p>Say so in the log, and skip to job 3. A cycle with the platform raised and the laser idle is still worth recording, but mark it <strong>laser idle</strong>. The seven dwells the model uses now are all of that kind.</p></dd>
+      </dl>
+
+      <div class="tbl">
+        <table>
+          <caption class="label">The model's prediction, engraved cycle · 09-07 and 09-10 are recording dates; only 09-07's engraved cycles are quoted</caption>
+          <thead><tr><th>Interval</th><th>Model</th><th>Recorded so far</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>start → first magazine push (SV1)</td><td class="m">10.24 s</td><td class="r">9.99–10.20 s (n = 5)</td><td>the <code>T#10S</code></td></tr>
+            <tr><td>belt 1 run</td><td class="m">3.15 s</td><td class="r">3.08 s (n = 4)</td><td>within</td></tr>
+            <tr><td>prox 6 → SV6 push</td><td class="m">2.13 s</td><td class="r">2.01 s (n = 4)</td><td>within</td></tr>
+            <tr class="miss"><td><strong>belt 2 run</strong></td><td class="m">1.44 s</td><td class="r"><strong>3.00 s (n = 7, 09-07, engraved)</strong>; 2.70 s (n = 5, 09-10, stalled)</td><td><span class="flag">largest known miss</span></td></tr>
+            <tr><td>cylinder A held (SV7 → SV8)</td><td class="m">8.06 s</td><td class="r">8.06 s (n = 7, 09-07)</td><td></td></tr>
+            <tr><td>platform up</td><td class="m">7.63 s</td><td class="r">7.79 s (n = 7, 09-07)</td><td></td></tr>
+            <tr><td><strong>dwell at top</strong> (notice + laser + ENG DONE)</td><td class="m">12.52 s</td><td class="r">5.95–28.65 s (n = 7)</td><td>all <strong>laser idle</strong>; placeholder, what you'll time</td></tr>
+            <tr><td>ENG DONE → platform moves</td><td class="m">1.50 s</td><td class="r">1.30 s (n = 1)</td><td>the recorder splits it via <code>engraving_completed</code></td></tr>
+            <tr><td>platform down</td><td class="m">8.01 s</td><td class="r">8.17 s (n = 7, 09-07)</td><td></td></tr>
+            <tr><td>cylinder B held (SV9 → SV10)</td><td class="m">8.20 s</td><td class="r">8.20 s (n = 1, 09-07)</td><td></td></tr>
+            <tr><td>belt 3 run</td><td class="m">1.64 s</td><td class="r">1.02 s (n = 1, 09-07)</td><td>doubted: a video showed ~5 s on belt 3. Belt 3 speed is assumed, 0.150 m/s</td></tr>
+            <tr><td>SV12 outfeed held</td><td class="m">5.02 s</td><td class="r">5.00 s (n = 7, 09-07); 5.04 s (n = 5, 09-10)</td><td>the PLC's <code>T#5S</code></td></tr>
+            <tr class="total"><td>whole cycle</td><td class="m">75.65 s</td><td class="r">—</td><td></td></tr>
+            <tr><td>to S37, the recorder's end point</td><td class="m">69.85 s</td><td class="r">79.35 s mean, 70.2–90.2 s (n = 6, 09-07)</td><td>what the recorder reports; the operator dwell is most of the difference</td></tr>
+            <tr><td>machine time to S37</td><td class="m">57.35 s</td><td class="r">64.03 s</td><td>the model is <strong>1.12×</strong> too fast</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tbl">
+        <table class="write">
+          <caption class="label">Stopwatch, one row per engraved cycle (lap at each event)</caption>
+          <thead><tr><th>#</th><th>Clock start</th><th>Job (name, size)</th><th>Notice: platform at top → laser on (s)</th><th>Laser on → off (s)</th><th>Reaction: laser off → ENG DONE (s)</th><th>Confirm: ENG DONE → platform moves (s)</th><th>Whole cycle (s)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tbl">
+        <table class="write">
+          <caption class="label">Laser only, several per job (repeat a job outside the cycle if you can; otherwise copy from above)</caption>
+          <thead><tr><th>Job</th><th>Name, size, speed / power</th><th>Run 1 (s)</th><th>Run 2 (s)</th><th>Run 3 (s)</th><th>Run 4 (s)</th><th>Run 5 (s)</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>B</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>C</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- JOB 3 -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">3</div>
+        <div class="job-title">
+          <h3>One bypass cycle</h3>
+          <div class="chips"><span class="chip hot">~10 min</span><span class="chip">never recorded</span><span class="chip">the product that skips engraving</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">How</dt>
+        <dd><p>Select the skip product on the HMI. Run one cycle, then a second if there is time. Write down <strong>which HMI setting selected it</strong>.</p></dd>
+        <dt class="label">Write down</dt>
+        <dd><p>The HMI setting: <span class="blank-line"></span> and the clock times. Note anything that moves that the table does not list.</p></dd>
+      </dl>
+      <div class="tbl">
+        <table>
+          <caption class="label">The model's prediction, bypass cycle</caption>
+          <thead><tr><th>Interval</th><th>Model (bypass)</th><th>Recorded so far</th></tr></thead>
+          <tbody>
+            <tr><td>conveyor 2 → prox 8</td><td class="m">1.97 s</td><td>2.26 s (n = 4), from the 2026-09-10 cycles that stopped at prox 8</td></tr>
+            <tr><td>prox 8 → SV11 push</td><td class="m">0.15 s</td><td>never</td></tr>
+            <tr><td>SV11 held</td><td class="m">2.00 s</td><td>never · the PLC's <code>T#2S</code></td></tr>
+            <tr><td>conveyor 3 → prox 9</td><td class="m">3.24 s</td><td>never</td></tr>
+            <tr><td>SV12 outfeed held</td><td class="m">5.02 s</td><td>5.04 s (n = 5)</td></tr>
+            <tr class="total"><td>whole cycle</td><td class="m">29.74 s</td><td>never</td></tr>
+            <tr><td>to S37, what the recorder reports</td><td class="m">23.94 s</td><td>never</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- JOB 4 -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">4</div>
+        <div class="job-title">
+          <h3>Compartment-4 dispense</h3>
+          <div class="chips"><span class="chip hot">~5 min</span><span class="chip">tests the swapped inputs 4/5</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">How</dt>
+        <dd><p>Let a cycle dispense from compartment 4. <strong>Does the cycle carry on?</strong></p></dd>
+        <dt class="label">Write down</dt>
+        <dd><p>Yes / no: <span class="blank-line"></span> Clock time: <span class="blank-line"></span> Where it stopped, if it did: <span class="blank-line"></span></p></dd>
+      </dl>
+    </article>
+
+    <!-- JOB 4a -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">4a</div>
+        <div class="job-title">
+          <h3>Time belt 3, and belt 2 once</h3>
+          <div class="chips"><span class="chip hot">~10 min</span><span class="chip">P.v_belt(3) = 0.150 m/s [ASM]</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">Why</dt>
+        <dd><p>It is the one belt speed still assumed. Belts 1 and 2 are timed: 0.21 and 0.31 m/s.</p></dd>
+        <dt class="label">How</dt>
+        <dd><p>Put a tape mark on belt 3 and time it over a measured distance, ideally 50 cm or more, three times. Or time a block from a taped start line to prox 9.</p></dd>
+        <dt class="label">Also note</dt>
+        <dd><p><strong>Whether the belt ran in an automatic cycle or on the manual button.</strong> On 2026-09-10 belt 2 ran at 0.31 m/s on a manual press, and it is not settled whether manual and automatic runs drive a belt the same way.</p></dd>
+        <dt class="label">Then belt 2</dt>
+        <dd><p><strong>Once, in an automatic cycle</strong>, with a tape mark or a video with a scale in frame. The model's 0.31 m/s for belt 2 comes from that manual press, and the prox timings in job 1 disagree about the automatic speed.</p></dd>
+      </dl>
+      <div class="tbl">
+        <table class="write">
+          <thead><tr><th>Belt</th><th>Distance (cm)</th><th>Time (s)</th><th>Automatic or manual run?</th></tr></thead>
+          <tbody>
+            <tr><td>3</td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td></tr>
+            <tr><td>2</td><td></td><td></td><td>automatic</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- JOB 5 -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">5</div>
+        <div class="job-title">
+          <h3>Is OPC UA enabled on the CPU?</h3>
+          <div class="chips"><span class="chip hot">30 s</span><span class="chip">TIA Portal</span><span class="chip">plan §6</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">How</dt>
+        <dd><p>CPU properties → OPC UA → Server.</p></dd>
+        <dt class="label">Write down</dt>
+        <dd><p>Enabled yes / no: <span class="blank-line"></span> If yes: the endpoint (it should be <code>opc.tcp://172.21.30.157</code>), the security policy, and whether a login is needed. <strong>Not the login itself.</strong></p></dd>
+        <dt class="label">Settles</dt>
+        <dd><p>Whether the twin route through NX and MATLAB over OPC UA is open.</p></dd>
+      </dl>
+    </article>
+
+    <!-- JOB 5a -->
+    <article class="job">
+      <div class="job-head">
+        <div class="job-no">5a</div>
+        <div class="job-title">
+          <h3>Which valve drives which SV</h3>
+          <div class="chips"><span class="chip hot">2 min</span><span class="chip">plan H9</span></div>
+        </div>
+      </div>
+      <dl class="fields">
+        <dt class="label">How</dt>
+        <dd><p>Ask the maintainer to name each manifold position, and which end is position 1. It should cover exactly the nine single-coil valves: <strong>SV1–SV6, SV11, SV12 and SV13</strong>. Or read the wire ferrules on each DIN connector.</p></dd>
+        <dt class="label">While there</dt>
+        <dd><p><strong>Count the valves.</strong> The photograph shows eight, and the 13-coil count assumes nine. Also follow the double valve's port-4 and port-2 tubes to their barrel (question 17).</p></dd>
+        <dt class="label">Rule</dt>
+        <dd><p>Nothing is recorded as mapped until this table is filled in by someone who knows. <strong>Leave a blank as a blank.</strong></p></dd>
+      </dl>
+      <div class="tbl">
+        <table class="write valves">
+          <thead><tr><th>Position (1 = ______ end)</th><th>SV number</th><th>How known (maintainer / ferrule)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td></td><td></td></tr>
+            <tr><td>2</td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td></tr>
+            <tr><td>4</td><td></td><td></td></tr>
+            <tr><td>5</td><td></td><td></td></tr>
+            <tr><td>6</td><td></td><td></td></tr>
+            <tr><td>7</td><td></td><td></td></tr>
+            <tr><td>8</td><td></td><td></td></tr>
+            <tr><td>9</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Valves counted: <span class="blank-line"></span> &nbsp; Double valve's tubes go to: <span class="blank-line" style="min-width:14em"></span></p>
+    </article>
+  </section>
+
+  <section class="stack page-break">
+    <h2>If time is left</h2>
+    <p class="muted">Each is one reading.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Item</th><th>How</th><th>Record</th></tr></thead>
+        <tbody>
+          <tr><td>E-Stop with the platform raised (E9)</td><td><strong>Only with the maintainer.</strong> Raise the platform, press the E-Stop, and watch</td><td>holds / falls</td></tr>
+          <tr><td>Room temperature (E0), second reading</td><td>any thermometer</td><td>°C and the clock time</td></tr>
+          <tr><td>Trip distance of a prox sensor (E4)</td><td>walk the spare block at its face until the LED changes</td><td>mm</td></tr>
+          <tr><td>Regulator faces ×4 and the compressor dial (E7)</td><td>eyes only</td><td>bar each</td></tr>
+          <tr><td>Conveyor drive nameplate (E6)</td><td>one photograph</td><td>photo</td></tr>
+          <tr><td>Tubing bore, valve → cylinder (N4)</td><td>look at the fitting or the tube print</td><td>4 mm or 6 mm</td></tr>
+          <tr><td>Compressor and receiver nameplate (N5)</td><td>one photograph</td><td>photo</td></tr>
+          <tr><td>Who set the speed-controller needles, and have they been touched? (N7)</td><td>ask</td><td>the answer</td></tr>
+          <tr><td>Magazine: five columns of six? Which compartment holds which height? (A17)</td><td>look</td><td>the answer</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted"><strong>Already answered, don't redo:</strong> belt 2 does not reverse; px7 fires; every unique barrel is photographed; room temperature 25 °C (2026-09-10); the belt datums; the ~10 s start wait is the <code>T#10S</code>.</p>
+  </section>
+
+  <section class="stack">
+    <h2>Before you leave the lab</h2>
+    <ul class="checks">
+      <li><label><input type="checkbox" id="out-restart"><span>The recording was restarted every hour (check the times)</span></label></li>
+      <li><label><input type="checkbox" id="out-outbox"><span>Claude on the SCADA PC ran step 5: <strong>the outbox folder</strong>, with the database copy (db + wal), <code>cell_timings_2026-09-21.json</code> and <code>LAB_HOUR_LOG.md</code>, is on the USB stick</span></label></li>
+      <li><label><input type="checkbox" id="out-media"><span>Videos and photos <strong>copied to disk</strong>, not only sent in chat</span></label></li>
+      <li><label><input type="checkbox" id="out-tia"><span>TIA screenshots from jobs 1 and 5</span></label></li>
+      <li><label><input type="checkbox" id="out-tables"><span>This sheet's tables filled in, or photographed</span></label></li>
+      <li><label><input type="checkbox" id="out-hmi"><span>The HMI setting for the bypass (job 3) written down</span></label></li>
+    </ul>
+  </section>
+
+  <section class="stack">
+    <h2>Running the model at the cell</h2>
+    <p class="muted">Optional. At the MATLAB prompt, from the <code>Factory_Simulation</code> folder.</p>
+    <pre>factory_help</pre>
+    <p>Run a cycle yourself, with the live view:</p>
+    <pre>run_factory_simulation('Operator', 'console', 'Live', true)</pre>
+    <p>It asks in the Command Window: <strong>Enter</strong> means engrave the 50 mm job, and <strong>n</strong> means skip (the SV11 bypass). The laser then runs for 4.65 s on the figure. <strong>Press any key on the figure for ENG DONE.</strong> Shift, Ctrl or Alt alone don't count. If you close the figure, the Command Window takes over.</p>
+    <p>Try a laser time you just measured, without editing any file:</p>
+    <pre>Q = FactoryParams(); Q.OP.t_laser_50 = 12.3;   % your reading, in seconds
+run_factory_simulation('Params', Q, 'Operator', 'console', 'Live', true)</pre>
+    <p>The bypass cycle, for comparison with job 3:</p>
+    <pre>Q = FactoryParams(); Q.engrave_selected = false;
+run_factory_simulation('Params', Q)</pre>
+  </section>
+
+  <section class="stack">
+    <h2>What happens to each result afterwards</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Result</th><th>Goes into</th></tr></thead>
+        <tbody>
+          <tr><td>Job 1, the route condition</td><td><code>factory_plc.m</code> if the model's route logic is wrong; plan §4 item 1</td></tr>
+          <tr><td>Laser times per job</td><td><code>P.OP.t_laser_50</code> (and a 25 mm value if timed). It stays <code>[PLH]</code> until a spread per job exists</td></tr>
+          <tr><td>Notice / reaction / confirm</td><td><code>P.OP.notice_frac</code>, <code>P.OP.confirm</code>, and the operator distribution</td></tr>
+          <tr><td>Engraved-cycle intervals</td><td><code>compare_to_recording('File', …)</code>: criterion C3 for platform, cylinders A and B, belt 3</td></tr>
+          <tr><td>Bypass cycle</td><td>the first recorded check of the SV11 route</td></tr>
+          <tr><td>Belt 3 speed</td><td><code>P.v_belt(3)</code>, from <code>[ASM]</code> to <code>[MEAS]</code>, reconciled everywhere</td></tr>
+          <tr><td>Valve table</td><td><code>VALVES_2026-09-10.md</code> §5, then <code>FactoryParams</code></td></tr>
+          <tr><td>OPC UA answer</td><td><code>INPUTS_REQUIRED</code> A14; plan §6</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Nothing changes in the model until the data is back and each change has run through both test suites.</p>
+  </section>
+
+  <footer class="foot">
+    <span class="label">Laser-engraving cell · lab visit 2026-09-21</span>
+    <span class="label">Source: Project_Notes/LAB_VISIT_2026-09-16.md</span>
+  </footer>
+</main>

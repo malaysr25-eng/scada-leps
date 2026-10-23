@@ -1,0 +1,29 @@
+{
+ "database": "C:\\Users\\DELL\\Desktop\\new_scada\\data\\scada_history.db",
+ "window": [
+  1789974567.7621737,
+  1789974687.7621737
+ ],
+ "window_local": [
+  "12:39:27.762",
+  "12:41:27.762"
+ ],
+ "match": [],
+ "sessions": [
+  {
+   "session_uid": "f449bc0e0b4b44ff",
+   "label": "lab day wide capture 2",
+   "started_at": 1789024856.881322,
+   "ended_at": null,
+   "sample_interval_s": 0.2,
+   "deadband": 0.001,
+   "status": "ACTIVE"
+  }
+ ],
+ "state_before": {},
+ "changes": [],
+ "pulses": [],
+ "commands": [],
+ "system_events": [],
+ "alarms": []
+}

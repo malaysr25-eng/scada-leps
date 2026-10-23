@@ -1,0 +1,987 @@
+{
+ "source": "new_scada/scada_platform/data/scada_history.db",
+ "extracted": "2026-09-06",
+ "regenerated_by": "Project_Notes/tools/read_scada_history.py",
+ "note": "NOT THE MACHINE. Recorded 2026-09-01 by the new_scada SCADA application while its connection state was SIMULATED - the built-in PLC stand-in. Proven 2026-09-07: six values here are simulator seed constants (pressure 6.2, normx 0.72, set_velocity 0.15, position_fb 30.0, all magazines ok, all axes homed), see FactoryParams.m 13I. The source_id of \"plc\" names an ADAPTER, not a controller.",
+ "instrument": {
+  "why_this_section_exists": "READ THIS BEFORE DRAWING ANY CONCLUSION FROM 'transitions'. The recorder captures transitions of WATCHED tags only, and the watch list is a fixed diagnostic set, not a survey of the machine. A tag missing from 'transitions' MAY SIMPLY NEVER HAVE BEEN WATCHED.",
+  "watch_roles": [
+   "valve.8.state",
+   "manual.valve.8",
+   "valve.7.state",
+   "manual.valve.7",
+   "valve.11.state",
+   "manual.valve.11",
+   "valve.12.state",
+   "manual.valve.12",
+   "conveyor.2.set_velocity",
+   "conveyor.2.velocity_fb",
+   "conveyor.2.running",
+   "safety.emergency_healthy",
+   "safety.engraving_plate_home",
+   "sensor.pgm_up_limit",
+   "sensor.pgm_low_limit",
+   "cmd.start",
+   "status.cycle_completed"
+  ],
+  "tags_ever_recorded": [
+   "io_status.digital_inputs.pgm_low_limit",
+   "io_status.digital_inputs.pgm_up_limit",
+   "io_status.digital_outputs.conveyor2",
+   "io_status.digital_outputs.solenoid_valve11",
+   "io_status.digital_outputs.solenoid_valve12",
+   "io_status.digital_outputs.solenoid_valve7",
+   "manual_commands.solenoid_valve8",
+   "pot_control.conv2.current_velocity_fb",
+   "pot_control.conv2.set_velocity",
+   "system.cmd_start",
+   "system.cycle_completed",
+   "system.start_interlocks.emergency_healthy",
+   "system.start_interlocks.engv_plate_home"
+  ],
+  "tags_ever_recorded_count": 13,
+  "tags_machine_publishes": 158,
+  "never_watched_examples": [
+   "solenoid valves 1-6, 9, 10 and 13 (only 7, 8, 11, 12 are watched)",
+   "conveyor 1 and conveyor 3 digital outputs",
+   "all ten proximity sensors"
+  ],
+  "aggregate_roles": [
+   "pressure.value",
+   "conveyor.1.velocity_fb",
+   "conveyor.2.velocity_fb",
+   "conveyor.3.velocity_fb",
+   "conveyor.1.set_velocity",
+   "conveyor.2.set_velocity",
+   "conveyor.3.set_velocity",
+   "conveyor.1.position_fb",
+   "conveyor.2.position_fb",
+   "conveyor.3.position_fb"
+  ],
+  "aggregates_are_unfiltered": "cycle_metrics is accumulated on EVERY poll for the roles above (backend/db/ingest.py::TagAccumulator, an unweighted mean), so it is independent of the watch list and is the only evidence here about conveyors 1 and 3.",
+  "poll_period_s": 0.25
+ },
+ "snapshot_at_rest": {
+  "note": "Last value of every tag the machine publishes, from the two 'selftest-rec' recording sessions taken immediately after each cycle completed. The machine is idle and homed in both.",
+  "tag_count": 158,
+  "tags": {
+   "comp_status.comp1.empty": false,
+   "comp_status.comp1.low": false,
+   "comp_status.comp1.ok": true,
+   "comp_status.comp2.empty": false,
+   "comp_status.comp2.low": false,
+   "comp_status.comp2.ok": true,
+   "comp_status.comp3.empty": false,
+   "comp_status.comp3.low": false,
+   "comp_status.comp3.ok": true,
+   "comp_status.comp4.empty": false,
+   "comp_status.comp4.low": false,
+   "comp_status.comp4.ok": true,
+   "comp_status.comp5.empty": false,
+   "comp_status.comp5.low": false,
+   "comp_status.comp5.ok": true,
+   "io_status.analog_inputs.pressure.high_alarm": false,
+   "io_status.analog_inputs.pressure.high_value": 10.0,
+   "io_status.analog_inputs.pressure.low_alarm": false,
+   "io_status.analog_inputs.pressure.low_value": 0.0,
+   "io_status.analog_inputs.pressure.normx": 0.72,
+   "io_status.analog_inputs.pressure.value": 6.2,
+   "io_status.digital_inputs.emergency": false,
+   "io_status.digital_inputs.pgm_low_limit": true,
+   "io_status.digital_inputs.pgm_up_limit": false,
+   "io_status.digital_inputs.proximity_sensor1": false,
+   "io_status.digital_inputs.proximity_sensor10": false,
+   "io_status.digital_inputs.proximity_sensor2": false,
+   "io_status.digital_inputs.proximity_sensor3": false,
+   "io_status.digital_inputs.proximity_sensor4": false,
+   "io_status.digital_inputs.proximity_sensor5": false,
+   "io_status.digital_inputs.proximity_sensor6": false,
+   "io_status.digital_inputs.proximity_sensor7": false,
+   "io_status.digital_inputs.proximity_sensor8": false,
+   "io_status.digital_inputs.proximity_sensor9": false,
+   "io_status.digital_outputs.conveyor1": false,
+   "io_status.digital_outputs.conveyor2": false,
+   "io_status.digital_outputs.conveyor3": false,
+   "io_status.digital_outputs.solenoid_valve1": false,
+   "io_status.digital_outputs.solenoid_valve10": false,
+   "io_status.digital_outputs.solenoid_valve11": false,
+   "io_status.digital_outputs.solenoid_valve12": false,
+   "io_status.digital_outputs.solenoid_valve13": false,
+   "io_status.digital_outputs.solenoid_valve2": false,
+   "io_status.digital_outputs.solenoid_valve3": false,
+   "io_status.digital_outputs.solenoid_valve4": false,
+   "io_status.digital_outputs.solenoid_valve5": false,
+   "io_status.digital_outputs.solenoid_valve6": false,
+   "io_status.digital_outputs.solenoid_valve7": false,
+   "io_status.digital_outputs.solenoid_valve8": false,
+   "io_status.digital_outputs.solenoid_valve9": false,
+   "manual_commands.conveyor1": false,
+   "manual_commands.conveyor2": false,
+   "manual_commands.conveyor3": false,
+   "manual_commands.solenoid_valve1": false,
+   "manual_commands.solenoid_valve10": false,
+   "manual_commands.solenoid_valve11": false,
+   "manual_commands.solenoid_valve12": false,
+   "manual_commands.solenoid_valve13": false,
+   "manual_commands.solenoid_valve2": false,
+   "manual_commands.solenoid_valve3": false,
+   "manual_commands.solenoid_valve4": false,
+   "manual_commands.solenoid_valve5": false,
+   "manual_commands.solenoid_valve6": false,
+   "manual_commands.solenoid_valve7": false,
+   "manual_commands.solenoid_valve8": false,
+   "manual_commands.solenoid_valve9": false,
+   "pot_control.conv1.axis_homed_fb": true,
+   "pot_control.conv1.current_position_fb": 30.0,
+   "pot_control.conv1.current_velocity_fb": 0.0,
+   "pot_control.conv1.error_fb": false,
+   "pot_control.conv1.goto_position": false,
+   "pot_control.conv1.highspeed_position": 0.0,
+   "pot_control.conv1.highspeed_velocity": 0.0,
+   "pot_control.conv1.lowspeed_position": 0.0,
+   "pot_control.conv1.lowspeed_velocity": 0.0,
+   "pot_control.conv1.reset": false,
+   "pot_control.conv1.set_highspeed": false,
+   "pot_control.conv1.set_home": false,
+   "pot_control.conv1.set_position": 0.0,
+   "pot_control.conv1.set_velocity": 0.15,
+   "pot_control.conv2.axis_homed_fb": true,
+   "pot_control.conv2.current_position_fb": 30.0,
+   "pot_control.conv2.current_velocity_fb": 0.0,
+   "pot_control.conv2.error_fb": false,
+   "pot_control.conv2.goto_position": false,
+   "pot_control.conv2.highspeed_position": 0.0,
+   "pot_control.conv2.highspeed_velocity": 0.0,
+   "pot_control.conv2.lowspeed_position": 0.0,
+   "pot_control.conv2.lowspeed_velocity": 0.0,
+   "pot_control.conv2.reset": false,
+   "pot_control.conv2.set_highspeed": false,
+   "pot_control.conv2.set_home": false,
+   "pot_control.conv2.set_position": 0.0,
+   "pot_control.conv2.set_velocity": 0.2,
+   "pot_control.conv3.axis_homed_fb": true,
+   "pot_control.conv3.current_position_fb": 30.0,
+   "pot_control.conv3.current_velocity_fb": 0.0,
+   "pot_control.conv3.error_fb": false,
+   "pot_control.conv3.goto_position": false,
+   "pot_control.conv3.highspeed_position": 0.0,
+   "pot_control.conv3.highspeed_velocity": 0.0,
+   "pot_control.conv3.lowspeed_position": 0.0,
+   "pot_control.conv3.lowspeed_velocity": 0.0,
+   "pot_control.conv3.reset": false,
+   "pot_control.conv3.set_highspeed": false,
+   "pot_control.conv3.set_home": false,
+   "pot_control.conv3.set_position": 0.0,
+   "pot_control.conv3.set_velocity": 0.15,
+   "raw.db59.w270": 0.0,
+   "raw.db59.w272": 0.0,
+   "raw.db59.w274": 0.0,
+   "raw.db59.w276": 0.0,
+   "raw.db59.w278": 0.0,
+   "raw.db59.x266_0": false,
+   "raw.db59.x266_1": false,
+   "raw.db59.x266_2": false,
+   "raw.db59.x266_3": false,
+   "raw.db59.x266_4": false,
+   "raw.db59.x266_5": false,
+   "raw.db59.x266_6": false,
+   "raw.db59.x266_7": false,
+   "raw.db59.x267_0": false,
+   "raw.db59.x267_1": false,
+   "raw.db59.x267_2": false,
+   "raw.db59.x267_3": false,
+   "raw.db59.x267_4": false,
+   "raw.db59.x267_5": false,
+   "raw.db59.x267_6": false,
+   "raw.db59.x267_7": false,
+   "raw.db59.x268_0": false,
+   "raw.db59.x268_1": false,
+   "raw.db59.x268_2": false,
+   "raw.db59.x268_3": false,
+   "raw.db59.x268_4": false,
+   "raw.db59.x268_5": false,
+   "raw.db59.x268_6": false,
+   "raw.db59.x268_7": false,
+   "raw.db59.x269_0": false,
+   "raw.db59.x269_1": false,
+   "raw.db59.x269_2": false,
+   "raw.db59.x269_3": false,
+   "raw.db59.x269_4": false,
+   "raw.db59.x269_5": false,
+   "raw.db59.x269_6": false,
+   "raw.db59.x269_7": false,
+   "system.cmd_start": true,
+   "system.cycle_completed": true,
+   "system.cycle_reset": true,
+   "system.engraving_completed": false,
+   "system.mode_high_speed": false,
+   "system.productqty_25mm": 1.0,
+   "system.productqty_50mm": 0.0,
+   "system.start_interlocks.air_pressure_ok": true,
+   "system.start_interlocks.all_cylinders_home": true,
+   "system.start_interlocks.emergency_healthy": true,
+   "system.start_interlocks.engv_plate_home": true,
+   "system.startup_healthy": true,
+   "system.total_products": 1.0
+  }
+ },
+ "cycles": [
+  {
+   "id": 1,
+   "cycle_id": "C0001-112601",
+   "started_at": 1788242161.5791519,
+   "ended_at": 1788242179.7246847,
+   "duration_s": 18.146,
+   "outcome": "COMPLETED",
+   "qty_25mm": 1,
+   "qty_50mm": 0,
+   "products_done": 1,
+   "high_speed": null,
+   "mode": "AUTO",
+   "source_id": "plc",
+   "max_step_reached": 34,
+   "fault_count": 0,
+   "stall_count": 0,
+   "detail": "{\"note\": \"Automatic summary at cycle completion.\", \"operator\": \"system\", \"lifecycle\": \"COMPLETED\", \"waitingFor\": null}"
+  },
+  {
+   "id": 2,
+   "cycle_id": "C0001-113035",
+   "started_at": 1788242435.2508528,
+   "ended_at": 1788242452.9824018,
+   "duration_s": 17.732,
+   "outcome": "COMPLETED",
+   "qty_25mm": 1,
+   "qty_50mm": 0,
+   "products_done": 1,
+   "high_speed": null,
+   "mode": "AUTO",
+   "source_id": "plc",
+   "max_step_reached": 34,
+   "fault_count": 0,
+   "stall_count": 0,
+   "detail": "{\"note\": \"Automatic summary at cycle completion.\", \"operator\": \"system\", \"lifecycle\": \"COMPLETED\", \"waitingFor\": null}"
+  }
+ ],
+ "metrics": [
+  {
+   "id": 8,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.1.position_fb",
+   "min_value": 30.0,
+   "max_value": 30.0,
+   "avg_value": 30.0,
+   "last_value": 30.0,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 5,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.1.set_velocity",
+   "min_value": 0.15,
+   "max_value": 0.15,
+   "avg_value": 0.15000000000000022,
+   "last_value": 0.15,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 2,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.1.velocity_fb",
+   "min_value": 0.0,
+   "max_value": 0.15,
+   "avg_value": 0.01875,
+   "last_value": 0.0,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 9,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.2.position_fb",
+   "min_value": 30.0,
+   "max_value": 30.0,
+   "avg_value": 30.0,
+   "last_value": 30.0,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 6,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.2.set_velocity",
+   "min_value": 0.2,
+   "max_value": 0.2,
+   "avg_value": 0.19999999999999973,
+   "last_value": 0.2,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 3,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.2.velocity_fb",
+   "min_value": 0.0,
+   "max_value": 0.2,
+   "avg_value": 0.027777777777777776,
+   "last_value": 0.0,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 10,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.3.position_fb",
+   "min_value": 30.0,
+   "max_value": 30.0,
+   "avg_value": 30.0,
+   "last_value": 30.0,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 7,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.3.set_velocity",
+   "min_value": 0.15,
+   "max_value": 0.15,
+   "avg_value": 0.15000000000000022,
+   "last_value": 0.15,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 4,
+   "cycle_id": "C0001-112601",
+   "metric": "conveyor.3.velocity_fb",
+   "min_value": 0.0,
+   "max_value": 0.15,
+   "avg_value": 0.01875,
+   "last_value": 0.0,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 1,
+   "cycle_id": "C0001-112601",
+   "metric": "pressure.value",
+   "min_value": 6.2,
+   "max_value": 6.2,
+   "avg_value": 6.199999999999992,
+   "last_value": 6.2,
+   "sample_count": 72,
+   "unit": null
+  },
+  {
+   "id": 18,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.1.position_fb",
+   "min_value": 30.0,
+   "max_value": 30.0,
+   "avg_value": 30.0,
+   "last_value": 30.0,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 15,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.1.set_velocity",
+   "min_value": 0.15,
+   "max_value": 0.15,
+   "avg_value": 0.15000000000000022,
+   "last_value": 0.15,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 12,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.1.velocity_fb",
+   "min_value": 0.0,
+   "max_value": 0.15,
+   "avg_value": 0.019285714285714285,
+   "last_value": 0.0,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 19,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.2.position_fb",
+   "min_value": 30.0,
+   "max_value": 30.0,
+   "avg_value": 30.0,
+   "last_value": 30.0,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 16,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.2.set_velocity",
+   "min_value": 0.2,
+   "max_value": 0.2,
+   "avg_value": 0.19999999999999973,
+   "last_value": 0.2,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 13,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.2.velocity_fb",
+   "min_value": 0.0,
+   "max_value": 0.2,
+   "avg_value": 0.028571428571428567,
+   "last_value": 0.0,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 20,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.3.position_fb",
+   "min_value": 30.0,
+   "max_value": 30.0,
+   "avg_value": 30.0,
+   "last_value": 30.0,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 17,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.3.set_velocity",
+   "min_value": 0.15,
+   "max_value": 0.15,
+   "avg_value": 0.15000000000000022,
+   "last_value": 0.15,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 14,
+   "cycle_id": "C0001-113035",
+   "metric": "conveyor.3.velocity_fb",
+   "min_value": 0.0,
+   "max_value": 0.15,
+   "avg_value": 0.019285714285714285,
+   "last_value": 0.0,
+   "sample_count": 70,
+   "unit": null
+  },
+  {
+   "id": 11,
+   "cycle_id": "C0001-113035",
+   "metric": "pressure.value",
+   "min_value": 6.2,
+   "max_value": 6.2,
+   "avg_value": 6.199999999999993,
+   "last_value": 6.2,
+   "sample_count": 70,
+   "unit": null
+  }
+ ],
+ "transitions": [
+  {
+   "ts": 1788242152.0841372,
+   "tag": "system.start_interlocks.engv_plate_home",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:25:52.084137"
+  },
+  {
+   "ts": 1788242152.0841372,
+   "tag": "system.start_interlocks.emergency_healthy",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:25:52.084137"
+  },
+  {
+   "ts": 1788242152.0841372,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:25:52.084137"
+  },
+  {
+   "ts": 1788242152.0841372,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.0",
+   "to": "0.15",
+   "iso": "2026-09-01T11:25:52.084137"
+  },
+  {
+   "ts": 1788242160.5536833,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:00.553683"
+  },
+  {
+   "ts": 1788242161.3222342,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.15",
+   "to": "0.2",
+   "iso": "2026-09-01T11:26:01.322234"
+  },
+  {
+   "ts": 1788242161.3222342,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:01.322234"
+  },
+  {
+   "ts": 1788242161.5787888,
+   "tag": "system.cmd_start",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:01.578789"
+  },
+  {
+   "ts": 1788242166.6833289,
+   "tag": "io_status.digital_outputs.conveyor2",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:06.683329"
+  },
+  {
+   "ts": 1788242166.6833289,
+   "tag": "pot_control.conv2.current_velocity_fb",
+   "from": "0.0",
+   "to": "0.2",
+   "iso": "2026-09-01T11:26:06.683329"
+  },
+  {
+   "ts": 1788242169.246815,
+   "tag": "io_status.digital_outputs.solenoid_valve7",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:09.246815"
+  },
+  {
+   "ts": 1788242169.246815,
+   "tag": "io_status.digital_outputs.conveyor2",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:09.246815"
+  },
+  {
+   "ts": 1788242169.246815,
+   "tag": "pot_control.conv2.current_velocity_fb",
+   "from": "0.2",
+   "to": "0.0",
+   "iso": "2026-09-01T11:26:09.246815"
+  },
+  {
+   "ts": 1788242170.5252914,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:10.525291"
+  },
+  {
+   "ts": 1788242170.5252914,
+   "tag": "io_status.digital_outputs.solenoid_valve7",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:10.525291"
+  },
+  {
+   "ts": 1788242172.0581448,
+   "tag": "io_status.digital_inputs.pgm_up_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:12.058145"
+  },
+  {
+   "ts": 1788242173.0832124,
+   "tag": "io_status.digital_inputs.pgm_up_limit",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:13.083212"
+  },
+  {
+   "ts": 1788242174.620607,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:14.620607"
+  },
+  {
+   "ts": 1788242174.8748114,
+   "tag": "io_status.digital_outputs.solenoid_valve11",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:14.874811"
+  },
+  {
+   "ts": 1788242175.8947947,
+   "tag": "io_status.digital_outputs.solenoid_valve11",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:15.894795"
+  },
+  {
+   "ts": 1788242178.4440882,
+   "tag": "io_status.digital_outputs.solenoid_valve12",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:18.444088"
+  },
+  {
+   "ts": 1788242179.7242956,
+   "tag": "system.cycle_completed",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:19.724296"
+  },
+  {
+   "ts": 1788242179.7242956,
+   "tag": "io_status.digital_outputs.solenoid_valve12",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:19.724296"
+  },
+  {
+   "ts": 1788242193.2523427,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:26:33.252343"
+  },
+  {
+   "ts": 1788242193.7601922,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:26:33.760192"
+  },
+  {
+   "ts": 1788242422.8863256,
+   "tag": "system.start_interlocks.engv_plate_home",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:22.886326"
+  },
+  {
+   "ts": 1788242422.8863256,
+   "tag": "system.start_interlocks.emergency_healthy",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:22.886326"
+  },
+  {
+   "ts": 1788242422.8863256,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:22.886326"
+  },
+  {
+   "ts": 1788242422.8863256,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.0",
+   "to": "0.15",
+   "iso": "2026-09-01T11:30:22.886326"
+  },
+  {
+   "ts": 1788242434.2171814,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:34.217181"
+  },
+  {
+   "ts": 1788242434.7337317,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.15",
+   "to": "0.2",
+   "iso": "2026-09-01T11:30:34.733732"
+  },
+  {
+   "ts": 1788242434.7337317,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:34.733732"
+  },
+  {
+   "ts": 1788242435.2505767,
+   "tag": "system.cmd_start",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:35.250577"
+  },
+  {
+   "ts": 1788242440.1313322,
+   "tag": "io_status.digital_outputs.conveyor2",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:40.131332"
+  },
+  {
+   "ts": 1788242440.1313322,
+   "tag": "pot_control.conv2.current_velocity_fb",
+   "from": "0.0",
+   "to": "0.2",
+   "iso": "2026-09-01T11:30:40.131332"
+  },
+  {
+   "ts": 1788242442.7130725,
+   "tag": "io_status.digital_outputs.conveyor2",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:42.713073"
+  },
+  {
+   "ts": 1788242442.7130725,
+   "tag": "pot_control.conv2.current_velocity_fb",
+   "from": "0.2",
+   "to": "0.0",
+   "iso": "2026-09-01T11:30:42.713073"
+  },
+  {
+   "ts": 1788242442.966958,
+   "tag": "io_status.digital_outputs.solenoid_valve7",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:42.966958"
+  },
+  {
+   "ts": 1788242444.0004015,
+   "tag": "io_status.digital_outputs.solenoid_valve7",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:44.000401"
+  },
+  {
+   "ts": 1788242444.2625515,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:44.262552"
+  },
+  {
+   "ts": 1788242445.7998996,
+   "tag": "io_status.digital_inputs.pgm_up_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:45.799900"
+  },
+  {
+   "ts": 1788242446.5677996,
+   "tag": "io_status.digital_inputs.pgm_up_limit",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:46.567800"
+  },
+  {
+   "ts": 1788242448.112528,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:48.112528"
+  },
+  {
+   "ts": 1788242448.112528,
+   "tag": "io_status.digital_outputs.solenoid_valve11",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:48.112528"
+  },
+  {
+   "ts": 1788242449.3928626,
+   "tag": "io_status.digital_outputs.solenoid_valve11",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:49.392863"
+  },
+  {
+   "ts": 1788242451.9494233,
+   "tag": "io_status.digital_outputs.solenoid_valve12",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:51.949423"
+  },
+  {
+   "ts": 1788242452.9815276,
+   "tag": "system.cycle_completed",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:30:52.981528"
+  },
+  {
+   "ts": 1788242452.9815276,
+   "tag": "io_status.digital_outputs.solenoid_valve12",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:30:52.981528"
+  },
+  {
+   "ts": 1788242466.6639812,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:31:06.663981"
+  },
+  {
+   "ts": 1788242467.1789813,
+   "tag": "manual_commands.solenoid_valve8",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T11:31:07.178981"
+  },
+  {
+   "ts": 1788243107.64572,
+   "tag": "system.start_interlocks.engv_plate_home",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:41:47.645720"
+  },
+  {
+   "ts": 1788243107.64572,
+   "tag": "system.start_interlocks.emergency_healthy",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:41:47.645720"
+  },
+  {
+   "ts": 1788243107.64572,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T11:41:47.645720"
+  },
+  {
+   "ts": 1788243107.64572,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.0",
+   "to": "0.15",
+   "iso": "2026-09-01T11:41:47.645720"
+  },
+  {
+   "ts": 1788245021.5321777,
+   "tag": "system.cmd_start",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:13:41.532178"
+  },
+  {
+   "ts": 1788245026.7403383,
+   "tag": "io_status.digital_outputs.conveyor2",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:13:46.740338"
+  },
+  {
+   "ts": 1788245026.7403383,
+   "tag": "pot_control.conv2.current_velocity_fb",
+   "from": "0.0",
+   "to": "0.15",
+   "iso": "2026-09-01T12:13:46.740338"
+  },
+  {
+   "ts": 1788245029.3406205,
+   "tag": "io_status.digital_outputs.solenoid_valve7",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:13:49.340621"
+  },
+  {
+   "ts": 1788245029.3406205,
+   "tag": "io_status.digital_outputs.conveyor2",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T12:13:49.340621"
+  },
+  {
+   "ts": 1788245029.3406205,
+   "tag": "pot_control.conv2.current_velocity_fb",
+   "from": "0.15",
+   "to": "0.0",
+   "iso": "2026-09-01T12:13:49.340621"
+  },
+  {
+   "ts": 1788245030.6270897,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T12:13:50.627090"
+  },
+  {
+   "ts": 1788245030.6270897,
+   "tag": "io_status.digital_outputs.solenoid_valve7",
+   "from": "true",
+   "to": "false",
+   "iso": "2026-09-01T12:13:50.627090"
+  },
+  {
+   "ts": 1788245032.1886225,
+   "tag": "io_status.digital_inputs.pgm_up_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:13:52.188622"
+  },
+  {
+   "ts": 1788245800.1769266,
+   "tag": "system.start_interlocks.engv_plate_home",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:26:40.176927"
+  },
+  {
+   "ts": 1788245800.1769266,
+   "tag": "system.start_interlocks.emergency_healthy",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:26:40.176927"
+  },
+  {
+   "ts": 1788245800.1769266,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:26:40.176927"
+  },
+  {
+   "ts": 1788245800.1769266,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.0",
+   "to": "0.15",
+   "iso": "2026-09-01T12:26:40.176927"
+  },
+  {
+   "ts": 1788245872.1129508,
+   "tag": "system.start_interlocks.engv_plate_home",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:27:52.112951"
+  },
+  {
+   "ts": 1788245872.1129508,
+   "tag": "system.start_interlocks.emergency_healthy",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:27:52.112951"
+  },
+  {
+   "ts": 1788245872.1129508,
+   "tag": "io_status.digital_inputs.pgm_low_limit",
+   "from": "false",
+   "to": "true",
+   "iso": "2026-09-01T12:27:52.112951"
+  },
+  {
+   "ts": 1788245872.1129508,
+   "tag": "pot_control.conv2.set_velocity",
+   "from": "0.0",
+   "to": "0.15",
+   "iso": "2026-09-01T12:27:52.112951"
+  }
+ ]
+}

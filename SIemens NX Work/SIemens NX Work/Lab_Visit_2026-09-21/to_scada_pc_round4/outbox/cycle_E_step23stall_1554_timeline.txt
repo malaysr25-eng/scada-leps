@@ -1,0 +1,218 @@
+WINDOW 15:54:15.000 -> 15:55:20.000   db C:\Users\DELL\Desktop\new_scada\scada_platform\data\scada_history.db
+tag_samples in window: 478
+session 17b99f885bc848ca "Recording 2026-09-21 15:02:42" sample 0.100 s
+
+-- changes (t = seconds from window start) --
+    0.081  15:54:15.081  io_status.analog_inputs.pressure.value               4.291 -> 4.3022
+    0.613  15:54:15.612  io_status.analog_inputs.pressure.value               4.3022 -> 4.3152
+    0.860  15:54:15.859  io_status.analog_inputs.pressure.value               4.3152 -> 4.3115
+    1.110  15:54:16.110  io_status.analog_inputs.pressure.value               4.3115 -> 4.3022
+    1.624  15:54:16.623  io_status.analog_inputs.pressure.value               4.3022 -> 4.3152
+    2.122  15:54:17.121  io_status.analog_inputs.pressure.value               4.3152 -> 4.291
+    2.387  15:54:17.386  io_status.analog_inputs.pressure.value               4.291 -> 4.3087
+    2.651  15:54:17.650  io_status.analog_inputs.pressure.value               4.3087 -> 4.3124
+    2.918  15:54:17.918  io_status.analog_inputs.pressure.value               4.3124 -> 4.2901
+    3.180  15:54:18.180  io_status.analog_inputs.pressure.value               4.2901 -> 4.2975
+    3.445  15:54:18.444  io_status.analog_inputs.pressure.value               4.2975 -> 4.3152
+    3.710  15:54:18.709  io_status.analog_inputs.pressure.value               4.3152 -> 4.2966
+    4.043  15:54:19.042  io_status.analog_inputs.pressure.value               4.2966 -> 4.3152
+    4.240  15:54:19.240  io_status.analog_inputs.pressure.value               4.3152 -> 4.2836
+    4.240  15:54:19.240  io_status.digital_outputs.solenoid_valve10           0 -> 1
+    4.240  15:54:19.240  io_status.digital_outputs.solenoid_valve8            0 -> 1
+    4.240  15:54:19.240  system.cmd_start                                     0 -> 1
+    4.240  15:54:19.240  system.productqty_25mm                               1.0 -> 0.0
+    4.240  15:54:19.240  system.productqty_50mm                               0.0 -> 1.0
+    5.484  15:54:20.484  io_status.analog_inputs.pressure.value               4.2836 -> 4.2854
+    5.735  15:54:20.734  io_status.analog_inputs.pressure.value               4.2854 -> 4.292
+    5.982  15:54:20.981  io_status.analog_inputs.pressure.value               4.292 -> 4.2901
+    6.231  15:54:21.231  io_status.analog_inputs.pressure.value               4.2901 -> 4.2994
+    6.231  15:54:21.231  io_status.digital_outputs.solenoid_valve10           1 -> 0
+    6.765  15:54:21.765  io_status.analog_inputs.pressure.value               4.2994 -> 4.3133
+    7.010  15:54:22.009  io_status.analog_inputs.pressure.value               4.3133 -> 4.3152
+    7.277  15:54:22.277  io_status.analog_inputs.pressure.value               4.3152 -> 4.3031
+    7.538  15:54:22.538  io_status.analog_inputs.pressure.value               4.3031 -> 4.291
+    7.804  15:54:22.804  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+    9.065  15:54:24.064  io_status.analog_inputs.pressure.value               4.3152 -> 4.3133
+    9.313  15:54:24.312  io_status.analog_inputs.pressure.value               4.3133 -> 4.3152
+    9.313  15:54:24.312  io_status.digital_outputs.solenoid_valve8            1 -> 0
+    9.560  15:54:24.559  io_status.analog_inputs.pressure.value               4.3152 -> 4.3096
+    9.827  15:54:24.826  io_status.analog_inputs.pressure.value               4.3096 -> 4.291
+   10.079  15:54:25.079  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+   13.148  15:54:28.148  io_status.analog_inputs.pressure.value               4.3152 -> 4.3031
+   13.413  15:54:28.413  io_status.analog_inputs.pressure.value               4.3031 -> 4.3152
+   14.190  15:54:29.190  io_status.digital_outputs.solenoid_valve1            0 -> 1
+   14.441  15:54:29.441  io_status.analog_inputs.pressure.value               4.3152 -> 4.1878
+   14.692  15:54:29.692  io_status.analog_inputs.pressure.value               4.1878 -> 4.2194
+   14.942  15:54:29.942  io_status.digital_inputs.proximity_sensor1           0 -> 1
+   15.689  15:54:30.688  io_status.analog_inputs.pressure.value               4.2194 -> 4.2501
+   15.940  15:54:30.939  io_status.analog_inputs.pressure.value               4.2501 -> 4.2836
+   16.188  15:54:31.187  io_status.analog_inputs.pressure.value               4.2836 -> 4.2957
+   16.436  15:54:31.435  io_status.analog_inputs.pressure.value               4.2957 -> 4.3152
+   16.685  15:54:31.685  io_status.analog_inputs.pressure.value               4.3152 -> 4.3096
+   16.934  15:54:31.933  io_status.analog_inputs.pressure.value               4.3096 -> 4.3152
+   17.197  15:54:32.196  io_status.analog_inputs.pressure.value               4.3152 -> 4.0976
+   17.197  15:54:32.196  io_status.digital_outputs.conveyor1                  0 -> 1
+   17.197  15:54:32.196  io_status.digital_outputs.solenoid_valve1            1 -> 0
+   17.460  15:54:32.459  io_status.analog_inputs.pressure.value               4.0976 -> 4.2111
+   17.460  15:54:32.459  io_status.digital_inputs.proximity_sensor1           1 -> 0
+   17.460  15:54:32.459  io_status.digital_inputs.proximity_sensor2           0 -> 1
+   17.726  15:54:32.726  io_status.analog_inputs.pressure.value               4.2111 -> 4.2752
+   17.726  15:54:32.726  io_status.digital_inputs.proximity_sensor2           1 -> 0
+   17.726  15:54:32.726  io_status.digital_inputs.proximity_sensor3           0 -> 1
+   17.991  15:54:32.991  io_status.analog_inputs.pressure.value               4.2752 -> 4.2836
+   17.991  15:54:32.991  io_status.digital_inputs.proximity_sensor3           1 -> 0
+   17.991  15:54:32.991  io_status.digital_inputs.proximity_sensor5           0 -> 1
+   17.991  15:54:32.991  pot_control.conv1.set_position                       25.0 -> 2.0
+   18.257  15:54:33.256  io_status.analog_inputs.pressure.value               4.2836 -> 4.3133
+   18.257  15:54:33.256  pot_control.conv1.current_position_fb                25.0 -> 18.0
+   18.257  15:54:33.256  pot_control.conv1.current_velocity_fb                0.0 -> -52.3693
+   18.523  15:54:33.522  io_status.analog_inputs.pressure.value               4.3133 -> 4.3152
+   18.523  15:54:33.522  io_status.digital_inputs.proximity_sensor4           0 -> 1
+   18.523  15:54:33.522  io_status.digital_inputs.proximity_sensor5           1 -> 0
+   18.523  15:54:33.522  pot_control.conv1.current_position_fb                18.0 -> 4.5
+   18.523  15:54:33.522  pot_control.conv1.current_velocity_fb                -52.3693 -> -27.3069
+   18.784  15:54:33.784  io_status.digital_inputs.proximity_sensor4           1 -> 0
+   18.784  15:54:33.784  pot_control.conv1.current_position_fb                4.5 -> 2.7
+   18.784  15:54:33.784  pot_control.conv1.current_velocity_fb                -27.3069 -> 22.3753
+   18.784  15:54:33.784  pot_control.conv1.set_position                       2.0 -> 25.0
+   19.036  15:54:34.036  io_status.digital_inputs.proximity_sensor6           0 -> 1
+   19.036  15:54:34.036  io_status.digital_outputs.conveyor1                  1 -> 0
+   19.036  15:54:34.036  pot_control.conv1.current_position_fb                2.7 -> 12.15
+   19.036  15:54:34.036  pot_control.conv1.current_velocity_fb                22.3753 -> 64.0976
+   19.281  15:54:34.280  pot_control.conv1.current_position_fb                12.15 -> 23.85
+   19.281  15:54:34.280  pot_control.conv1.current_velocity_fb                64.0976 -> 16.2868
+   19.533  15:54:34.532  pot_control.conv1.current_position_fb                23.85 -> 25.0
+   19.533  15:54:34.532  pot_control.conv1.current_velocity_fb                16.2868 -> 0.0
+   21.043  15:54:36.043  io_status.analog_inputs.pressure.value               4.3152 -> 4.1878
+   21.043  15:54:36.043  io_status.digital_outputs.conveyor2                  0 -> 1
+   21.043  15:54:36.043  io_status.digital_outputs.solenoid_valve6            0 -> 1
+   21.306  15:54:36.306  io_status.analog_inputs.pressure.value               4.1878 -> 4.2194
+   21.836  15:54:36.836  io_status.digital_inputs.proximity_sensor6           1 -> 0
+   22.363  15:54:37.362  io_status.analog_inputs.pressure.value               4.2194 -> 4.2836
+   22.363  15:54:37.362  pot_control.conv2.current_position_fb                30.0 -> 29.7
+   22.363  15:54:37.362  pot_control.conv2.current_velocity_fb                0.0 -> -18.4532
+   22.363  15:54:37.362  pot_control.conv2.set_position                       30.0 -> 2.0
+   22.613  15:54:37.612  io_status.analog_inputs.pressure.value               4.2836 -> 4.1757
+   22.613  15:54:37.612  io_status.digital_inputs.proximity_sensor7           0 -> 1
+   22.613  15:54:37.612  io_status.digital_outputs.solenoid_valve6            1 -> 0
+   22.613  15:54:37.612  pot_control.conv2.current_position_fb                29.7 -> 22.5
+   22.613  15:54:37.612  pot_control.conv2.current_velocity_fb                -18.4532 -> -53.771
+   22.859  15:54:37.858  io_status.analog_inputs.pressure.value               4.1757 -> 4.1227
+   22.859  15:54:37.858  io_status.digital_inputs.proximity_sensor7           1 -> 0
+   22.859  15:54:37.858  pot_control.conv2.current_position_fb                22.5 -> 7.2
+   22.859  15:54:37.858  pot_control.conv2.current_velocity_fb                -53.771 -> -40.4279
+   23.116  15:54:38.115  io_status.analog_inputs.pressure.value               4.1227 -> 4.2352
+   23.116  15:54:38.115  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   23.116  15:54:38.115  pot_control.conv2.current_position_fb                7.2 -> 2.0
+   23.116  15:54:38.115  pot_control.conv2.current_velocity_fb                -40.4279 -> 0.0
+   23.361  15:54:38.361  io_status.analog_inputs.pressure.value               4.2352 -> 4.2836
+   23.617  15:54:38.617  io_status.analog_inputs.pressure.value               4.2836 -> 4.2994
+   23.617  15:54:38.617  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   23.617  15:54:38.617  io_status.digital_outputs.conveyor2                  1 -> 0
+   23.617  15:54:38.617  pot_control.conv2.current_position_fb                2.0 -> 4.5
+   23.617  15:54:38.617  pot_control.conv2.current_velocity_fb                0.0 -> 33.8239
+   23.617  15:54:38.617  pot_control.conv2.set_position                       2.0 -> 30.0
+   23.875  15:54:38.875  io_status.analog_inputs.pressure.value               4.2994 -> 4.3152
+   23.875  15:54:38.875  pot_control.conv2.current_position_fb                4.5 -> 18.45
+   23.875  15:54:38.875  pot_control.conv2.current_velocity_fb                33.8239 -> 63.7104
+   24.121  15:54:39.121  pot_control.conv2.current_position_fb                18.45 -> 29.25
+   24.121  15:54:39.121  pot_control.conv2.current_velocity_fb                63.7104 -> 13.8997
+   24.373  15:54:39.373  pot_control.conv2.current_position_fb                29.25 -> 30.0
+   24.373  15:54:39.373  pot_control.conv2.current_velocity_fb                13.8997 -> 0.0
+   41.335  15:54:56.334  io_status.analog_inputs.pressure.value               4.3152 -> 4.291
+   41.599  15:54:56.599  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+   43.410  15:54:58.409  io_status.analog_inputs.pressure.value               4.3152 -> 4.3031
+   43.657  15:54:58.657  io_status.analog_inputs.pressure.value               4.3031 -> 4.3152
+   59.709  15:55:14.708  io_status.analog_inputs.pressure.value               4.3152 -> 4.3124
+   59.973  15:55:14.972  io_status.analog_inputs.pressure.value               4.3124 -> 4.3152
+   60.239  15:55:15.239  io_status.analog_inputs.pressure.value               4.3152 -> 4.2994
+   60.506  15:55:15.505  io_status.analog_inputs.pressure.value               4.2994 -> 4.3152
+   61.300  15:55:16.299  io_status.analog_inputs.pressure.value               4.3152 -> 4.291
+   61.565  15:55:16.564  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+   62.811  15:55:17.810  io_status.analog_inputs.pressure.value               4.3152 -> 4.3096
+   63.062  15:55:18.061  io_status.analog_inputs.pressure.value               4.3096 -> 4.3152
+   63.311  15:55:18.310  io_status.analog_inputs.pressure.value               4.3152 -> 4.3133
+   63.559  15:55:18.559  io_status.analog_inputs.pressure.value               4.3133 -> 4.3152
+
+-- boolean pulse widths --
+  io_status.digital_inputs.proximity_sensor1           15:54:29.942 -> 15:54:32.459  2.517 s
+  io_status.digital_inputs.proximity_sensor2           15:54:32.459 -> 15:54:32.726  0.267 s
+  io_status.digital_inputs.proximity_sensor3           15:54:32.726 -> 15:54:32.991  0.265 s
+  io_status.digital_inputs.proximity_sensor4           15:54:33.522 -> 15:54:33.784  0.262 s
+  io_status.digital_inputs.proximity_sensor5           15:54:32.991 -> 15:54:33.522  0.531 s
+  io_status.digital_inputs.proximity_sensor6           15:54:34.036 -> 15:54:36.836  2.800 s
+  io_status.digital_inputs.proximity_sensor7           15:54:37.612 -> 15:54:37.858  0.246 s
+  io_status.digital_inputs.proximity_sensor8           15:54:38.115 -> 15:54:38.617  0.501 s
+  io_status.digital_outputs.conveyor1                  15:54:32.196 -> 15:54:34.036  1.840 s
+  io_status.digital_outputs.conveyor2                  15:54:36.043 -> 15:54:38.617  2.574 s
+  io_status.digital_outputs.solenoid_valve1            15:54:29.190 -> 15:54:32.196  3.006 s
+  io_status.digital_outputs.solenoid_valve10           15:54:19.240 -> 15:54:21.231  1.991 s
+  io_status.digital_outputs.solenoid_valve6            15:54:36.043 -> 15:54:37.612  1.570 s
+  io_status.digital_outputs.solenoid_valve8            15:54:19.240 -> 15:54:24.312  5.073 s
+
+-- manual commands --
+  15:54:18.950  system.cmd_start                         req=true  obs=true  CONFIRMED  284.1 ms
+  15:54:18.950  system.mode_high_speed                   req=false obs=false CONFIRMED  284.1 ms
+  15:54:18.950  system.productqty_50mm                   req=1     obs=1     CONFIRMED  284.1 ms
+  15:54:18.950  system.productqty_25mm                   req=0     obs=0     CONFIRMED  284.1 ms
+
+-- alarms --
+  15:54:38.111  conveyor.2.no_motion                 Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.1 s and Current_Velocity
+  15:55:06.068  sequence.stalled.S23_HEIGHT_TOP      Sequence stalled at step 23 (Base reaches top): waiting 30.0 s for Plate upper limit switch
+
+-- system events (55) --
+  15:54:18.950  COMMAND  cycle      Cycle start requested: 0 x 25 mm, 1 x 50 mm, NORMAL speed
+  15:54:19.236  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  15:54:19.236  INFO     lifecycle  State READY -> AUTO_RUNNING
+  15:54:19.236  INFO     cycle      Cycle C0003-155419 started
+  15:54:19.236  INFO     sequence   Sequence tracker reset (new cycle C0003-155419)
+  15:54:19.236  PLC      signal     SV 10  OFF -> ON
+  15:54:19.236  PLC      signal     SV 8  OFF -> ON
+  15:54:21.227  PLC      signal     SV 10  ON -> OFF
+  15:54:22.535  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 4 Distribution valve readiness: Twin predicts this state at t=1.12 s; 
+  15:54:24.309  PLC      signal     SV 8  ON -> OFF
+  15:54:29.187  PLC      signal     SV 1  OFF -> ON
+  15:54:29.939  PLC      product    Workpiece P001 detected at Conveyor 1
+  15:54:29.939  PLC      sequence   Step 7 confirmed: Block detected on conveyor 1 (Proximity sensor 1)
+  15:54:29.939  PLC      signal     PX 1  OFF -> ON
+  15:54:29.940  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 8 Feeder actuator retracts: Twin predicts this state at t=3.06 s; the 
+  15:54:32.193  PLC      sequence   Step 9 confirmed: Conveyor 1 starts (Conveyor 1 run output)
+  15:54:32.193  PLC      signal     Conveyor 1 Run  OFF -> ON
+  15:54:32.193  PLC      signal     SV 1  ON -> OFF
+  15:54:32.194  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 10 Block reaches position 2: Twin predicts this state at t=3.62 s; the
+  15:54:32.194  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 1: Run output is ON but encoder feedback reads zero.
+  15:54:32.457  PLC      signal     PX 2  OFF -> ON
+  15:54:32.457  PLC      signal     PX 1  ON -> OFF
+  15:54:32.458  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 11 Conveyor 1 stops: Twin predicts this state at t=5.22 s; the real cy
+  15:54:32.458  PLC      product    Workpiece P001 detected at Conveyor 1 end
+  15:54:32.458  PLC      sequence   Step 10 confirmed: Block reaches position 2 (Proximity sensor 2)
+  15:54:32.723  PLC      product    Workpiece P001 detected at Conveyor 2
+  15:54:32.723  PLC      signal     PX 3  OFF -> ON
+  15:54:32.723  PLC      signal     PX 2  ON -> OFF
+  15:54:32.988  PLC      signal     PX 5  OFF -> ON
+  15:54:32.988  PLC      signal     PX 3  ON -> OFF
+  15:54:33.518  PLC      signal     PX 5  ON -> OFF
+  15:54:33.518  PLC      signal     PX 4  OFF -> ON
+  15:54:33.519  PLC      product    Workpiece P001 detected at Conveyor 3
+  15:54:33.780  PLC      signal     PX 4  ON -> OFF
+  15:54:34.032  PLC      signal     Conveyor 1 Run  ON -> OFF
+  15:54:34.032  PLC      signal     PX 6  OFF -> ON
+  15:54:36.040  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 17 Conveyor 2 stops: Twin predicts this state at t=8.42 s; the real cy
+  15:54:36.040  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 2: Run output is ON but encoder feedback reads zero.
+  15:54:36.040  PLC      sequence   Step 16 confirmed: Block reaches position 3 (Proximity sensor 3)
+  15:54:36.040  PLC      sequence   Step 15 confirmed: Conveyor 2 starts (Conveyor 2 run output)
+  15:54:36.040  PLC      signal     Conveyor 2 Run  OFF -> ON
+  15:54:36.040  PLC      signal     SV 6  OFF -> ON
+  15:54:36.833  PLC      signal     PX 6  ON -> OFF
+  15:54:37.609  PLC      signal     SV 6  ON -> OFF
+  15:54:37.609  PLC      signal     PX 7  OFF -> ON
+  15:54:37.856  PLC      signal     PX 7  ON -> OFF
+  15:54:38.110  PLC      signal     PX 8  OFF -> ON
+  15:54:38.111  FAULT    fault      Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.1 s and Curren
+  15:54:38.358  INFO     lifecycle  State AUTO_RUNNING -> FAULT
+  15:54:38.604  INFO     fault      Cleared: Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.1 s a
+  15:54:38.604  PLC      signal     Conveyor 2 Run  ON -> OFF
+  15:54:38.604  PLC      signal     PX 8  ON -> OFF
+  15:54:38.870  INFO     lifecycle  State FAULT -> AUTO_RUNNING
+  15:55:06.068  FAULT    fault      Sequence stalled at step 23 (Base reaches top): waiting 30.0 s for Plate upper limit switch
+  15:55:06.332  INFO     lifecycle  State AUTO_RUNNING -> FAULT

@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 3,
+  "generatedBy": "extract_cell_timings.py (round 4)",
+  "database": "C:\\Users\\DELL\\Desktop\\new_scada\\scada_platform\\data\\scada_history.db",
+  "tail_seconds": 15.0,
+  "manual_cut": true,
+  "date": "2026-09-21",
+  "simulated_windows": [
+    {
+      "from": 1788242151.310354,
+      "to": 1788261778.0789845
+    },
+    {
+      "from": 1788412357.0757344,
+      "to": 1788412386.1975772
+    },
+    {
+      "from": 1788413169.9926202,
+      "to": 1788426512.6886835
+    }
+  ],
+  "counts": {
+    "total": 2,
+    "real": 2,
+    "simulated_excluded": 0,
+    "unknown": 0
+  },
+  "statistics_over": "real cycles only",
+  "statistics": {
+    "cycle_conveyor2_run": {
+      "n": 2,
+      "min": 2.808,
+      "max": 61.172,
+      "mean": 31.99,
+      "spread": 58.364,
+      "stdev": 41.27,
+      "settles": "belt 2 run length"
+    },
+    "cylA_extend_duration": {
+      "n": 1,
+      "min": 8.005,
+      "max": 8.005,
+      "mean": 8.005,
+      "spread": 0.0,
+      "settles": "cylinder A stroke time; model has 2.69 s at bore 32"
+    },
+    "platform_rise": {
+      "n": 1,
+      "min": 7.798,
+      "max": 7.798,
+      "mean": 7.798,
+      "spread": 0.0,
+      "settles": "t_base_travel upward - the two limit edges, whatever the switch polarity"
+    },
+    "platform_dwell_at_top": {
+      "n": 1,
+      "min": 12.699,
+      "max": 12.699,
+      "mean": 12.699,
+      "spread": 0.0,
+      "settles": "operator notice + engrave + confirm, the 12.5 s [PLH] block"
+    },
+    "platform_fall": {
+      "n": 1,
+      "min": 8.036,
+      "max": 8.036,
+      "mean": 8.036,
+      "spread": 0.0,
+      "settles": "t_base_travel downward, currently 8.0 s [PLC]"
+    },
+    "sv12_pulse_width": {
+      "n": 2,
+      "min": 5.093,
+      "max": 5.156,
+      "mean": 5.124,
+      "spread": 0.063,
+      "stdev": 0.045,
+      "settles": "FC6 N16 T#5S pulse - model does not implement it"
+    },
+    "pulse_solenoid_valve12": {
+      "n": 2,
+      "min": 5.093,
+      "max": 5.156,
+      "mean": 5.124,
+      "spread": 0.063,
+      "stdev": 0.045
+    },
+    "pulse_solenoid_valve7": {
+      "n": 1,
+      "min": 8.005,
+      "max": 8.005,
+      "mean": 8.005,
+      "spread": 0.0
+    },
+    "pulse_solenoid_valve8": {
+      "n": 2,
+      "min": 4.892,
+      "max": 12.143,
+      "mean": 8.518,
+      "spread": 7.251,
+      "stdev": 5.127
+    },
+    "whole_cycle_excluded_shapes": {
+      "n": 2,
+      "note": "not counted in whole_cycle - partial or extended cycles",
+      "cycles": [
+        {
+          "cycle_id": "C0001-143920",
+          "duration_s": 562.583,
+          "shape": "extended - reached step 39, past the normal end of 34; the sequencer re-entered, so duration_s covers more than one part"
+        },
+        {
+          "cycle_id": "C0011-144809",
+          "duration_s": 33.592,
+          "shape": "partial - stopped at step 16 of 34, so duration_s is not a cycle time"
+        }
+      ]
+    },
+    "whole_cycle_by_route": {
+      "engraved": {
+        "n": 1,
+        "min": 562.583,
+        "max": 562.583,
+        "mean": 562.583,
+        "spread": 0.0,
+        "cycle_ids": [
+          "C0001-143920"
+        ],
+        "shapes": [
+          "extended - reached step 39, past the normal end of 34; the sequencer re-entered, so duration_s covers more than one part"
+        ]
+      },
+      "neither": {
+        "n": 1,
+        "min": 33.592,
+        "max": 33.592,
+        "mean": 33.592,
+        "spread": 0.0,
+        "cycle_ids": [
+          "C0011-144809"
+        ],
+        "shapes": [
+          "partial - stopped at step 16 of 34, so duration_s is not a cycle time"
+        ]
+      }
+    }
+  },
+  "cycles": [
+    {
+      "cycle_id": "C0001-143920",
+      "started_at": 1789981760.49716,
+      "ended_at": 1789982323.0798354,
+      "duration_s": 562.583,
+      "outcome": "COMPLETED",
+      "source_id": "plc",
+      "mode": "AUTO",
+      "qty_25mm": 0,
+      "qty_50mm": 0,
+      "max_step_reached": 39,
+      "transition_count": 42,
+      "tags_watched": 10,
+      "tags_that_moved": [
+        "io_status.digital_inputs.pgm_low_limit",
+        "io_status.digital_inputs.pgm_up_limit",
+        "io_status.digital_outputs.conveyor2",
+        "io_status.digital_outputs.solenoid_valve12",
+        "io_status.digital_outputs.solenoid_valve7",
+        "io_status.digital_outputs.solenoid_valve8",
+        "system.cmd_start",
+        "system.cycle_completed",
+        "system.start_interlocks.engv_plate_home"
+      ],
+      "watch_coverage": {
+        "proximity_sensors": {
+          "watched": 0,
+          "of": 10,
+          "moved": 0,
+          "names_moved": []
+        },
+        "magazine_pushers": {
+          "watched": 0,
+          "of": 5,
+          "moved": 0,
+          "names_moved": []
+        },
+        "conveyors": {
+          "watched": 1,
+          "of": 3,
+          "moved": 1,
+          "names_moved": [
+            "conveyor2"
+          ]
+        }
+      },
+      "intervals": {
+        "cycle_conveyor2_run": 61.172,
+        "cylA_extend_duration": 8.005,
+        "platform_rise": 7.798,
+        "platform_dwell_at_top": 12.699,
+        "platform_fall": 8.036,
+        "sv12_pulse_width": 5.156,
+        "pulse_solenoid_valve12": 5.156,
+        "pulse_solenoid_valve7": 8.005,
+        "pulse_solenoid_valve8": 12.143
+      },
+      "route": "engraved",
+      "timeline": [
+        {
+          "t": 4.867,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 17.548,
+          "tag": "conveyor2",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 24.258,
+          "tag": "solenoid_valve7",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve7"
+        },
+        {
+          "t": 32.263,
+          "tag": "solenoid_valve7",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve7"
+        },
+        {
+          "t": 32.263,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 34.026,
+          "tag": "engv_plate_home",
+          "value": false,
+          "full_tag": "system.start_interlocks.engv_plate_home"
+        },
+        {
+          "t": 34.026,
+          "tag": "pgm_low_limit",
+          "value": true,
+          "full_tag": "io_status.digital_inputs.pgm_low_limit"
+        },
+        {
+          "t": 41.823,
+          "tag": "pgm_up_limit",
+          "value": true,
+          "full_tag": "io_status.digital_inputs.pgm_up_limit"
+        },
+        {
+          "t": 44.406,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 54.522,
+          "tag": "pgm_up_limit",
+          "value": false,
+          "full_tag": "io_status.digital_inputs.pgm_up_limit"
+        },
+        {
+          "t": 62.559,
+          "tag": "engv_plate_home",
+          "value": true,
+          "full_tag": "system.start_interlocks.engv_plate_home"
+        },
+        {
+          "t": 62.559,
+          "tag": "pgm_low_limit",
+          "value": false,
+          "full_tag": "io_status.digital_inputs.pgm_low_limit"
+        },
+        {
+          "t": 73.563,
+          "tag": "cmd_start",
+          "value": false,
+          "full_tag": "system.cmd_start"
+        },
+        {
+          "t": 73.563,
+          "tag": "cycle_completed",
+          "value": true,
+          "full_tag": "system.cycle_completed"
+        },
+        {
+          "t": 73.563,
+          "tag": "solenoid_valve12",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve12"
+        },
+        {
+          "t": 78.72,
+          "tag": "conveyor2",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 78.72,
+          "tag": "cycle_completed",
+          "value": false,
+          "full_tag": "system.cycle_completed"
+        },
+        {
+          "t": 78.72,
+          "tag": "solenoid_valve12",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve12"
+        },
+        {
+          "t": 78.72,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 83.615,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 86.819,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 91.803,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 117.046,
+          "tag": "conveyor2",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 125.131,
+          "tag": "conveyor2",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 163.541,
+          "tag": "conveyor2",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 166.728,
+          "tag": "conveyor2",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 251.968,
+          "tag": "conveyor2",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 279.251,
+          "tag": "conveyor2",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 427.074,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 432.088,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 528.881,
+          "tag": "cmd_start",
+          "value": true,
+          "full_tag": "system.cmd_start"
+        },
+        {
+          "t": 528.881,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 533.772,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 545.581,
+          "tag": "conveyor2",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 548.389,
+          "tag": "conveyor2",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 562.474,
+          "tag": "cmd_start",
+          "value": false,
+          "full_tag": "system.cmd_start"
+        },
+        {
+          "t": 562.474,
+          "tag": "cycle_completed",
+          "value": true,
+          "full_tag": "system.cycle_completed"
+        },
+        {
+          "t": 562.474,
+          "tag": "solenoid_valve12",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve12"
+        },
+        {
+          "t": 567.566,
+          "tag": "cycle_completed",
+          "value": false,
+          "full_tag": "system.cycle_completed",
+          "after_cycle_end": true
+        },
+        {
+          "t": 567.566,
+          "tag": "solenoid_valve12",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve12",
+          "after_cycle_end": true
+        },
+        {
+          "t": 567.566,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8",
+          "after_cycle_end": true
+        },
+        {
+          "t": 572.458,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8",
+          "after_cycle_end": true
+        }
+      ],
+      "notes": [
+        "coverage_limited: 0/10 proximity sensors and 0/5 magazine pushers were watched in this cycle, so their silence is not evidence either way"
+      ],
+      "cycle_shape": "extended - reached step 39, past the normal end of 34; the sequencer re-entered, so duration_s covers more than one part",
+      "verdict": "REAL"
+    },
+    {
+      "cycle_id": "C0011-144809",
+      "started_at": 1789982289.3796594,
+      "ended_at": 1789982322.9716625,
+      "duration_s": 33.592,
+      "outcome": "COMPLETED",
+      "source_id": "plc",
+      "mode": "AUTO",
+      "qty_25mm": 0,
+      "qty_50mm": 1,
+      "max_step_reached": 16,
+      "transition_count": 10,
+      "tags_watched": 6,
+      "tags_that_moved": [
+        "io_status.digital_outputs.conveyor2",
+        "io_status.digital_outputs.solenoid_valve12",
+        "io_status.digital_outputs.solenoid_valve8",
+        "system.cmd_start",
+        "system.cycle_completed"
+      ],
+      "watch_coverage": {
+        "proximity_sensors": {
+          "watched": 0,
+          "of": 10,
+          "moved": 0,
+          "names_moved": []
+        },
+        "magazine_pushers": {
+          "watched": 0,
+          "of": 5,
+          "moved": 0,
+          "names_moved": []
+        },
+        "conveyors": {
+          "watched": 1,
+          "of": 3,
+          "moved": 1,
+          "names_moved": [
+            "conveyor2"
+          ]
+        }
+      },
+      "intervals": {
+        "cycle_conveyor2_run": 2.808,
+        "sv12_pulse_width": 5.093,
+        "pulse_solenoid_valve12": 5.093,
+        "pulse_solenoid_valve8": 4.892
+      },
+      "route": "neither",
+      "timeline": [
+        {
+          "t": 4.89,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8"
+        },
+        {
+          "t": 16.698,
+          "tag": "conveyor2",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 19.506,
+          "tag": "conveyor2",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.conveyor2"
+        },
+        {
+          "t": 33.591,
+          "tag": "cmd_start",
+          "value": false,
+          "full_tag": "system.cmd_start"
+        },
+        {
+          "t": 33.591,
+          "tag": "cycle_completed",
+          "value": true,
+          "full_tag": "system.cycle_completed"
+        },
+        {
+          "t": 33.591,
+          "tag": "solenoid_valve12",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve12"
+        },
+        {
+          "t": 38.684,
+          "tag": "cycle_completed",
+          "value": false,
+          "full_tag": "system.cycle_completed",
+          "after_cycle_end": true
+        },
+        {
+          "t": 38.684,
+          "tag": "solenoid_valve12",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve12",
+          "after_cycle_end": true
+        },
+        {
+          "t": 38.684,
+          "tag": "solenoid_valve8",
+          "value": true,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8",
+          "after_cycle_end": true
+        },
+        {
+          "t": 43.576,
+          "tag": "solenoid_valve8",
+          "value": false,
+          "full_tag": "io_status.digital_outputs.solenoid_valve8",
+          "after_cycle_end": true
+        }
+      ],
+      "notes": [
+        "coverage_limited: 0/10 proximity sensors and 0/5 magazine pushers were watched in this cycle, so their silence is not evidence either way"
+      ],
+      "cycle_shape": "partial - stopped at step 16 of 34, so duration_s is not a cycle time",
+      "verdict": "REAL"
+    }
+  ]
+}

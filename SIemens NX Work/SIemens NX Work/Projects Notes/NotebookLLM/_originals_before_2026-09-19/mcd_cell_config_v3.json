@@ -1,0 +1,663 @@
+{
+  "project": {
+    "name": "BITS Pilani Mechatronics Concept Designer (MCD) Cell",
+    "assembly_file": "Engraving/Engraving_Process_07-01-26_Additional.prt",
+    "working_copy": "Engraving_Process_2026-09-21_build.prt",
+    "plc_endpoint": "opc.tcp://192.168.0.102:4840",
+    "lab_visit_date": "2026-09-21"
+  },
+  "workpiece": {
+    "type": "Block",
+    "length_mm": 100.0,
+    "width_mm": 100.0,
+    "height_mm": 40.0,
+    "mass_kg": 0.3,
+    "dimensions_mm": [
+      100.0,
+      100.0,
+      40.0
+    ]
+  },
+  "conveyors": {
+    "belt_1": {
+      "description": "Magazine Feed Conveyor",
+      "centerline_y_mm": 918.0,
+      "measured_speed_mms": 210.0,
+      "plc_setpoint_mms": 180.0,
+      "tag": "Conveyor1"
+    },
+    "belt_2": {
+      "description": "Engraving Transfer Conveyor",
+      "centerline_x_mm": 792.0,
+      "measured_speed_mms": 310.0,
+      "plc_setpoint_mms": 310.0,
+      "tag": "Conveyor2"
+    },
+    "belt_3": {
+      "description": "Outfeed Transport Conveyor",
+      "centerline_y_mm": 387.0,
+      "estimated_speed_mms": 150.0,
+      "tag": "Conveyor3"
+    }
+  },
+  "platform": {
+    "travel_z_mm": 50.0,
+    "rise_time_s": 7.63,
+    "lower_time_s": 8.01,
+    "rise_speed_mms": 6.55,
+    "lower_speed_mms": 6.24
+  },
+  "actuators": [
+    {
+      "id": "MAG1_PUSH",
+      "solenoid": "Solenoid_valve1",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 82,
+      "speed_mms": 148,
+      "coord_x_mm": 160,
+      "valve_type": "single"
+    },
+    {
+      "id": "MAG2_PUSH",
+      "solenoid": "Solenoid_valve2",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 82,
+      "speed_mms": 148,
+      "coord_x_mm": 270,
+      "valve_type": "single"
+    },
+    {
+      "id": "MAG3_PUSH",
+      "solenoid": "Solenoid_valve3",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 82,
+      "speed_mms": 148,
+      "coord_x_mm": 380,
+      "valve_type": "single"
+    },
+    {
+      "id": "MAG4_PUSH",
+      "solenoid": "Solenoid_valve4",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 82,
+      "speed_mms": 148,
+      "coord_x_mm": 490,
+      "valve_type": "single"
+    },
+    {
+      "id": "MAG5_PUSH",
+      "solenoid": "Solenoid_valve5",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 82,
+      "speed_mms": 148,
+      "coord_x_mm": 600,
+      "valve_type": "single"
+    },
+    {
+      "id": "XFER_CV1_CV2",
+      "solenoid": "Solenoid_valve6",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 108,
+      "speed_mms": 131,
+      "coord_x_mm": 792,
+      "valve_type": "single"
+    },
+    {
+      "id": "CYL_A",
+      "solenoid_out": "Solenoid_valve7",
+      "solenoid_back": "Solenoid_valve8",
+      "axis": "+x",
+      "stroke_mm": 300,
+      "travel_mm": 252,
+      "speed_mms": 78,
+      "coord_y_mm": 590,
+      "valve_type": "double_latching"
+    },
+    {
+      "id": "CYL_B",
+      "solenoid_out": "Solenoid_valve9",
+      "solenoid_back": "Solenoid_valve10",
+      "axis": "-y",
+      "stroke_mm": 300,
+      "travel_mm": 204,
+      "speed_mms": 97,
+      "coord_x_mm": 1045,
+      "valve_type": "double_latching"
+    },
+    {
+      "id": "MOVE_TO_CV3",
+      "solenoid": "Solenoid_valve11",
+      "axis": "+x",
+      "stroke_mm": 160,
+      "travel_mm": 118,
+      "speed_mms": 146,
+      "coord_y_mm": 387,
+      "valve_type": "single"
+    },
+    {
+      "id": "OUTFEED_A",
+      "solenoid": "Solenoid_valve12",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 150,
+      "speed_mms": 135,
+      "coord_x_mm": 1290,
+      "valve_type": "single"
+    },
+    {
+      "id": "OUTFEED_B",
+      "solenoid": "Solenoid_valve13",
+      "axis": "-y",
+      "stroke_mm": 160,
+      "travel_mm": 150,
+      "speed_mms": 135,
+      "coord_x_mm": 1410,
+      "valve_type": "single"
+    }
+  ],
+  "sensors": [
+    {
+      "tag": "Proximity_sensor1",
+      "x_mm": 160,
+      "y_mm": 918,
+      "range_mm": 30,
+      "target": "Magazine 1 Dispense"
+    },
+    {
+      "tag": "Proximity_sensor2",
+      "x_mm": 270,
+      "y_mm": 918,
+      "range_mm": 30,
+      "target": "Magazine 2 Dispense"
+    },
+    {
+      "tag": "Proximity_sensor3",
+      "x_mm": 380,
+      "y_mm": 918,
+      "range_mm": 30,
+      "target": "Magazine 3 Dispense"
+    },
+    {
+      "tag": "Proximity_sensor4",
+      "x_mm": 490,
+      "y_mm": 918,
+      "range_mm": 30,
+      "target": "Magazine 4 Dispense"
+    },
+    {
+      "tag": "Proximity_sensor5",
+      "x_mm": 600,
+      "y_mm": 918,
+      "range_mm": 30,
+      "target": "Magazine 5 Dispense"
+    },
+    {
+      "tag": "Proximity_sensor6",
+      "x_mm": 792,
+      "y_mm": 918,
+      "range_mm": 30,
+      "target": "Belt 1 End Transfer"
+    },
+    {
+      "tag": "Proximity_sensor7",
+      "x_mm": 792,
+      "y_mm": 590,
+      "range_mm": 30,
+      "target": "Belt 2 Engraving Stop"
+    },
+    {
+      "tag": "Proximity_sensor8",
+      "x_mm": 792,
+      "y_mm": 387,
+      "range_mm": 30,
+      "target": "Belt 2 Bypass Stop"
+    },
+    {
+      "tag": "Proximity_sensor9",
+      "x_mm": 1290,
+      "y_mm": 387,
+      "range_mm": 30,
+      "target": "Belt 3 Outfeed A Eject"
+    },
+    {
+      "tag": "Proximity_sensor10",
+      "x_mm": 1410,
+      "y_mm": 387,
+      "range_mm": 30,
+      "target": "Belt 3 Outfeed B Eject"
+    }
+  ],
+  "waypoints": {
+    "load": [
+      160,
+      1000
+    ],
+    "belt1_end": [
+      792,
+      918
+    ],
+    "belt2_stop": [
+      792,
+      590
+    ],
+    "engraver": [
+      1045,
+      590
+    ],
+    "belt3_load": [
+      1045,
+      387
+    ],
+    "outfeed": [
+      1290,
+      387
+    ],
+    "storage_bin": [
+      1290,
+      237
+    ]
+  },
+  "engraved_cycle_timeline": [
+    {
+      "time_s": 0.0,
+      "event": "Block camera detection",
+      "signals": []
+    },
+    {
+      "time_s": 10.24,
+      "event": "SV1 magazine pusher extend (T#10S delay)",
+      "signals": [
+        "Solenoid_valve1"
+      ]
+    },
+    {
+      "time_s": 13.29,
+      "event": "Conveyor 1 start",
+      "signals": [
+        "Conveyor1"
+      ]
+    },
+    {
+      "time_s": 16.44,
+      "event": "Proximity_sensor6 trip; Conveyor 1 stop",
+      "signals": [
+        "Proximity_sensor6"
+      ]
+    },
+    {
+      "time_s": 18.58,
+      "event": "SV6 transfer push extend; Conveyor 2 start",
+      "signals": [
+        "Solenoid_valve6",
+        "Conveyor2"
+      ]
+    },
+    {
+      "time_s": 20.02,
+      "event": "Proximity_sensor7 trip; Conveyor 2 stop",
+      "signals": [
+        "Proximity_sensor7"
+      ]
+    },
+    {
+      "time_s": 21.5,
+      "event": "SV7 Cylinder A extend into engraver",
+      "signals": [
+        "Solenoid_valve7"
+      ]
+    },
+    {
+      "time_s": 29.56,
+      "event": "SV8 Cylinder A retract",
+      "signals": [
+        "Solenoid_valve8"
+      ]
+    },
+    {
+      "time_s": 31.51,
+      "event": "Engraving platform rise (+z)",
+      "signals": []
+    },
+    {
+      "time_s": 39.15,
+      "event": "Platform top reached",
+      "signals": []
+    },
+    {
+      "time_s": 51.67,
+      "event": "Laser engraving finished; Platform lower",
+      "signals": [
+        "Engraving_Completed"
+      ]
+    },
+    {
+      "time_s": 59.69,
+      "event": "Platform bottom reached",
+      "signals": []
+    },
+    {
+      "time_s": 59.87,
+      "event": "SV9 Cylinder B extend to Belt 3",
+      "signals": [
+        "Solenoid_valve9"
+      ]
+    },
+    {
+      "time_s": 68.07,
+      "event": "SV10 Cylinder B retract; Conveyor 3 start",
+      "signals": [
+        "Solenoid_valve10",
+        "Conveyor3"
+      ]
+    },
+    {
+      "time_s": 69.72,
+      "event": "Proximity_sensor9 trip; Conveyor 3 stop",
+      "signals": [
+        "Proximity_sensor9"
+      ]
+    },
+    {
+      "time_s": 69.85,
+      "event": "SV12 Outfeed A eject to bin (T#5S hold)",
+      "signals": [
+        "Solenoid_valve12"
+      ]
+    },
+    {
+      "time_s": 75.64,
+      "event": "Cycle complete",
+      "signals": []
+    }
+  ],
+  "bypass_cycle_timeline": [
+    {
+      "time_s": 0.0,
+      "event": "Block camera detection",
+      "signals": []
+    },
+    {
+      "time_s": 10.24,
+      "event": "SV1 magazine pusher extend",
+      "signals": [
+        "Solenoid_valve1"
+      ]
+    },
+    {
+      "time_s": 13.29,
+      "event": "Conveyor 1 start",
+      "signals": [
+        "Conveyor1"
+      ]
+    },
+    {
+      "time_s": 16.44,
+      "event": "Proximity_sensor6 trip; Conveyor 1 stop",
+      "signals": [
+        "Proximity_sensor6"
+      ]
+    },
+    {
+      "time_s": 18.58,
+      "event": "SV6 transfer push extend; Conveyor 2 start",
+      "signals": [
+        "Solenoid_valve6",
+        "Conveyor2"
+      ]
+    },
+    {
+      "time_s": 20.55,
+      "event": "Proximity_sensor8 trip (Bypass stop); Conveyor 2 stop",
+      "signals": [
+        "Proximity_sensor8"
+      ]
+    },
+    {
+      "time_s": 21.0,
+      "event": "SV11 push across to Belt 3",
+      "signals": [
+        "Solenoid_valve11"
+      ]
+    },
+    {
+      "time_s": 23.0,
+      "event": "Conveyor 3 start",
+      "signals": [
+        "Conveyor3"
+      ]
+    },
+    {
+      "time_s": 24.65,
+      "event": "Proximity_sensor9 trip; Conveyor 3 stop",
+      "signals": [
+        "Proximity_sensor9"
+      ]
+    },
+    {
+      "time_s": 24.8,
+      "event": "SV12 Outfeed eject to bin",
+      "signals": [
+        "Solenoid_valve12"
+      ]
+    },
+    {
+      "time_s": 29.74,
+      "event": "Bypass cycle complete",
+      "signals": []
+    }
+  ],
+  "resources": {
+    "siemens_sce_basic_course": "https://support.industry.siemens.com/cs/document/109816550/?lc=en-ww",
+    "siemens_sce_advanced_course": "https://support.industry.siemens.com/cs/document/109816686/?lc=en-WW",
+    "youtube_tutorials": [
+      "https://www.youtube.com/watch?v=KIx1exS6arw",
+      "https://www.youtube.com/watch?v=UeqBTeIFAoM",
+      "https://www.youtube.com/watch?v=cv2Yjcx4lEk",
+      "https://www.youtube.com/watch?v=x3ncDZdelRY"
+    ],
+    "research_paper": "https://mfr.edp-open.org/articles/mfreview/full_html/2024/01/mfreview240009/mfreview240009.html"
+  },
+  "cycles": {
+    "engraved_route": {
+      "total_duration_s": 75.64,
+      "timeline": [
+        {
+          "time_s": 0.0,
+          "event": "Block camera detection",
+          "signals": []
+        },
+        {
+          "time_s": 10.24,
+          "event": "SV1 magazine pusher extend (T#10S delay)",
+          "signals": [
+            "Solenoid_valve1"
+          ]
+        },
+        {
+          "time_s": 13.29,
+          "event": "Conveyor 1 start",
+          "signals": [
+            "Conveyor1"
+          ]
+        },
+        {
+          "time_s": 16.44,
+          "event": "Proximity_sensor6 trip; Conveyor 1 stop",
+          "signals": [
+            "Proximity_sensor6"
+          ]
+        },
+        {
+          "time_s": 18.58,
+          "event": "SV6 transfer push extend; Conveyor 2 start",
+          "signals": [
+            "Solenoid_valve6",
+            "Conveyor2"
+          ]
+        },
+        {
+          "time_s": 20.02,
+          "event": "Proximity_sensor7 trip; Conveyor 2 stop",
+          "signals": [
+            "Proximity_sensor7"
+          ]
+        },
+        {
+          "time_s": 21.5,
+          "event": "SV7 Cylinder A extend into engraver",
+          "signals": [
+            "Solenoid_valve7"
+          ]
+        },
+        {
+          "time_s": 29.56,
+          "event": "SV8 Cylinder A retract",
+          "signals": [
+            "Solenoid_valve8"
+          ]
+        },
+        {
+          "time_s": 31.51,
+          "event": "Engraving platform rise (+z)",
+          "signals": []
+        },
+        {
+          "time_s": 39.15,
+          "event": "Platform top reached",
+          "signals": []
+        },
+        {
+          "time_s": 51.67,
+          "event": "Laser engraving finished; Platform lower",
+          "signals": [
+            "Engraving_Completed"
+          ]
+        },
+        {
+          "time_s": 59.69,
+          "event": "Platform bottom reached",
+          "signals": []
+        },
+        {
+          "time_s": 59.87,
+          "event": "SV9 Cylinder B extend to Belt 3",
+          "signals": [
+            "Solenoid_valve9"
+          ]
+        },
+        {
+          "time_s": 68.07,
+          "event": "SV10 Cylinder B retract; Conveyor 3 start",
+          "signals": [
+            "Solenoid_valve10",
+            "Conveyor3"
+          ]
+        },
+        {
+          "time_s": 69.72,
+          "event": "Proximity_sensor9 trip; Conveyor 3 stop",
+          "signals": [
+            "Proximity_sensor9"
+          ]
+        },
+        {
+          "time_s": 69.85,
+          "event": "SV12 Outfeed A eject to bin (T#5S hold)",
+          "signals": [
+            "Solenoid_valve12"
+          ]
+        },
+        {
+          "time_s": 75.64,
+          "event": "Cycle complete",
+          "signals": []
+        }
+      ]
+    },
+    "bypass_route": {
+      "total_duration_s": 29.74,
+      "timeline": [
+        {
+          "time_s": 0.0,
+          "event": "Block camera detection",
+          "signals": []
+        },
+        {
+          "time_s": 10.24,
+          "event": "SV1 magazine pusher extend",
+          "signals": [
+            "Solenoid_valve1"
+          ]
+        },
+        {
+          "time_s": 13.29,
+          "event": "Conveyor 1 start",
+          "signals": [
+            "Conveyor1"
+          ]
+        },
+        {
+          "time_s": 16.44,
+          "event": "Proximity_sensor6 trip; Conveyor 1 stop",
+          "signals": [
+            "Proximity_sensor6"
+          ]
+        },
+        {
+          "time_s": 18.58,
+          "event": "SV6 transfer push extend; Conveyor 2 start",
+          "signals": [
+            "Solenoid_valve6",
+            "Conveyor2"
+          ]
+        },
+        {
+          "time_s": 20.55,
+          "event": "Proximity_sensor8 trip (Bypass stop); Conveyor 2 stop",
+          "signals": [
+            "Proximity_sensor8"
+          ]
+        },
+        {
+          "time_s": 21.0,
+          "event": "SV11 push across to Belt 3",
+          "signals": [
+            "Solenoid_valve11"
+          ]
+        },
+        {
+          "time_s": 23.0,
+          "event": "Conveyor 3 start",
+          "signals": [
+            "Conveyor3"
+          ]
+        },
+        {
+          "time_s": 24.65,
+          "event": "Proximity_sensor9 trip; Conveyor 3 stop",
+          "signals": [
+            "Proximity_sensor9"
+          ]
+        },
+        {
+          "time_s": 24.8,
+          "event": "SV12 Outfeed eject to bin",
+          "signals": [
+            "Solenoid_valve12"
+          ]
+        },
+        {
+          "time_s": 29.74,
+          "event": "Bypass cycle complete",
+          "signals": []
+        }
+      ]
+    }
+  }
+}

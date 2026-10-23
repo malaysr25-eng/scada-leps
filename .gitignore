@@ -1,0 +1,24 @@
+# Python
+.venv/
+.venv_*/
+__pycache__/
+*.pyc
+
+# Node
+frontend/node_modules/
+frontend/.vite/
+
+# Generated at runtime by the camera bridge and the MATLAB twin exporter.
+# Regenerate: tools/camera_bridge.py, tools/export_twin_reference.m
+data/*.json
+data/*.jpg
+!data/.gitkeep
+
+# Build output and local backups
+frontend/dist/
+frontend_dist.bak_*/
+frontend_src.bak_*/
+*.zip
+
+# Runtime database
+data/*.db

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-panel-950 text-ink-200 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'tnum';
+  }
+
+  /* Control-room scrollbars: visible enough to grab, quiet enough to ignore. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-panel-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-panel-600;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-panel-500;
+  }
+
+  /* Number inputs: the spinners are useless at a machine and steal width. */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  /* Respect a reduced-motion preference: the belt hatching and pulsing rings
+     are decorative, and an operator who has asked for less motion should get
+     a still interface that still reads correctly through colour and label. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}

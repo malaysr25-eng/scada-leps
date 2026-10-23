@@ -1,0 +1,407 @@
+{
+ "database": "C:\\Users\\DELL\\Desktop\\new_scada\\scada_platform\\data\\scada_history.db",
+ "window": [
+  1789986432.7008262,
+  1789986552.7008262
+ ],
+ "window_local": [
+  "15:57:12.700",
+  "15:59:12.700"
+ ],
+ "match": [],
+ "sessions": [
+  {
+   "session_uid": "bf36673c8d2f4c2e",
+   "label": "Recording 2026-09-21 15:59:00",
+   "started_at": 1789986540.8394613,
+   "ended_at": null,
+   "sample_interval_s": 0.1,
+   "deadband": 0.001,
+   "status": "ACTIVE"
+  },
+  {
+   "session_uid": "17b99f885bc848ca",
+   "label": "Recording 2026-09-21 15:02:42",
+   "started_at": 1789983162.9173074,
+   "ended_at": 1789986535.4540443,
+   "sample_interval_s": 0.1,
+   "deadband": 0.001,
+   "status": "COMPLETED"
+  }
+ ],
+ "state_before": {
+  "comp_status.comp1.empty": 0,
+  "comp_status.comp1.low": 0,
+  "comp_status.comp1.ok": 1,
+  "comp_status.comp2.empty": 0,
+  "comp_status.comp2.low": 0,
+  "comp_status.comp2.ok": 1,
+  "comp_status.comp3.empty": 0,
+  "comp_status.comp3.low": 0,
+  "comp_status.comp3.ok": 1,
+  "comp_status.comp4.empty": 0,
+  "comp_status.comp4.low": 0,
+  "comp_status.comp4.ok": 1,
+  "comp_status.comp5.empty": 0,
+  "comp_status.comp5.low": 0,
+  "comp_status.comp5.ok": 1,
+  "io_status.analog_inputs.pressure.high_alarm": 0,
+  "io_status.analog_inputs.pressure.high_value": 5.0,
+  "io_status.analog_inputs.pressure.low_alarm": 0,
+  "io_status.analog_inputs.pressure.low_value": 1.0,
+  "io_status.analog_inputs.pressure.normx": 0.4315,
+  "io_status.analog_inputs.pressure.value": 4.3152,
+  "io_status.digital_inputs.emergency": 1,
+  "io_status.digital_inputs.pgm_low_limit": 0,
+  "io_status.digital_inputs.pgm_up_limit": 0,
+  "io_status.digital_inputs.proximity_sensor1": 0,
+  "io_status.digital_inputs.proximity_sensor10": 0,
+  "io_status.digital_inputs.proximity_sensor2": 0,
+  "io_status.digital_inputs.proximity_sensor3": 0,
+  "io_status.digital_inputs.proximity_sensor4": 0,
+  "io_status.digital_inputs.proximity_sensor5": 0,
+  "io_status.digital_inputs.proximity_sensor6": 0,
+  "io_status.digital_inputs.proximity_sensor7": 0,
+  "io_status.digital_inputs.proximity_sensor8": 0,
+  "io_status.digital_inputs.proximity_sensor9": 0,
+  "io_status.digital_outputs.conveyor1": 0,
+  "io_status.digital_outputs.conveyor2": 0,
+  "io_status.digital_outputs.conveyor3": 0,
+  "io_status.digital_outputs.solenoid_valve1": 0,
+  "io_status.digital_outputs.solenoid_valve10": 0,
+  "io_status.digital_outputs.solenoid_valve11": 0,
+  "io_status.digital_outputs.solenoid_valve12": 0,
+  "io_status.digital_outputs.solenoid_valve13": 0,
+  "io_status.digital_outputs.solenoid_valve2": 0,
+  "io_status.digital_outputs.solenoid_valve3": 0,
+  "io_status.digital_outputs.solenoid_valve4": 0,
+  "io_status.digital_outputs.solenoid_valve5": 0,
+  "io_status.digital_outputs.solenoid_valve6": 0,
+  "io_status.digital_outputs.solenoid_valve7": 0,
+  "io_status.digital_outputs.solenoid_valve8": 0,
+  "io_status.digital_outputs.solenoid_valve9": 0,
+  "manual_commands.conveyor1": 0,
+  "manual_commands.conveyor2": 0,
+  "manual_commands.conveyor3": 0,
+  "manual_commands.solenoid_valve1": 0,
+  "manual_commands.solenoid_valve10": 0,
+  "manual_commands.solenoid_valve11": 0,
+  "manual_commands.solenoid_valve12": 0,
+  "manual_commands.solenoid_valve13": 0,
+  "manual_commands.solenoid_valve2": 0,
+  "manual_commands.solenoid_valve3": 0,
+  "manual_commands.solenoid_valve4": 0,
+  "manual_commands.solenoid_valve5": 0,
+  "manual_commands.solenoid_valve6": 0,
+  "manual_commands.solenoid_valve7": 0,
+  "manual_commands.solenoid_valve8": 0,
+  "manual_commands.solenoid_valve9": 0,
+  "pot_control.conv1.axis_homed_fb": 1,
+  "pot_control.conv1.current_position_fb": 25.0,
+  "pot_control.conv1.current_velocity_fb": 0.0,
+  "pot_control.conv1.error_fb": 0,
+  "pot_control.conv1.goto_position": 0,
+  "pot_control.conv1.highspeed_position": 30.0,
+  "pot_control.conv1.highspeed_velocity": 180.0,
+  "pot_control.conv1.lowspeed_position": 25.0,
+  "pot_control.conv1.lowspeed_velocity": 180.0,
+  "pot_control.conv1.reset": 0,
+  "pot_control.conv1.set_highspeed": 0,
+  "pot_control.conv1.set_home": 0,
+  "pot_control.conv1.set_position": 25.0,
+  "pot_control.conv1.set_velocity": 180.0,
+  "pot_control.conv2.axis_homed_fb": 1,
+  "pot_control.conv2.current_position_fb": 30.0,
+  "pot_control.conv2.current_velocity_fb": 0.0,
+  "pot_control.conv2.error_fb": 0,
+  "pot_control.conv2.goto_position": 0,
+  "pot_control.conv2.highspeed_position": 150.0,
+  "pot_control.conv2.highspeed_velocity": 180.0,
+  "pot_control.conv2.lowspeed_position": 30.0,
+  "pot_control.conv2.lowspeed_velocity": 180.0,
+  "pot_control.conv2.reset": 0,
+  "pot_control.conv2.set_highspeed": 0,
+  "pot_control.conv2.set_home": 0,
+  "pot_control.conv2.set_position": 30.0,
+  "pot_control.conv2.set_velocity": 180.0,
+  "pot_control.conv3.axis_homed_fb": 1,
+  "pot_control.conv3.current_position_fb": 30.0,
+  "pot_control.conv3.current_velocity_fb": 0.0,
+  "pot_control.conv3.error_fb": 0,
+  "pot_control.conv3.goto_position": 0,
+  "pot_control.conv3.highspeed_position": 150.0,
+  "pot_control.conv3.highspeed_velocity": 180.0,
+  "pot_control.conv3.lowspeed_position": 30.0,
+  "pot_control.conv3.lowspeed_velocity": 180.0,
+  "pot_control.conv3.reset": 0,
+  "pot_control.conv3.set_highspeed": 0,
+  "pot_control.conv3.set_home": 0,
+  "pot_control.conv3.set_position": 30.0,
+  "pot_control.conv3.set_velocity": 180.0,
+  "raw.db59.w270": 0.0,
+  "raw.db59.w272": 0.0,
+  "raw.db59.w274": 0.0,
+  "raw.db59.w276": 0.0,
+  "raw.db59.w278": 0.0,
+  "raw.db59.x266_0": 0,
+  "raw.db59.x266_1": 0,
+  "raw.db59.x266_2": 0,
+  "raw.db59.x266_3": 0,
+  "raw.db59.x266_4": 0,
+  "raw.db59.x266_5": 0,
+  "raw.db59.x266_6": 0,
+  "raw.db59.x266_7": 0,
+  "raw.db59.x267_0": 0,
+  "raw.db59.x267_1": 0,
+  "raw.db59.x267_2": 0,
+  "raw.db59.x267_3": 0,
+  "raw.db59.x267_4": 0,
+  "raw.db59.x267_5": 0,
+  "raw.db59.x267_6": 0,
+  "raw.db59.x267_7": 0,
+  "raw.db59.x268_0": 0,
+  "raw.db59.x268_1": 0,
+  "raw.db59.x268_2": 0,
+  "raw.db59.x268_3": 0,
+  "raw.db59.x268_4": 0,
+  "raw.db59.x268_5": 0,
+  "raw.db59.x268_6": 0,
+  "raw.db59.x268_7": 0,
+  "raw.db59.x269_0": 0,
+  "raw.db59.x269_1": 0,
+  "raw.db59.x269_2": 0,
+  "raw.db59.x269_3": 0,
+  "raw.db59.x269_4": 0,
+  "raw.db59.x269_5": 0,
+  "raw.db59.x269_6": 0,
+  "raw.db59.x269_7": 0,
+  "system.cmd_start": 1,
+  "system.cycle_completed": 0,
+  "system.cycle_reset": 0,
+  "system.engraving_completed": 0,
+  "system.mode_high_speed": 0,
+  "system.productqty_25mm": 0.0,
+  "system.productqty_50mm": 1.0,
+  "system.start_interlocks.air_pressure_ok": 1,
+  "system.start_interlocks.all_cylinders_home": 1,
+  "system.start_interlocks.emergency_healthy": 1,
+  "system.start_interlocks.engv_plate_home": 1,
+  "system.startup_healthy": 1,
+  "system.total_products": 1.0
+ },
+ "changes": [
+  {
+   "t": 1789986438.6386943,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4287
+  },
+  {
+   "t": 1789986438.6386943,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.2873
+  },
+  {
+   "t": 1789986438.887807,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4287,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986438.887807,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.2873,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986439.6643429,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.3096
+  },
+  {
+   "t": 1789986439.9257967,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3096,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986471.7002983,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4303
+  },
+  {
+   "t": 1789986471.7002983,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.3031
+  },
+  {
+   "t": 1789986471.9603276,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4303,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986471.9603276,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3031,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986485.2068107,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4291
+  },
+  {
+   "t": 1789986485.2068107,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.291
+  },
+  {
+   "t": 1789986485.458666,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4291,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986485.458666,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.291,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986486.4713972,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4291
+  },
+  {
+   "t": 1789986486.4713972,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.291
+  },
+  {
+   "t": 1789986486.7222478,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4291,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986486.7222478,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.291,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986497.9776015,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.3133
+  },
+  {
+   "t": 1789986498.2401626,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4291
+  },
+  {
+   "t": 1789986498.2401626,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3133,
+   "to": 4.291
+  },
+  {
+   "t": 1789986498.5061731,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4291,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986498.5061731,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.291,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986517.938518,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4299
+  },
+  {
+   "t": 1789986517.938518,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.2994
+  },
+  {
+   "t": 1789986518.188694,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4299,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986518.188694,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.2994,
+   "to": 4.3152
+  },
+  {
+   "t": 1789986545.4858046,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4315,
+   "to": 0.4303
+  },
+  {
+   "t": 1789986545.4858046,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3152,
+   "to": 4.3031
+  },
+  {
+   "t": 1789986545.729548,
+   "tag": "io_status.analog_inputs.pressure.normx",
+   "from": 0.4303,
+   "to": 0.4315
+  },
+  {
+   "t": 1789986545.729548,
+   "tag": "io_status.analog_inputs.pressure.value",
+   "from": 4.3031,
+   "to": 4.3152
+  }
+ ],
+ "pulses": [],
+ "commands": [],
+ "system_events": [
+  {
+   "id": 4770,
+   "ts": 1789986535.4699738,
+   "severity": "COMMAND",
+   "category": "recording",
+   "message": "Recording stopped: Recording 2026-09-21 15:02:42 \u2014 21528 samples over 3373 s",
+   "source": "local",
+   "source_id": "plc",
+   "cycle_id": "C0003-155419",
+   "detail": "{\"sessionUid\": \"17b99f885bc848ca\"}"
+  },
+  {
+   "id": 4771,
+   "ts": 1789986540.8394613,
+   "severity": "COMMAND",
+   "category": "recording",
+   "message": "Recording started: Recording 2026-09-21 15:59:00 (every 0.10 s, deadband 0.0010, all tags)",
+   "source": "local",
+   "source_id": "plc",
+   "cycle_id": "C0003-155419",
+   "detail": "{\"sessionUid\": \"bf36673c8d2f4c2e\"}"
+  }
+ ],
+ "alarms": []
+}

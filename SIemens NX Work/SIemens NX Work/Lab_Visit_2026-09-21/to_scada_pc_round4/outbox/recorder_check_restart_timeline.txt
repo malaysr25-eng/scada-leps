@@ -1,0 +1,33 @@
+WINDOW 15:57:12.700 -> 15:59:12.700   db C:\Users\DELL\Desktop\new_scada\scada_platform\data\scada_history.db
+tag_samples in window: 672
+session bf36673c8d2f4c2e "Recording 2026-09-21 15:59:00" sample 0.100 s
+session 17b99f885bc848ca "Recording 2026-09-21 15:02:42" sample 0.100 s
+
+-- changes (t = seconds from window start) --
+    5.938  15:57:18.638  io_status.analog_inputs.pressure.value               4.3152 -> 4.2873
+    6.187  15:57:18.887  io_status.analog_inputs.pressure.value               4.2873 -> 4.3152
+    6.964  15:57:19.664  io_status.analog_inputs.pressure.value               4.3152 -> 4.3096
+    7.225  15:57:19.925  io_status.analog_inputs.pressure.value               4.3096 -> 4.3152
+   38.999  15:57:51.700  io_status.analog_inputs.pressure.value               4.3152 -> 4.3031
+   39.260  15:57:51.960  io_status.analog_inputs.pressure.value               4.3031 -> 4.3152
+   52.506  15:58:05.206  io_status.analog_inputs.pressure.value               4.3152 -> 4.291
+   52.758  15:58:05.458  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+   53.771  15:58:06.471  io_status.analog_inputs.pressure.value               4.3152 -> 4.291
+   54.021  15:58:06.722  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+   65.277  15:58:17.977  io_status.analog_inputs.pressure.value               4.3152 -> 4.3133
+   65.539  15:58:18.240  io_status.analog_inputs.pressure.value               4.3133 -> 4.291
+   65.805  15:58:18.506  io_status.analog_inputs.pressure.value               4.291 -> 4.3152
+   85.238  15:58:37.938  io_status.analog_inputs.pressure.value               4.3152 -> 4.2994
+   85.488  15:58:38.188  io_status.analog_inputs.pressure.value               4.2994 -> 4.3152
+  112.785  15:59:05.485  io_status.analog_inputs.pressure.value               4.3152 -> 4.3031
+  113.029  15:59:05.729  io_status.analog_inputs.pressure.value               4.3031 -> 4.3152
+
+-- boolean pulse widths --
+
+-- manual commands --
+
+-- alarms --
+
+-- system events (2) --
+  15:58:55.469  COMMAND  recording  Recording stopped: Recording 2026-09-21 15:02:42 — 21528 samples over 3373 s
+  15:59:00.839  COMMAND  recording  Recording started: Recording 2026-09-21 15:59:00 (every 0.10 s, deadband 0.0010, all tags)

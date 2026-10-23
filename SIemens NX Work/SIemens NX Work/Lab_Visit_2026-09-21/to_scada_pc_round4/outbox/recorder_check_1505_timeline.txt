@@ -1,0 +1,47 @@
+WINDOW 15:01:13.064 -> 15:03:13.064   db C:\Users\DELL\Desktop\new_scada\scada_platform\data\scada_history.db
+tag_samples in window: 167
+session 17b99f885bc848ca "Recording 2026-09-21 15:02:42" sample 0.100 s
+
+-- changes (t = seconds from window start) --
+   89.937  15:02:43.001  io_status.analog_inputs.pressure.value               4.3784 -> 4.3468
+   89.937  15:02:43.001  system.engraving_completed                           1 -> 0
+  114.478  15:03:07.542  io_status.analog_inputs.pressure.value               4.3468 -> 4.3152
+  114.478  15:03:07.542  io_status.digital_outputs.solenoid_valve10           0 -> 1
+  114.478  15:03:07.542  io_status.digital_outputs.solenoid_valve8            0 -> 1
+  114.478  15:03:07.542  system.cmd_start                                     0 -> 1
+  114.737  15:03:07.801  io_status.analog_inputs.pressure.value               4.3152 -> 4.3459
+  116.333  15:03:09.397  io_status.digital_outputs.solenoid_valve10           1 -> 0
+  119.417  15:03:12.481  io_status.digital_outputs.solenoid_valve8            1 -> 0
+
+-- boolean pulse widths --
+  io_status.digital_outputs.solenoid_valve10           15:03:07.542 -> 15:03:09.397  1.855 s
+  io_status.digital_outputs.solenoid_valve8            15:03:07.542 -> 15:03:12.481  4.939 s
+  system.engraving_completed                           15:01:13.064 -> 15:02:43.001  89.937 s
+
+-- manual commands --
+  15:03:07.173  system.cmd_start                         req=true  obs=true  CONFIRMED  367.0 ms
+  15:03:07.173  system.mode_high_speed                   req=false obs=false CONFIRMED  367.0 ms
+  15:03:07.173  system.productqty_50mm                   req=1     obs=1     CONFIRMED  367.0 ms
+  15:03:07.173  system.productqty_25mm                   req=0     obs=0     CONFIRMED  367.0 ms
+
+-- alarms --
+
+-- system events (18) --
+  15:01:28.744  INFO     system     Unified SCADA platform starting: 158 tags (121 documented, 37 raw)
+  15:01:28.745  INFO     twin       Digital twin reference loaded: 40 transitions, nominal cycle 29.78 s
+  15:01:28.875  INFO     lifecycle  State DISCONNECTED -> READY
+  15:01:28.875  INFO     connection PLC link restored; live updates resumed.
+  15:01:29.757  COMMAND  source     Control source changed none -> Siemens S7-1200 (Snap7)
+  15:01:29.824  INFO     source     System mode DISCONNECTED -> PLC_CONNECTED
+  15:02:42.918  COMMAND  recording  Recording started: Recording 2026-09-21 15:02:42 (every 0.10 s, deadband 0.0010, all tags)
+  15:03:07.173  COMMAND  cycle      Cycle start requested: 0 x 25 mm, 1 x 50 mm, NORMAL speed
+  15:03:07.540  INFO     product    Workpiece P001 entered the cycle
+  15:03:07.540  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  15:03:07.540  INFO     lifecycle  State READY -> AUTO_RUNNING
+  15:03:07.540  INFO     cycle      Cycle C0001-150307 started
+  15:03:07.540  INFO     sequence   Sequence tracker reset (new cycle C0001-150307)
+  15:03:07.540  PLC      signal     SV 10  OFF -> ON
+  15:03:07.540  PLC      signal     SV 8  OFF -> ON
+  15:03:09.396  PLC      signal     SV 10  ON -> OFF
+  15:03:10.703  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 4 Distribution valve readiness: Twin predicts this state at t=1.12 s; 
+  15:03:12.480  PLC      signal     SV 8  ON -> OFF

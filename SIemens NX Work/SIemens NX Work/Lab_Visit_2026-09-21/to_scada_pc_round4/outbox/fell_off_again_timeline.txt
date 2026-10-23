@@ -1,0 +1,238 @@
+WINDOW 15:52:59.733 -> 16:00:59.733   db C:\Users\DELL\Desktop\new_scada\scada_platform\data\scada_history.db
+tag_samples in window: 3091
+session bf36673c8d2f4c2e "Recording 2026-09-21 15:59:00" sample 0.100 s
+session 17b99f885bc848ca "Recording 2026-09-21 15:02:42" sample 0.100 s
+
+-- changes (t = seconds from window start) --
+   52.339  15:53:52.072  io_status.digital_outputs.solenoid_valve10           0 -> 1
+   52.339  15:53:52.072  io_status.digital_outputs.solenoid_valve8            0 -> 1
+   54.195  15:53:53.928  io_status.digital_outputs.solenoid_valve10           1 -> 0
+   54.969  15:53:54.702  io_status.digital_outputs.solenoid_valve10           0 -> 1
+   56.772  15:53:56.505  io_status.digital_outputs.solenoid_valve10           1 -> 0
+   57.285  15:53:57.018  io_status.digital_outputs.solenoid_valve8            1 -> 0
+   79.507  15:54:19.240  io_status.digital_outputs.solenoid_valve10           0 -> 1
+   79.507  15:54:19.240  io_status.digital_outputs.solenoid_valve8            0 -> 1
+   79.507  15:54:19.240  system.cmd_start                                     0 -> 1
+   79.507  15:54:19.240  system.productqty_25mm                               1.0 -> 0.0
+   79.507  15:54:19.240  system.productqty_50mm                               0.0 -> 1.0
+   81.498  15:54:21.231  io_status.digital_outputs.solenoid_valve10           1 -> 0
+   84.579  15:54:24.312  io_status.digital_outputs.solenoid_valve8            1 -> 0
+   89.457  15:54:29.190  io_status.digital_outputs.solenoid_valve1            0 -> 1
+   90.209  15:54:29.942  io_status.digital_inputs.proximity_sensor1           0 -> 1
+   92.463  15:54:32.196  io_status.digital_outputs.conveyor1                  0 -> 1
+   92.463  15:54:32.196  io_status.digital_outputs.solenoid_valve1            1 -> 0
+   92.726  15:54:32.459  io_status.digital_inputs.proximity_sensor1           1 -> 0
+   92.726  15:54:32.459  io_status.digital_inputs.proximity_sensor2           0 -> 1
+   92.993  15:54:32.726  io_status.digital_inputs.proximity_sensor2           1 -> 0
+   92.993  15:54:32.726  io_status.digital_inputs.proximity_sensor3           0 -> 1
+   93.258  15:54:32.991  io_status.digital_inputs.proximity_sensor3           1 -> 0
+   93.258  15:54:32.991  io_status.digital_inputs.proximity_sensor5           0 -> 1
+   93.789  15:54:33.522  io_status.digital_inputs.proximity_sensor4           0 -> 1
+   93.789  15:54:33.522  io_status.digital_inputs.proximity_sensor5           1 -> 0
+   94.051  15:54:33.784  io_status.digital_inputs.proximity_sensor4           1 -> 0
+   94.303  15:54:34.036  io_status.digital_inputs.proximity_sensor6           0 -> 1
+   94.303  15:54:34.036  io_status.digital_outputs.conveyor1                  1 -> 0
+   96.310  15:54:36.043  io_status.digital_outputs.conveyor2                  0 -> 1
+   97.103  15:54:36.836  io_status.digital_inputs.proximity_sensor6           1 -> 0
+   97.880  15:54:37.612  io_status.digital_inputs.proximity_sensor7           0 -> 1
+   98.125  15:54:37.858  io_status.digital_inputs.proximity_sensor7           1 -> 0
+   98.383  15:54:38.115  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   98.884  15:54:38.617  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   98.884  15:54:38.617  io_status.digital_outputs.conveyor2                  1 -> 0
+  397.421  15:59:37.154  system.cmd_start                                     1 -> 0
+  401.874  15:59:41.607  io_status.digital_outputs.solenoid_valve10           0 -> 1
+  401.874  15:59:41.607  io_status.digital_outputs.solenoid_valve8            0 -> 1
+  403.909  15:59:43.642  system.cmd_start                                     0 -> 1
+  405.989  15:59:45.722  io_status.digital_outputs.solenoid_valve10           1 -> 0
+  406.733  15:59:46.465  io_status.digital_outputs.solenoid_valve8            1 -> 0
+  413.929  15:59:53.662  io_status.digital_outputs.solenoid_valve1            0 -> 1
+  414.724  15:59:54.457  io_status.digital_inputs.proximity_sensor1           0 -> 1
+  416.776  15:59:56.509  io_status.digital_outputs.conveyor1                  0 -> 1
+  416.776  15:59:56.509  io_status.digital_outputs.solenoid_valve1            1 -> 0
+  417.039  15:59:56.772  io_status.digital_inputs.proximity_sensor1           1 -> 0
+  417.039  15:59:56.772  io_status.digital_inputs.proximity_sensor2           0 -> 1
+  417.306  15:59:57.039  io_status.digital_inputs.proximity_sensor2           1 -> 0
+  417.306  15:59:57.039  io_status.digital_inputs.proximity_sensor3           0 -> 1
+  417.839  15:59:57.572  io_status.digital_inputs.proximity_sensor3           1 -> 0
+  417.839  15:59:57.572  io_status.digital_inputs.proximity_sensor5           0 -> 1
+  418.104  15:59:57.837  io_status.digital_inputs.proximity_sensor4           0 -> 1
+  418.104  15:59:57.837  io_status.digital_inputs.proximity_sensor5           1 -> 0
+  418.104  15:59:57.837  io_status.digital_inputs.proximity_sensor7           0 -> 1
+  418.371  15:59:58.104  io_status.digital_inputs.proximity_sensor4           1 -> 0
+  418.634  15:59:58.367  io_status.digital_inputs.proximity_sensor6           0 -> 1
+  418.634  15:59:58.367  io_status.digital_outputs.conveyor1                  1 -> 0
+  419.141  15:59:58.874  io_status.digital_inputs.proximity_sensor6           1 -> 0
+  420.140  15:59:59.873  io_status.digital_outputs.solenoid_valve7            0 -> 1
+  420.920  16:00:00.652  io_status.digital_inputs.proximity_sensor7           1 -> 0
+  420.920  16:00:00.652  io_status.digital_outputs.conveyor2                  0 -> 1
+  428.102  16:00:07.835  io_status.digital_outputs.solenoid_valve7            1 -> 0
+  428.102  16:00:07.835  io_status.digital_outputs.solenoid_valve8            0 -> 1
+  429.887  16:00:09.620  io_status.digital_inputs.pgm_low_limit               0 -> 1
+  437.867  16:00:17.600  io_status.digital_inputs.pgm_up_limit                0 -> 1
+  440.168  16:00:19.901  io_status.digital_outputs.solenoid_valve8            1 -> 0
+  457.142  16:00:36.875  io_status.digital_inputs.pgm_up_limit                1 -> 0
+  465.313  16:00:45.046  io_status.digital_inputs.pgm_low_limit               1 -> 0
+  475.371  16:00:55.104  io_status.digital_outputs.conveyor3                  0 -> 1
+  475.371  16:00:55.104  io_status.digital_outputs.solenoid_valve10           0 -> 1
+
+-- boolean pulse widths --
+  io_status.digital_inputs.pgm_low_limit               16:00:09.620 -> 16:00:45.046  35.426 s
+  io_status.digital_inputs.pgm_up_limit                16:00:17.600 -> 16:00:36.875  19.275 s
+  io_status.digital_inputs.proximity_sensor1           15:54:29.942 -> 15:54:32.459  2.517 s
+  io_status.digital_inputs.proximity_sensor1           15:59:54.457 -> 15:59:56.772  2.316 s
+  io_status.digital_inputs.proximity_sensor2           15:54:32.459 -> 15:54:32.726  0.267 s
+  io_status.digital_inputs.proximity_sensor2           15:59:56.772 -> 15:59:57.039  0.266 s
+  io_status.digital_inputs.proximity_sensor3           15:54:32.726 -> 15:54:32.991  0.265 s
+  io_status.digital_inputs.proximity_sensor3           15:59:57.039 -> 15:59:57.572  0.533 s
+  io_status.digital_inputs.proximity_sensor4           15:54:33.522 -> 15:54:33.784  0.262 s
+  io_status.digital_inputs.proximity_sensor4           15:59:57.837 -> 15:59:58.104  0.266 s
+  io_status.digital_inputs.proximity_sensor5           15:54:32.991 -> 15:54:33.522  0.531 s
+  io_status.digital_inputs.proximity_sensor5           15:59:57.572 -> 15:59:57.837  0.266 s
+  io_status.digital_inputs.proximity_sensor6           15:54:34.036 -> 15:54:36.836  2.800 s
+  io_status.digital_inputs.proximity_sensor6           15:59:58.367 -> 15:59:58.874  0.507 s
+  io_status.digital_inputs.proximity_sensor7           15:54:37.612 -> 15:54:37.858  0.246 s
+  io_status.digital_inputs.proximity_sensor7           15:59:57.837 -> 16:00:00.652  2.815 s
+  io_status.digital_inputs.proximity_sensor8           15:54:38.115 -> 15:54:38.617  0.501 s
+  io_status.digital_outputs.conveyor1                  15:54:32.196 -> 15:54:34.036  1.840 s
+  io_status.digital_outputs.conveyor1                  15:59:56.509 -> 15:59:58.367  1.858 s
+  io_status.digital_outputs.conveyor2                  15:54:36.043 -> 15:54:38.617  2.574 s
+  io_status.digital_outputs.solenoid_valve1            15:54:29.190 -> 15:54:32.196  3.006 s
+  io_status.digital_outputs.solenoid_valve1            15:59:53.662 -> 15:59:56.509  2.847 s
+  io_status.digital_outputs.solenoid_valve10           15:53:52.072 -> 15:53:53.928  1.856 s
+  io_status.digital_outputs.solenoid_valve10           15:53:54.702 -> 15:53:56.505  1.803 s
+  io_status.digital_outputs.solenoid_valve10           15:54:19.240 -> 15:54:21.231  1.991 s
+  io_status.digital_outputs.solenoid_valve10           15:59:41.607 -> 15:59:45.722  4.115 s
+  io_status.digital_outputs.solenoid_valve7            15:59:59.873 -> 16:00:07.835  7.963 s
+  io_status.digital_outputs.solenoid_valve8            15:53:52.072 -> 15:53:57.018  4.946 s
+  io_status.digital_outputs.solenoid_valve8            15:54:19.240 -> 15:54:24.312  5.073 s
+  io_status.digital_outputs.solenoid_valve8            15:59:41.607 -> 15:59:46.465  4.858 s
+  io_status.digital_outputs.solenoid_valve8            16:00:07.835 -> 16:00:19.901  12.066 s
+  system.cmd_start                                     15:54:19.240 -> 15:59:37.154  317.914 s
+
+-- manual commands --
+  15:54:18.950  system.cmd_start                         req=true  obs=true  CONFIRMED  284.1 ms
+  15:54:18.950  system.productqty_50mm                   req=1     obs=1     CONFIRMED  284.1 ms
+  15:54:18.950  system.productqty_25mm                   req=0     obs=0     CONFIRMED  284.1 ms
+  15:59:36.685  system.cmd_start                         req=false obs=false CONFIRMED  465.1 ms
+  15:59:43.295  system.cmd_start                         req=true  obs=true  CONFIRMED  342.3 ms
+  15:59:43.295  system.productqty_50mm                   req=1     obs=1     CONFIRMED  342.3 ms
+  15:59:43.295  system.productqty_25mm                   req=0     obs=0     CONFIRMED  342.3 ms
+
+-- alarms --
+  15:54:38.111  conveyor.2.no_motion                 Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.1 s and Current_Velocity
+  16:00:02.933  conveyor.2.no_motion                 Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.3 s and Current_Velocity
+  16:00:57.417  conveyor.3.no_motion                 Conveyor 3: run output ON, no encoder motion -- The run coil has been energised for 2.3 s and Current_Velocity
+
+-- system events (112) --
+  15:53:52.068  PLC      signal     SV 10  OFF -> ON
+  15:53:52.068  PLC      signal     SV 8  OFF -> ON
+  15:53:53.924  PLC      signal     SV 10  ON -> OFF
+  15:53:54.698  PLC      signal     SV 10  OFF -> ON
+  15:53:56.505  PLC      signal     SV 10  ON -> OFF
+  15:53:57.015  PLC      signal     SV 8  ON -> OFF
+  15:54:19.236  PLC      signal     SV 10  OFF -> ON
+  15:54:19.236  PLC      signal     SV 8  OFF -> ON
+  15:54:21.227  PLC      signal     SV 10  ON -> OFF
+  15:54:22.535  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 4 Distribution valve readiness: Twin predicts this state at t=1.12 s; 
+  15:54:24.309  PLC      signal     SV 8  ON -> OFF
+  15:54:29.187  PLC      signal     SV 1  OFF -> ON
+  15:54:29.939  PLC      product    Workpiece P001 detected at Conveyor 1
+  15:54:29.939  PLC      sequence   Step 7 confirmed: Block detected on conveyor 1 (Proximity sensor 1)
+  15:54:29.939  PLC      signal     PX 1  OFF -> ON
+  15:54:29.940  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 8 Feeder actuator retracts: Twin predicts this state at t=3.06 s; the 
+  15:54:32.193  PLC      sequence   Step 9 confirmed: Conveyor 1 starts (Conveyor 1 run output)
+  15:54:32.193  PLC      signal     Conveyor 1 Run  OFF -> ON
+  15:54:32.193  PLC      signal     SV 1  ON -> OFF
+  15:54:32.194  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 10 Block reaches position 2: Twin predicts this state at t=3.62 s; the
+  15:54:32.194  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 1: Run output is ON but encoder feedback reads zero.
+  15:54:32.457  PLC      signal     PX 2  OFF -> ON
+  15:54:32.457  PLC      signal     PX 1  ON -> OFF
+  15:54:32.458  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 11 Conveyor 1 stops: Twin predicts this state at t=5.22 s; the real cy
+  15:54:32.458  PLC      product    Workpiece P001 detected at Conveyor 1 end
+  15:54:32.458  PLC      sequence   Step 10 confirmed: Block reaches position 2 (Proximity sensor 2)
+  15:54:32.723  PLC      product    Workpiece P001 detected at Conveyor 2
+  15:54:32.723  PLC      signal     PX 3  OFF -> ON
+  15:54:32.723  PLC      signal     PX 2  ON -> OFF
+  15:54:32.988  PLC      signal     PX 5  OFF -> ON
+  15:54:32.988  PLC      signal     PX 3  ON -> OFF
+  15:54:33.518  PLC      signal     PX 5  ON -> OFF
+  15:54:33.518  PLC      signal     PX 4  OFF -> ON
+  15:54:33.519  PLC      product    Workpiece P001 detected at Conveyor 3
+  15:54:33.780  PLC      signal     PX 4  ON -> OFF
+  15:54:34.032  PLC      signal     Conveyor 1 Run  ON -> OFF
+  15:54:34.032  PLC      signal     PX 6  OFF -> ON
+  15:54:36.040  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 17 Conveyor 2 stops: Twin predicts this state at t=8.42 s; the real cy
+  15:54:36.040  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 2: Run output is ON but encoder feedback reads zero.
+  15:54:36.040  PLC      sequence   Step 16 confirmed: Block reaches position 3 (Proximity sensor 3)
+  15:54:36.040  PLC      sequence   Step 15 confirmed: Conveyor 2 starts (Conveyor 2 run output)
+  15:54:36.040  PLC      signal     Conveyor 2 Run  OFF -> ON
+  15:54:36.833  PLC      signal     PX 6  ON -> OFF
+  15:54:37.609  PLC      signal     PX 7  OFF -> ON
+  15:54:37.856  PLC      signal     PX 7  ON -> OFF
+  15:54:38.110  PLC      signal     PX 8  OFF -> ON
+  15:54:38.111  FAULT    fault      Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.1 s and Curren
+  15:54:38.604  INFO     fault      Cleared: Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.1 s a
+  15:54:38.604  PLC      signal     Conveyor 2 Run  ON -> OFF
+  15:54:38.604  PLC      signal     PX 8  ON -> OFF
+  15:55:06.068  FAULT    fault      Sequence stalled at step 23 (Base reaches top): waiting 30.0 s for Plate upper limit switch
+  15:59:17.606  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 4 Distribution valve readiness: Twin predicts this state at t=1.12 s; 
+  15:59:36.685  COMMAND  cycle      Software stop requested (CMD_START cleared). This is not a functional-safety stop.
+  15:59:41.606  PLC      signal     SV 10  OFF -> ON
+  15:59:41.606  PLC      signal     SV 8  OFF -> ON
+  15:59:45.721  PLC      signal     SV 10  ON -> OFF
+  15:59:46.462  PLC      signal     SV 8  ON -> OFF
+  15:59:46.993  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 4 Distribution valve readiness: Twin predicts this state at t=1.12 s; 
+  15:59:53.660  PLC      signal     SV 1  OFF -> ON
+  15:59:54.454  PLC      product    Workpiece P001 detected at Conveyor 1
+  15:59:54.454  PLC      sequence   Step 7 confirmed: Block detected on conveyor 1 (Proximity sensor 1)
+  15:59:54.454  PLC      signal     PX 1  OFF -> ON
+  15:59:54.455  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 8 Feeder actuator retracts: Twin predicts this state at t=3.06 s; the 
+  15:59:56.506  PLC      sequence   Step 9 confirmed: Conveyor 1 starts (Conveyor 1 run output)
+  15:59:56.506  PLC      signal     Conveyor 1 Run  OFF -> ON
+  15:59:56.506  PLC      signal     SV 1  ON -> OFF
+  15:59:56.507  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 10 Block reaches position 2: Twin predicts this state at t=3.62 s; the
+  15:59:56.507  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 1: Run output is ON but encoder feedback reads zero.
+  15:59:56.771  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 11 Conveyor 1 stops: Twin predicts this state at t=5.22 s; the real cy
+  15:59:56.771  PLC      product    Workpiece P001 detected at Conveyor 1 end
+  15:59:56.771  PLC      sequence   Step 10 confirmed: Block reaches position 2 (Proximity sensor 2)
+  15:59:56.771  PLC      signal     PX 2  OFF -> ON
+  15:59:56.771  PLC      signal     PX 1  ON -> OFF
+  15:59:57.039  PLC      product    Workpiece P001 detected at Conveyor 2
+  15:59:57.039  PLC      signal     PX 3  OFF -> ON
+  15:59:57.039  PLC      signal     PX 2  ON -> OFF
+  15:59:57.569  PLC      signal     PX 5  OFF -> ON
+  15:59:57.569  PLC      signal     PX 3  ON -> OFF
+  15:59:57.832  PLC      product    Workpiece P001 detected at Conveyor 3
+  15:59:57.832  PLC      signal     PX 7  OFF -> ON
+  15:59:57.832  PLC      signal     PX 5  ON -> OFF
+  15:59:57.832  PLC      signal     PX 4  OFF -> ON
+  15:59:58.100  PLC      signal     PX 4  ON -> OFF
+  15:59:58.361  PLC      signal     Conveyor 1 Run  ON -> OFF
+  15:59:58.361  PLC      signal     PX 6  OFF -> ON
+  15:59:58.873  PLC      signal     PX 6  ON -> OFF
+  15:59:59.870  PLC      signal     SV 7  OFF -> ON
+  16:00:00.649  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 17 Conveyor 2 stops: Twin predicts this state at t=8.42 s; the real cy
+  16:00:00.649  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 2: Run output is ON but encoder feedback reads zero.
+  16:00:00.649  PLC      sequence   Step 16 confirmed: Block reaches position 3 (Proximity sensor 3)
+  16:00:00.649  PLC      sequence   Step 15 confirmed: Conveyor 2 starts (Conveyor 2 run output)
+  16:00:00.649  PLC      signal     Conveyor 2 Run  OFF -> ON
+  16:00:00.649  PLC      signal     PX 7  ON -> OFF
+  16:00:02.933  FAULT    fault      Conveyor 2: run output ON, no encoder motion -- The run coil has been energised for 2.3 s and Curren
+  16:00:07.831  PLC      signal     SV 8  OFF -> ON
+  16:00:07.831  PLC      signal     SV 7  ON -> OFF
+  16:00:09.617  PLC      signal     Plate Low Limit  OFF -> ON
+  16:00:17.596  PLC      signal     Plate Up Limit  OFF -> ON
+  16:00:17.597  PLC      product    Workpiece P001 detected at Engraving station
+  16:00:17.597  PLC      sequence   Step 23 confirmed: Base reaches top (Plate upper limit switch)
+  16:00:19.898  PLC      signal     SV 8  ON -> OFF
+  16:00:35.568  PLC      sequence   Step 28 confirmed: Base reaches bottom (Plate lower limit switch)
+  16:00:35.569  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 29 Select third branch: Twin predicts this state at t=25.28 s; the rea
+  16:00:36.872  PLC      signal     Plate Up Limit  ON -> OFF
+  16:00:45.045  PLC      signal     Plate Low Limit  ON -> OFF
+  16:00:55.099  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 35 Conveyor 3 stops: Twin predicts this state at t=28.38 s; the real c
+  16:00:55.099  WARNING  twin       DIGITAL TWIN MISMATCH -- Conveyor 3: Run output is ON but encoder feedback reads zero.
+  16:00:55.099  PLC      sequence   Step 34 confirmed: Final position check (Proximity sensor 4)
+  16:00:55.099  PLC      sequence   Step 33 confirmed: Conveyor 3 starts (Conveyor 3 run output)
+  16:00:55.099  PLC      signal     Conveyor 3 Run  OFF -> ON
+  16:00:55.099  PLC      signal     SV 10  OFF -> ON
+  16:00:57.417  FAULT    fault      Conveyor 3: run output ON, no encoder motion -- The run coil has been energised for 2.3 s and Curren

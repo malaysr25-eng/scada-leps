@@ -1,0 +1,395 @@
+<title>NX MCD Cell Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  --paper: #eceff0;
+  --sheet: #ffffff;
+  --ink: #12211f;
+  --ink-2: #4c5c5a;
+  --rule: #c7d2d0;
+  --rule-soft: #e3e9e8;
+  --accent: #0f6f6a;
+  --accent-soft: #e2efee;
+  --fill: #f1f5f4;
+  --warn: #9a5b12;
+  --warn-soft: #fbf0e2;
+  --write: #fbfcfc;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0b1211; --sheet: #121c1b; --ink: #e2eae8; --ink-2: #93a5a2;
+    --rule: #2b3a38; --rule-soft: #1f2c2b; --accent: #6fc7c0; --accent-soft: #142a29;
+    --fill: #182424; --warn: #e0a763; --warn-soft: #2e2318; --write: #16211f;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0b1211; --sheet: #121c1b; --ink: #e2eae8; --ink-2: #93a5a2;
+  --rule: #2b3a38; --rule-soft: #1f2c2b; --accent: #6fc7c0; --accent-soft: #142a29;
+  --fill: #182424; --warn: #e0a763; --warn-soft: #2e2318; --write: #16211f;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font: 400 15px/1.55 var(--body);
+  padding-block: 28px 56px; padding-inline: 16px;
+}
+.sheet {
+  max-width: 900px; margin: 0 auto; background: var(--sheet);
+  border: 1px solid var(--rule); padding: 40px 48px 48px;
+  display: grid; gap: 38px;
+}
+@media (max-width: 640px) { .sheet { padding: 24px 18px 32px; gap: 30px; } }
+
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.05; text-wrap: balance; }
+h1 { font-size: 46px; font-weight: 700; }
+h2 { font-size: 27px; font-weight: 600; }
+h3 { font-size: 19px; font-weight: 600; letter-spacing: 0.015em; }
+p { margin: 0; max-width: 68ch; }
+ul, ol { margin: 0; padding-left: 1.25em; display: grid; gap: 6px; max-width: 70ch; }
+.stack { display: grid; gap: 14px; }
+.muted { color: var(--ink-2); }
+.label {
+  font-family: var(--display); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+}
+code {
+  font-family: var(--mono); font-size: 0.85em; background: var(--accent-soft);
+  padding: 0.05em 0.35em; border-radius: 3px;
+}
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* masthead */
+.mast { display: grid; gap: 16px; }
+.mast-top {
+  display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-end;
+  justify-content: space-between; border-bottom: 3px solid var(--accent); padding-bottom: 14px;
+}
+.print-btn {
+  font: 600 14px/1 var(--display); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--sheet); background: var(--accent); border: 0; border-radius: 3px;
+  padding: 10px 16px; cursor: pointer;
+}
+.print-btn:hover { background: var(--ink); }
+.print-btn:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border: 1px solid var(--rule); }
+.facts > div { padding: 10px 12px; border-right: 1px solid var(--rule); display: grid; gap: 2px; }
+.facts > div:last-child { border-right: 0; }
+.facts .v { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) {
+  .facts { grid-template-columns: 1fr 1fr; }
+  .facts > div:nth-child(2) { border-right: 0; }
+  .facts > div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+a { color: var(--accent); }
+.note { background: var(--accent-soft); padding: 12px 14px; border-radius: 3px; max-width: none; }
+.warn { background: var(--warn-soft); padding: 12px 14px; border-radius: 3px; max-width: none; color: var(--ink); }
+
+/* checklists */
+.checks { list-style: none; padding: 0; gap: 9px; }
+.checks label { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; cursor: pointer; }
+.checks input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); }
+
+/* tables */
+.tbl { overflow-x: auto; break-inside: avoid; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; font-variant-numeric: tabular-nums; }
+caption { text-align: left; padding-bottom: 8px; }
+th, td { border: 1px solid var(--rule); padding: 7px 9px; text-align: left; vertical-align: top; }
+thead th {
+  font: 600 12.5px/1.2 var(--display); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-2); background: var(--fill); vertical-align: bottom;
+}
+td.n { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+td.step { font-family: var(--display); font-size: 20px; font-weight: 700; color: var(--accent); width: 2.4em; text-align: center; }
+tbody tr:hover td { background: var(--fill); }
+
+/* sessions */
+.sessions { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 760px) { .sessions { grid-template-columns: 1fr; } }
+.session { border: 1px solid var(--rule); padding: 16px 18px; display: grid; gap: 10px; align-content: start; }
+.session .when { font: 700 22px/1 var(--display); }
+.session ol { padding-left: 1.1em; font-size: 14px; }
+
+/* resources */
+.res { display: grid; gap: 10px; counter-reset: r; list-style: none; padding: 0; }
+.res li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; }
+.res li::before { counter-increment: r; content: counter(r); font: 700 18px/1.2 var(--display); color: var(--accent); }
+.res a { word-break: break-word; }
+.reflist { display: grid; gap: 8px; }
+
+@page { size: A4; margin: 12mm; }
+@media print {
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --paper:#fff; --sheet:#fff; --ink:#000; --ink-2:#3d4a48; --rule:#97a5a3;
+    --accent:#0f6f6a; --accent-soft:#eaf3f2; --fill:#f2f5f4; --warn:#8a5210; --warn-soft:#f8efe2;
+  }
+  body { font-size: 10.5pt; padding: 0; background: #fff; }
+  .sheet { border: 0; padding: 0; max-width: none; gap: 20px; }
+  .print-btn { display: none; }
+  h1 { font-size: 30pt; } h2 { font-size: 17pt; }
+  .tbl, .session, .note, .warn { break-inside: avoid; }
+  thead th, td.step, .note, .warn, code { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page-break { break-before: page; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main class="sheet">
+
+  <header class="mast">
+    <div class="mast-top">
+      <div class="stack" style="gap:6px">
+        <span class="label">Laser-engraving cell · Mechatronics Concept Designer</span>
+        <h1>Building the cell in NX MCD</h1>
+      </div>
+      <button class="print-btn" type="button" id="print-btn" onclick="window.print()">Print</button>
+    </div>
+    <div class="facts">
+      <div><span class="label">Actuators</span><span class="v">11 rods + platform</span></div>
+      <div><span class="label">Conveyors</span><span class="v">3</span></div>
+      <div><span class="label">Proximity sensors</span><span class="v">10</span></div>
+      <div><span class="label">Cycle to match</span><span class="v">75.65 s</span></div>
+    </div>
+    <p class="muted">Written 2026-09-18, for the build weekend before the lab visit on Monday 2026-09-21. You build in NX on the college PC; this page carries the numbers, the order of work and the resources. <strong>The MATLAB model stays the physics of record</strong> — NX MCD adds 3-D motion, collision and a credible visual, and it is where you learn virtual-commissioning tooling.</p>
+  </header>
+
+  <section class="stack">
+    <h2>0 · Before you touch NX</h2>
+    <p class="muted">Fifteen minutes, at the lab PC.</p>
+    <ul class="checks">
+      <li><label><input type="checkbox" id="c-lic"><span><strong>NX version and licence.</strong> Help → About NX. Then the Application tab: is <strong>Mechatronics Concept Designer</strong> listed? It is a separate licence bundle. If it is greyed out, nothing below works, and that is the first thing to ask the lab for.</span></label></li>
+      <li><label><input type="checkbox" id="c-copy"><span><strong>Copy the project to the PC</strong>, don't work off a USB stick: <code>SIemens NX Work/BITS_MCD_project/</code> (moved there from the repository on 2026-09-19), 172 <code>.prt</code> files.</span></label></li>
+      <li><label><input type="checkbox" id="c-open"><span><strong>Open</strong> <code>Engraving/Engraving_Process_07-01-26_Additional.prt</code>, the newest of the eight versions, and switch to the MCD application.</span></label></li>
+      <li><label><input type="checkbox" id="c-inv"><span><strong>Write down what is already there</strong>, from the Physics Navigator, and compare it with the scan below.</span></label></li>
+      <li><label><input type="checkbox" id="c-saveas"><span><strong>Save As a working copy</strong>, <code>Engraving_Process_2026-09-21_build.prt</code>, and build there so the original stays as a reference.</span></label></li>
+    </ul>
+    <p class="note"><strong>What a text scan of that file says it holds:</strong> about 2 rigid bodies, 2 collision bodies, 4 sliding joints, 4 signal adapters and 17 signals, plus an OPC UA client pointed at <code>opc.tcp://172.21.30.157</code> — the cell's own PLC address. The signal names already include <code>Proximity_sensor1..10</code>, <code>Conveyor1..3</code>, <code>Solenoid_valve1..12</code>, <code>Engraving_Completed</code>, <code>Current_Position_Fb</code> and <code>MODE_HIGH_SPEED</code>.</p>
+    <p><strong>So the signal side is worth keeping</strong> — those names match the real PLC tags, and MCD maps signals to an OPC server automatically when names match. <strong>The mechanics are one station at best.</strong> The cell has 11 actuators, 3 conveyors and 10 sensors, so most of the building is ahead of you.</p>
+  </section>
+
+  <section class="stack">
+    <h2>1 · What you are building</h2>
+    <p>A block leaves a magazine, rides belt 1, is pushed onto belt 2, stops at prox 7, and cylinder A pushes it into the engraver. The platform lifts it, the operator engraves and presses ENG DONE, the platform lowers, cylinder B pushes it to belt 3, belt 3 carries it to prox 9, and outfeed A ejects it into the bin. A second product skips engraving: at prox 8, SV11 pushes it straight across to belt 3.</p>
+    <p>In MCD that is <strong>one rigid body</strong> (the block), <strong>three transport surfaces</strong> (the belts), <strong>eleven sliding joints</strong> (the rods) plus <strong>one</strong> for the engraving platform, <strong>ten collision sensors</strong> (the proximity sensors), and <strong>signals named after the PLC's tags</strong>.</p>
+  </section>
+
+  <section class="stack">
+    <h2>2 · The order of work</h2>
+    <p class="muted">MCD punishes building in the wrong order: a joint on a body that is not rigid does nothing, and a sensor with no collision body never trips.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>#</th><th>Step</th><th>You can check it by</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td class="step">1</td><td>Rigid body: the block</td><td>Play — it falls</td><td>basic physics</td></tr>
+          <tr><td class="step">2</td><td>Collision bodies: block, belt tops, stops</td><td>Play — it lands and stays</td><td>basic physics</td></tr>
+          <tr><td class="step">3</td><td>Transport surfaces on the three belts</td><td>Play — it rides</td><td>basic physics</td></tr>
+          <tr><td class="step">4</td><td>Sliding joints: 11 rods + the platform</td><td>Drag the joint in the navigator</td><td>kinematics</td></tr>
+          <tr><td class="step">5</td><td>Position control on each joint</td><td>Type a target, Play, watch it move</td><td>kinematics</td></tr>
+          <tr><td class="step">6</td><td>Collision sensors for the 10 proximity sensors</td><td>Play — the sensor trips as the block passes</td><td>automation</td></tr>
+          <tr><td class="step">7</td><td>Signals, named after the PLC tags</td><td>The Runtime Inspector shows them change</td><td>automation</td></tr>
+          <tr><td class="step">8</td><td>Signal adapters: sensor → signal, signal → actuator</td><td>A signal drives the rod</td><td>automation</td></tr>
+          <tr><td class="step">9</td><td>Sequence Editor: the cycle</td><td>The whole cycle runs by itself</td><td>the demo</td></tr>
+          <tr><td class="step">10</td><td>External signals over OPC UA</td><td>MCD follows the PLC, or a replay server</td><td>later</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="stack page-break">
+    <h2>3 · The numbers to type in</h2>
+    <p class="muted">From the validated MATLAB model, dumped 2026-09-18. Positions are in the model's plan view — origin at the magazine end, x along belt 1, y across the cell. Use them as relative distances; the NX geometry has its own origin.</p>
+
+    <div class="tbl">
+      <table>
+        <caption class="label">The workpiece, the belts, the platform</caption>
+        <thead><tr><th>Item</th><th>Value</th><th>Where it comes from</th></tr></thead>
+        <tbody>
+          <tr><td>Block</td><td class="n">100 × 100 × 40 mm, 0.300 kg</td><td>measured and weighed</td></tr>
+          <tr><td>Belt 1 speed</td><td class="n">210 mm/s</td><td>PLC recordings, 4 cycles</td></tr>
+          <tr><td>Belt 2 speed</td><td class="n">310 mm/s</td><td>tape on a manual run — re-checked Monday</td></tr>
+          <tr><td>Belt 3 speed</td><td class="n">150 mm/s</td><td>assumption, still unmeasured</td></tr>
+          <tr><td>Engraving platform</td><td class="n">50 mm; up 7.63 s, down 8.01 s</td><td>model and recorder (measured ~45 mm)</td></tr>
+          <tr><td>Proximity sensing range</td><td class="n">30 mm</td><td>estimate</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="warn">The PLC's own conveyor setpoint reads <strong>180 mm/s</strong>, and the earlier MCD author used 180 mm/s. Type the measured numbers above, and note the disagreement in your report.</p>
+
+    <div class="tbl">
+      <table>
+        <caption class="label">The eleven rods · stroke = joint limit, travel = position target, speed = position-control speed</caption>
+        <thead><tr><th>#</th><th>Name</th><th>Coils</th><th>Axis</th><th>Stroke (mm)</th><th>Travel (mm)</th><th>Speed (mm/s)</th><th>Other coordinate (mm)</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>MAG1_PUSH</td><td class="n">SV1</td><td class="n">−y</td><td class="n">160</td><td class="n">82</td><td class="n">148</td><td class="n">x 160</td></tr>
+          <tr><td class="n">2</td><td>MAG2_PUSH</td><td class="n">SV2</td><td class="n">−y</td><td class="n">160</td><td class="n">82</td><td class="n">148</td><td class="n">x 270</td></tr>
+          <tr><td class="n">3</td><td>MAG3_PUSH</td><td class="n">SV3</td><td class="n">−y</td><td class="n">160</td><td class="n">82</td><td class="n">148</td><td class="n">x 380</td></tr>
+          <tr><td class="n">4</td><td>MAG4_PUSH</td><td class="n">SV4</td><td class="n">−y</td><td class="n">160</td><td class="n">82</td><td class="n">148</td><td class="n">x 490</td></tr>
+          <tr><td class="n">5</td><td>MAG5_PUSH</td><td class="n">SV5</td><td class="n">−y</td><td class="n">160</td><td class="n">82</td><td class="n">148</td><td class="n">x 600</td></tr>
+          <tr><td class="n">6</td><td>XFER_CV1_CV2</td><td class="n">SV6</td><td class="n">−y</td><td class="n">160</td><td class="n">108</td><td class="n">131</td><td class="n">x 792</td></tr>
+          <tr><td class="n">7</td><td>CYL_A · into the engraver</td><td class="n">SV7 / SV8</td><td class="n">+x</td><td class="n">300</td><td class="n">252</td><td class="n">78</td><td class="n">y 590</td></tr>
+          <tr><td class="n">8</td><td>CYL_B · engraver → belt 3</td><td class="n">SV9 / SV10</td><td class="n">−y</td><td class="n">300</td><td class="n">204</td><td class="n">97</td><td class="n">x 1045</td></tr>
+          <tr><td class="n">9</td><td>MOVE_TO_CV3 · the bypass</td><td class="n">SV11</td><td class="n">+x</td><td class="n">160</td><td class="n">118</td><td class="n">146</td><td class="n">y 387</td></tr>
+          <tr><td class="n">10</td><td>OUTFEED_A · to the bin</td><td class="n">SV12</td><td class="n">−y</td><td class="n">160</td><td class="n">150</td><td class="n">135</td><td class="n">x 1290</td></tr>
+          <tr><td class="n">11</td><td>OUTFEED_B</td><td class="n">SV13</td><td class="n">−y</td><td class="n">160</td><td class="n">150</td><td class="n">135</td><td class="n">x 1410</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><strong>SV7/SV8 and SV9/SV10 are double-solenoid latching valves</strong> — a coil at each end, no spring. In MCD that is still <strong>one</strong> sliding joint: the two signals set its target, they do not each get a joint.</p>
+
+    <div class="tbl">
+      <table>
+        <caption class="label">The ten proximity sensors · collision sensors, 30 mm range</caption>
+        <thead><tr><th>Sensor</th><th>x (mm)</th><th>y (mm)</th><th>What it watches</th></tr></thead>
+        <tbody>
+          <tr><td>Proximity_sensor1–5</td><td class="n">160, 270, 380, 490, 600</td><td class="n">918</td><td>each magazine dispense</td></tr>
+          <tr><td>Proximity_sensor6</td><td class="n">792</td><td class="n">918</td><td>the end of belt 1</td></tr>
+          <tr><td>Proximity_sensor7</td><td class="n">792</td><td class="n">590</td><td>belt 2, the engraving stop</td></tr>
+          <tr><td>Proximity_sensor8</td><td class="n">792</td><td class="n">387</td><td>belt 2, the bypass stop</td></tr>
+          <tr><td>Proximity_sensor9</td><td class="n">1290</td><td class="n">387</td><td>belt 3, outfeed A</td></tr>
+          <tr><td>Proximity_sensor10</td><td class="n">1410</td><td class="n">387</td><td>belt 3, outfeed B</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Belt centre lines: belt 1 at y 918, belt 2 at x 792, belt 3 at y 387. Waypoints the block passes: load 160/1000, belt-1 end 792/918, belt-2 stop 792/590, engraver 1045/590, belt-3 load 1045/387, outfeed 1290/387, bin 1290/237.</p>
+  </section>
+
+  <section class="stack">
+    <h2>4 · The cycle, for checking your build</h2>
+    <p class="muted">Model times for the engraved route, from t = 0 at camera detect. Your MCD cycle should land near these if you typed the same numbers.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>t (s)</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td class="n">0.00</td><td>the block is detected</td></tr>
+          <tr><td class="n">10.24</td><td>SV1, magazine pusher out — the PLC's <code>T#10S</code> start delay</td></tr>
+          <tr><td class="n">13.29</td><td>belt 1 on</td></tr>
+          <tr><td class="n">16.44</td><td>prox 6; belt 1 off</td></tr>
+          <tr><td class="n">18.58</td><td>SV6 transfer push, and belt 2 on with it</td></tr>
+          <tr><td class="n">20.02</td><td>prox 7; belt 2 off</td></tr>
+          <tr><td class="n">21.50</td><td>SV7, cylinder A into the engraver</td></tr>
+          <tr><td class="n">29.56</td><td>SV8, cylinder A back</td></tr>
+          <tr><td class="n">31.51</td><td>the platform rises</td></tr>
+          <tr><td class="n">39.15</td><td>the platform is at the top</td></tr>
+          <tr><td class="n">39.15–51.67</td><td>the operator: notice, laser, ENG DONE — 12.5 s, a placeholder</td></tr>
+          <tr><td class="n">51.67</td><td>the platform lowers</td></tr>
+          <tr><td class="n">59.69</td><td>the platform is at the bottom</td></tr>
+          <tr><td class="n">59.87</td><td>SV9, cylinder B pushes to belt 3</td></tr>
+          <tr><td class="n">68.07</td><td>SV10 back; belt 3 on</td></tr>
+          <tr><td class="n">69.72</td><td>prox 9; belt 3 off</td></tr>
+          <tr><td class="n">69.85</td><td>SV12, the outfeed pushes to the bin, held 5.02 s — the PLC's <code>T#5S</code></td></tr>
+          <tr><td class="n">75.64</td><td>the cycle is complete</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted"><strong>The bypass route:</strong> belt 2 runs on to prox 8 (1.97 s), SV11 pushes across (held 2.00 s), belt 3 to prox 9, then the outfeed. Whole cycle <span class="num">29.74 s</span>.</p>
+  </section>
+
+  <section class="stack">
+    <h2>5 · The weekend, session by session</h2>
+    <p class="muted">Each session is self-contained, so stopping early still leaves something that runs.</p>
+    <div class="sessions">
+      <article class="session">
+        <span class="when">Friday</span>
+        <span class="label">1–2 hours · get MCD moving</span>
+        <ol>
+          <li>The checklist in §0.</li>
+          <li>Block → <strong>rigid body</strong>; block and belt tops → <strong>collision bodies</strong>. Play, and watch it sit on the belt.</li>
+          <li><strong>Transport surface</strong> on belt 1 at 210 mm/s. Play. The block rides.</li>
+          <li>Stop when that works. That is the whole of basic physics; everything after it is repetition.</li>
+        </ol>
+      </article>
+      <article class="session">
+        <span class="when">Saturday</span>
+        <span class="label">3–4 hours · station 1 end to end</span>
+        <ol>
+          <li><strong>Sliding joints</strong> for the five magazine pushers, limits 0–160 mm.</li>
+          <li><strong>Position control</strong>: speed 148 mm/s, target 82 mm.</li>
+          <li><strong>Collision sensors</strong> for prox 1–6.</li>
+          <li><strong>Signals</strong>: <code>Solenoid_valve1..6</code>, <code>Conveyor1</code>, <code>Proximity_sensor1..6</code>.</li>
+          <li><strong>Signal adapters</strong>: each sensor → its signal; <code>Solenoid_valve1</code> → pusher 1's target; <code>Conveyor1</code> → belt 1's speed.</li>
+          <li>Check: pusher out 10.24 s, belt 1 on 13.29, prox 6 at 16.44.</li>
+        </ol>
+      </article>
+      <article class="session">
+        <span class="when">Sunday</span>
+        <span class="label">3–4 hours · stations 2 and 3</span>
+        <ol>
+          <li>Transport surfaces for belts 2 and 3, 310 and 150 mm/s.</li>
+          <li>Joints and position control for SV6, cylinder A, cylinder B, SV11, SV12, SV13.</li>
+          <li>The <strong>engraving platform</strong>: a sliding joint in +z, 50 mm, rising in 7.63 s (≈ 6.6 mm/s).</li>
+          <li>Collision sensors for prox 7–10.</li>
+          <li>The rest of the signals and adapters.</li>
+          <li><strong>Sequence Editor</strong>: build the cycle from §4 and run it with no PLC. That is your demonstration.</li>
+        </ol>
+      </article>
+    </div>
+    <p class="note"><strong>Monday at the lab:</strong> the measurements on the lab sheet, and <strong>job 5 decides the live route</strong> — is OPC UA switched on at the CPU? If it is, MCD's existing OPC UA client can point at the real PLC and the model follows the machine.</p>
+  </section>
+
+  <section class="stack">
+    <h2>6 · Connecting it to something, later</h2>
+    <ol>
+      <li><strong>The Sequence Editor.</strong> MCD drives itself. No PLC, no extra licence, works today. Use this for the report and the viva.</li>
+      <li><strong>A replay server.</strong> A small OPC UA server that publishes the cell's tag names and plays back a validated MATLAB cycle. In NX you point the <strong>existing</strong> OPC UA client at it instead of the PLC, and MCD maps the signals automatically because the names already match. 3-D motion driven by the calibrated physics, with no machine involved.</li>
+      <li><strong>The real PLC over OPC UA</strong>, the same client pointed at <code>opc.tcp://172.21.30.157</code>, once OPC UA is enabled on the CPU.</li>
+    </ol>
+    <p class="note"><strong>Worth knowing before you start:</strong> MCD can map external signals to MCD signals automatically <strong>when the names match</strong>. So give every signal the PLC's own tag name — <code>Solenoid_valve7</code>, not <code>CylA_out</code>.</p>
+  </section>
+
+  <section class="stack">
+    <h2>7 · The course to follow</h2>
+    <p class="muted">Checked 2026-09-18. The FH Aachen course link does not resolve — not from here either, so it is not your browser. Use Siemens' own material instead; it suits this project better, because it teaches MCD <em>with</em> a PLC.</p>
+
+    <h3>Siemens SCE learning packages</h3>
+    <p>Siemens' own free teaching material, written for exactly this: a 3-D cell in NX MCD driven by a real PLC program. The packages bundle <strong>interactive videos, theory documents and project files</strong>. Downloads ask for a free Siemens ID.</p>
+    <div class="tbl">
+      <table>
+        <caption class="label">Link status checked from this machine on 2026-09-18</caption>
+        <thead><tr><th>What</th><th>Link</th><th>Checked</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Basic course · TIA factory automation with SIMIT and NX MCD</strong> — start here</td><td><a href="https://support.industry.siemens.com/cs/document/109816550/?lc=en-ww">support.industry.siemens.com · 109816550</a></td><td class="n">403 to curl,<br>browser only</td></tr>
+          <tr><td>… its direct download (ZIP)</td><td><a href="https://support.industry.siemens.com/cs/attachments/109816550/lp-sce-fa-basic-course-simit-mcd-lm-17-en.zip">lp-sce-fa-basic-course-simit-mcd-lm-17-en.zip</a></td><td class="n">403 to curl,<br>browser only</td></tr>
+          <tr><td><strong>Advanced course · Digital Twin</strong> — virtual commissioning, the next step</td><td><a href="https://support.industry.siemens.com/cs/document/109816686/?lc=en-WW">support.industry.siemens.com · 109816686</a></td><td class="n">403 to curl,<br>browser only</td></tr>
+          <tr><td>The SCE catalogue page these come from</td><td><a href="https://www.siemens.com/global/en/company/sustainability/education/sce/learning-training-documents/digital-twin.html">siemens.com · SCE Digital Twin</a></td><td class="n">200 OK</td></tr>
+          <tr><td>SCE guide to the whole library (3.8 MB PDF)</td><td><a href="https://assets.new.siemens.com/siemens/assets/api/uuid:c718963e-8c5a-4eab-8aa5-43e0a505af32/sce-guide-learn-training-guide-en.pdf">sce-guide-learn-training-guide-en.pdf</a></td><td class="n">200 OK,<br>downloads</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="warn"><strong>The old <code>sce-150-00x</code> PDFs are gone.</strong> The <code>automation.siemens.com/sce-static/…</code> links that search engines still show return a genuine <strong>404</strong> — Siemens moved this material into the packages above. Don't chase them. The 403s are bot protection on the support portal, not a broken link.</p>
+
+    <h3>Short videos, when you want to watch a command being done</h3>
+    <ol class="res">
+      <li><span><a href="https://www.youtube.com/watch?v=KIx1exS6arw">Basic physics</a> — rigid body, collision body, transport surface.</span></li>
+      <li><span><a href="https://www.youtube.com/watch?v=UeqBTeIFAoM">Joints</a> in MCD.</span></li>
+      <li><span><a href="https://www.youtube.com/watch?v=cv2Yjcx4lEk">Signals and connections</a> — adapters and external signals.</span></li>
+      <li><span><a href="https://www.youtube.com/watch?v=x3ncDZdelRY">A whole conveyor and pick-and-place cell</a> — the closest to this one.</span></li>
+      <li><span><a href="https://blogs.sw.siemens.com/nx-design/nx-tips-and-tricks-mechatronics-concept-designer/">Siemens' MCD tips</a> — the Physics Navigator as your version has it.</span></li>
+    </ol>
+
+    <h3>Reference, and a certificated option</h3>
+    <div class="reflist">
+      <p>· <a href="https://training.plm.automation.siemens.com/ilt/iltdescription.cfm?pID=DE-TR-PES2-10_NX___1926.0_B9">Siemens Xcelerator Academy · MCD courses</a> — paid and formal; the college may already have access.</p>
+      <p>· <a href="https://community.sw.siemens.com/s/topic/0TO4O000000MkeDWAS/nx-mechatronics-concept-designer">Siemens community group, NX MCD</a> — where to ask.</p>
+      <p>· <a href="http://www2.me.rochester.edu/courses/ME204/nx_help/en_US/tdocExt/content/8/xid461708.xml">OPC signal mapping</a>, from an older NX help mirror.</p>
+      <p>· <a href="https://community.sw.siemens.com/s/article/mechatronics-concept-designer-mcd-player">MCD Player</a> — to show the model to someone with no NX.</p>
+      <p>· <a href="https://mfr.edp-open.org/articles/mfreview/full_html/2024/01/mfreview240009/mfreview240009.html">A sorting-cell digital twin in NX MCD</a> (Manufacturing Review, 2024) — for the report.</p>
+      <p>· <a href="https://blogs.sw.siemens.com/designcenter/nx-student-edition-free-download/">NX Student Edition</a> — free, but a CAD/CAM licence; nothing I found says MCD is included, so expect the college PC to stay the only place you can build.</p>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h2>8 · What to write down as you go</h2>
+    <ul>
+      <li>Which NX version and which MCD licence the lab PC has.</li>
+      <li>For every MCD object you create: the number you typed, and where it came from — this page, or your own measurement.</li>
+      <li>Anything MCD would not let you do, and the message it gave.</li>
+      <li>A screen recording of the finished cycle. It is the deliverable a viva actually sees.</li>
+    </ul>
+    <p class="warn"><strong>The rule that has served this project:</strong> if you had to guess a number, mark it as a guess in your notes. Don't let it become a fact by being typed twice.</p>
+  </section>
+</main>

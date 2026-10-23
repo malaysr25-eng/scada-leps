@@ -1,0 +1,83 @@
+PASTE THIS INTO THE CLAUDE SESSION ON THE SCADA PC            round 4, for Monday 2026-09-21
+Run it from the folder these files are in (to_scada_pc_round4).
+
+------------------------------ COPY BELOW ------------------------------
+
+You are helping with a MATLAB digital twin of the laser-engraving cell. The
+maintainer and the student are at the cell today running cycles and a few
+physical tests. Your job is the software half on this PC, and it is
+READ-ONLY. The folder holds capture_window.py (uses scada_db.py),
+extract_cell_timings.py (round 4, schema 3) and LAB_HOUR_LOG.md.
+
+HARD RULES
+1. READ-ONLY. Never write a PLC tag. Never change the PLC program, portal code
+   or portal config. Never stop or restart the backend without asking the
+   maintainer first. Starting or restarting a RECORDING from the portal is
+   the humans' job; you may remind them.
+2. Both scripts read a COPY of the database (db + -wal) in a temp folder. Do
+   not open the live database any other way.
+3. If data is absent, say so. Do not estimate, interpolate or fill gaps.
+4. A manual button's hold time is how long a human held it, NOT a rod's
+   stroke time. There are no reed switches on these cylinders.
+5. Never ask for, type or store a password or login.
+
+STEP 1 - is the recorder capturing, and is it the real PLC? (3 min)
+    python capture_window.py --last-min 2 --label recorder_check
+  Report: the database path it USES (on 2026-09-10 the backend wrote to
+  new_scada\data\ instead of scada_platform\data\), whether the newest sample
+  is under 2 min old, the active recording session and its sample interval.
+  Check GET /api/health shows "plcSimulated": false, and that the dashboard
+  does not say SIMULATED and pressure reads about 4.3 bar (exactly 6.2 means
+  the simulator). If no session is active, or the interval is coarser than
+  0.1 s, or fewer than all tags are watched, tell the humans to start a wide
+  capture (all tags, 0.1 s).
+  RECORDING SESSIONS STOP AFTER 3600 s (max_session_seconds in config.json).
+  Note the session start time and remind the humans to restart the recording
+  before each hour is up. On 2026-09-10 nothing was recorded 15:31-16:50
+  because of this.
+
+STEP 2 - one window per test
+  The humans write each test's start and end clock time in LAB_HOUR_LOG.md
+  (or tell you). For each test:
+    python capture_window.py --from HH:MM:SS --to HH:MM:SS --label <test_name>
+  Report in 3-5 lines what the PLC saw: which outputs and inputs changed and
+  when, and any manual commands.
+
+STEP 3 - engraved cycles (the main job today)
+  After the engraved cycles (5 or more if the engraver works):
+    python extract_cell_timings.py --db <the path STEP 1 used> --date 2026-09-21 -o outbox/cell_timings_2026-09-21.json
+  It copies the database first, like capture_window.py. Report:
+  - the printed counts (REAL / simulated) and the ROUTES line. "engraved"
+    means the platform moved; "neither" means the block stopped (on
+    2026-09-10 all five cycles were "neither": the block reached prox 8 and
+    neither SV7 nor SV11 fired). If cycles are "neither" again, say so first.
+  - for the engraved cycles: platform_rise, platform_dwell_at_top,
+    operator_notice_and_engrave, operator_confirm, platform_fall,
+    cylA_extend_duration, cylB_extend_duration, cycle_conveyor3_run,
+    sv12_pulse_width, and whole_cycle / whole_cycle_by_route. n, mean, min,
+    max for each.
+  - whether system.engraving_completed changed in each engraved cycle. It
+    splits the operator's work from the button press.
+  - any cycle with "manual_cut": it was cut at its first manual button press
+    and measured only up to there. Name it.
+  The model's numbers to compare with are in the student's LAB_VISIT sheet.
+  Do not tune or judge the model here; just report the data.
+
+STEP 4 - the bypass cycle (the product that skips engraving)
+  After it runs, re-run STEP 3's command (it overwrites the file; that is
+  fine). Report for the cycle whose route is "bypass": pulse_solenoid_valve11,
+  conveyor2_to_prox8, prox8_to_sv11, cycle_conveyor3_run, sv12_pulse_width,
+  duration_s and max_step_reached (never seen before for a bypass cycle).
+  Ask the humans which HMI setting selected it and write the answer in
+  LAB_HOUR_LOG.md.
+
+STEP 5 - package before anyone leaves (5 min)
+  Make outbox/ (if not there) containing: a COPY of the database the scripts
+  used (db + -wal + -shm if it copies, copied, never moved), every file the
+  scripts wrote, cell_timings_2026-09-21.json, and LAB_HOUR_LOG.md. Tell the
+  humans the full path so they can copy it to their USB stick.
+
+Report to the humans after each step in a few lines. If the data contradicts
+anything written here, that is a finding - say so plainly.
+
+------------------------------ COPY ABOVE ------------------------------

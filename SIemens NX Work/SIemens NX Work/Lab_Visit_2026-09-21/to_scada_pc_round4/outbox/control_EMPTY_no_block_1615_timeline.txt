@@ -1,0 +1,210 @@
+WINDOW 16:15:05.000 -> 16:16:40.000   db C:\Users\DELL\Desktop\new_scada\scada_platform\data\scada_history.db
+tag_samples in window: 545
+session bf36673c8d2f4c2e "Recording 2026-09-21 15:59:00" sample 0.100 s
+
+-- changes (t = seconds from window start) --
+    1.224  16:15:06.224  io_status.digital_outputs.solenoid_valve8            1 -> 0
+    6.393  16:15:11.393  io_status.analog_inputs.pressure.value               4.3468 -> 4.3152
+    6.393  16:15:11.393  io_status.digital_outputs.solenoid_valve10           0 -> 1
+    6.393  16:15:11.393  io_status.digital_outputs.solenoid_valve8            0 -> 1
+    6.393  16:15:11.393  system.cmd_start                                     0 -> 1
+    6.643  16:15:11.642  io_status.analog_inputs.pressure.value               4.3152 -> 4.3394
+    6.896  16:15:11.896  io_status.analog_inputs.pressure.value               4.3394 -> 4.3468
+    8.402  16:15:13.401  io_status.digital_outputs.solenoid_valve10           1 -> 0
+   11.255  16:15:16.254  io_status.digital_outputs.solenoid_valve8            1 -> 0
+   16.403  16:15:21.402  io_status.analog_inputs.pressure.value               4.3468 -> 4.2836
+   16.403  16:15:21.402  io_status.digital_outputs.solenoid_valve1            0 -> 1
+   16.664  16:15:21.663  io_status.analog_inputs.pressure.value               4.2836 -> 4.251
+   17.988  16:15:22.987  io_status.analog_inputs.pressure.value               4.251 -> 4.3152
+   18.238  16:15:23.238  io_status.analog_inputs.pressure.value               4.3152 -> 4.3468
+   32.265  16:15:37.265  io_status.analog_inputs.pressure.value               4.3468 -> 4.3626
+   32.515  16:15:37.514  io_status.analog_inputs.pressure.value               4.3626 -> 4.3468
+   37.394  16:15:42.393  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   37.892  16:15:42.892  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   46.902  16:15:51.902  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   48.123  16:15:53.122  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   50.201  16:15:55.200  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   50.431  16:15:55.430  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   51.500  16:15:56.499  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   51.958  16:15:56.957  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   52.203  16:15:57.202  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   55.545  16:16:00.545  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   55.794  16:16:00.794  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   56.312  16:16:01.312  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   56.563  16:16:01.563  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   57.059  16:16:02.059  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   57.326  16:16:02.325  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   57.824  16:16:02.823  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   58.363  16:16:03.362  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   58.631  16:16:03.630  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   58.895  16:16:03.894  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   59.414  16:16:04.414  io_status.analog_inputs.pressure.value               4.3468 -> 4.3552
+   59.414  16:16:04.414  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   59.685  16:16:04.684  io_status.analog_inputs.pressure.value               4.3552 -> 4.3468
+   59.685  16:16:04.684  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   60.725  16:16:05.725  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   61.258  16:16:06.257  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   61.521  16:16:06.521  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   61.770  16:16:06.770  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   62.267  16:16:07.267  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   64.797  16:16:09.796  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   65.048  16:16:10.047  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   66.294  16:16:11.294  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   66.562  16:16:11.561  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   67.559  16:16:12.559  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   67.823  16:16:12.823  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   68.886  16:16:13.885  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   72.450  16:16:17.449  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   72.966  16:16:17.965  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   73.213  16:16:18.213  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   74.007  16:16:19.006  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   75.064  16:16:20.064  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   75.336  16:16:20.335  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   76.363  16:16:21.363  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   76.627  16:16:21.627  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   83.090  16:16:28.090  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   83.341  16:16:28.341  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   83.852  16:16:28.851  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   84.381  16:16:29.381  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   84.914  16:16:29.913  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   85.179  16:16:30.179  io_status.digital_inputs.proximity_sensor8           0 -> 1
+   91.821  16:16:36.820  io_status.digital_inputs.proximity_sensor8           1 -> 0
+   92.085  16:16:37.084  io_status.digital_inputs.proximity_sensor8           0 -> 1
+
+-- boolean pulse widths --
+  io_status.digital_inputs.proximity_sensor8           16:15:42.393 -> 16:15:42.892  0.499 s
+  io_status.digital_inputs.proximity_sensor8           16:15:51.902 -> 16:15:53.122  1.221 s
+  io_status.digital_inputs.proximity_sensor8           16:15:55.200 -> 16:15:55.430  0.230 s
+  io_status.digital_inputs.proximity_sensor8           16:15:56.499 -> 16:15:56.957  0.458 s
+  io_status.digital_inputs.proximity_sensor8           16:15:57.202 -> 16:16:00.545  3.342 s
+  io_status.digital_inputs.proximity_sensor8           16:16:00.794 -> 16:16:01.312  0.518 s
+  io_status.digital_inputs.proximity_sensor8           16:16:01.563 -> 16:16:02.059  0.496 s
+  io_status.digital_inputs.proximity_sensor8           16:16:02.325 -> 16:16:02.823  0.498 s
+  io_status.digital_inputs.proximity_sensor8           16:16:03.362 -> 16:16:03.630  0.268 s
+  io_status.digital_inputs.proximity_sensor8           16:16:03.894 -> 16:16:04.414  0.520 s
+  io_status.digital_inputs.proximity_sensor8           16:16:04.684 -> 16:16:05.725  1.041 s
+  io_status.digital_inputs.proximity_sensor8           16:16:06.257 -> 16:16:06.521  0.263 s
+  io_status.digital_inputs.proximity_sensor8           16:16:06.770 -> 16:16:07.267  0.497 s
+  io_status.digital_inputs.proximity_sensor8           16:16:09.796 -> 16:16:10.047  0.251 s
+  io_status.digital_inputs.proximity_sensor8           16:16:11.294 -> 16:16:11.561  0.268 s
+  io_status.digital_inputs.proximity_sensor8           16:16:12.559 -> 16:16:12.823  0.264 s
+  io_status.digital_inputs.proximity_sensor8           16:16:13.885 -> 16:16:17.449  3.564 s
+  io_status.digital_inputs.proximity_sensor8           16:16:17.965 -> 16:16:18.213  0.248 s
+  io_status.digital_inputs.proximity_sensor8           16:16:19.006 -> 16:16:20.064  1.058 s
+  io_status.digital_inputs.proximity_sensor8           16:16:20.335 -> 16:16:21.363  1.027 s
+  io_status.digital_inputs.proximity_sensor8           16:16:21.627 -> 16:16:28.090  6.463 s
+  io_status.digital_inputs.proximity_sensor8           16:16:28.341 -> 16:16:28.851  0.510 s
+  io_status.digital_inputs.proximity_sensor8           16:16:29.381 -> 16:16:29.913  0.532 s
+  io_status.digital_inputs.proximity_sensor8           16:16:30.179 -> 16:16:36.820  6.641 s
+  io_status.digital_outputs.solenoid_valve10           16:15:11.393 -> 16:15:13.401  2.009 s
+  io_status.digital_outputs.solenoid_valve8            16:15:05.000 -> 16:15:06.224  1.224 s
+  io_status.digital_outputs.solenoid_valve8            16:15:11.393 -> 16:15:16.254  4.861 s
+
+-- manual commands --
+  16:15:11.111  system.productqty_25mm                   req=0     obs=0     CONFIRMED  280.1 ms
+  16:15:11.112  system.cmd_start                         req=true  obs=true  CONFIRMED  279.1 ms
+  16:15:11.112  system.mode_high_speed                   req=false obs=false CONFIRMED  279.1 ms
+  16:15:11.112  system.productqty_50mm                   req=1     obs=1     CONFIRMED  279.1 ms
+  16:15:51.716  system.cycle_reset                       req=true  obs=false MISMATCH   2168.4 ms
+  16:15:54.568  system.cycle_reset                       req=true  obs=false MISMATCH   2134.2 ms
+  16:15:55.151  system.cycle_reset                       req=true  obs=false MISMATCH   2047.8 ms
+  16:15:55.447  system.cycle_reset                       req=true  obs=false MISMATCH   2268.5 ms
+  16:15:56.014  system.cycle_reset                       req=true  obs=false MISMATCH   2197.7 ms
+  16:15:56.237  system.cycle_reset                       req=true  obs=false MISMATCH   2237.9 ms
+  16:15:56.439  system.cycle_reset                       req=true  obs=false MISMATCH   2304.1 ms
+
+-- alarms --
+  16:15:41.627  sequence.stalled.S07_PROX1_CHECK     Sequence stalled at step 7 (Block detected on conveyor 1): waiting 30.2 s for Proximity sensor 1
+  16:16:26.580  sequence.stalled.S07_PROX1_CHECK     Sequence stalled at step 7 (Block detected on conveyor 1): waiting 30.1 s for Proximity sensor 1
+
+-- system events (90) --
+  16:15:06.221  PLC      signal     SV 8  ON -> OFF
+  16:15:11.112  COMMAND  cycle      Cycle start requested: 0 x 25 mm, 1 x 50 mm, NORMAL speed
+  16:15:11.391  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:11.391  INFO     lifecycle  State READY -> AUTO_RUNNING
+  16:15:11.391  INFO     cycle      Cycle C0007-161511 started
+  16:15:11.391  INFO     sequence   Sequence tracker reset (new cycle C0007-161511)
+  16:15:11.391  PLC      signal     SV 10  OFF -> ON
+  16:15:11.391  PLC      signal     SV 8  OFF -> ON
+  16:15:13.397  PLC      signal     SV 10  ON -> OFF
+  16:15:14.724  WARNING  twin       DIGITAL TWIN MISMATCH -- Step 4 Distribution valve readiness: Twin predicts this state at t=1.12 s; 
+  16:15:16.250  PLC      signal     SV 8  ON -> OFF
+  16:15:21.398  PLC      signal     SV 1  OFF -> ON
+  16:15:41.627  FAULT    fault      Sequence stalled at step 7 (Block detected on conveyor 1): waiting 30.2 s for Proximity sensor 1
+  16:15:41.876  INFO     lifecycle  State AUTO_RUNNING -> FAULT
+  16:15:42.389  PLC      signal     PX 8  OFF -> ON
+  16:15:42.889  PLC      signal     PX 8  ON -> OFF
+  16:15:51.716  COMMAND  cycle      Cycle reset issued
+  16:15:51.716  INFO     fault      Cleared by operator reset.
+  16:15:51.716  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:51.881  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:51.881  INFO     lifecycle  State FAULT -> RESETTING
+  16:15:51.881  PLC      signal     PX 8  OFF -> ON
+  16:15:53.118  PLC      signal     PX 8  ON -> OFF
+  16:15:53.885  INFO     lifecycle  State RESETTING -> AUTO_RUNNING
+  16:15:54.568  COMMAND  cycle      Cycle reset issued
+  16:15:54.568  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:54.667  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:54.667  INFO     lifecycle  State AUTO_RUNNING -> RESETTING
+  16:15:55.151  COMMAND  cycle      Cycle reset issued
+  16:15:55.151  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:55.195  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:55.195  PLC      signal     PX 8  OFF -> ON
+  16:15:55.426  PLC      signal     PX 8  ON -> OFF
+  16:15:55.447  COMMAND  cycle      Cycle reset issued
+  16:15:55.447  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:55.707  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:56.014  COMMAND  cycle      Cycle reset issued
+  16:15:56.014  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:56.209  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:56.237  COMMAND  cycle      Cycle reset issued
+  16:15:56.237  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:56.439  COMMAND  cycle      Cycle reset issued
+  16:15:56.439  INFO     sequence   Sequence tracker reset (operator reset)
+  16:15:56.493  PLC      sequence   Step 3 confirmed: Pressure preparation (Air pressure OK)
+  16:15:56.493  PLC      signal     PX 8  OFF -> ON
+  16:15:56.954  PLC      signal     PX 8  ON -> OFF
+  16:15:57.198  PLC      signal     PX 8  OFF -> ON
+  16:15:58.475  INFO     lifecycle  State RESETTING -> AUTO_RUNNING
+  16:16:00.543  PLC      signal     PX 8  ON -> OFF
+  16:16:00.793  PLC      signal     PX 8  OFF -> ON
+  16:16:01.310  PLC      signal     PX 8  ON -> OFF
+  16:16:01.560  PLC      signal     PX 8  OFF -> ON
+  16:16:02.056  PLC      signal     PX 8  ON -> OFF
+  16:16:02.323  PLC      signal     PX 8  OFF -> ON
+  16:16:02.821  PLC      signal     PX 8  ON -> OFF
+  16:16:03.361  PLC      signal     PX 8  OFF -> ON
+  16:16:03.625  PLC      signal     PX 8  ON -> OFF
+  16:16:03.891  PLC      signal     PX 8  OFF -> ON
+  16:16:04.411  PLC      signal     PX 8  ON -> OFF
+  16:16:04.679  PLC      signal     PX 8  OFF -> ON
+  16:16:05.721  PLC      signal     PX 8  ON -> OFF
+  16:16:06.253  PLC      signal     PX 8  OFF -> ON
+  16:16:06.516  PLC      signal     PX 8  ON -> OFF
+  16:16:06.767  PLC      signal     PX 8  OFF -> ON
+  16:16:07.264  PLC      signal     PX 8  ON -> OFF
+  16:16:09.793  PLC      signal     PX 8  OFF -> ON
+  16:16:10.046  PLC      signal     PX 8  ON -> OFF
+  16:16:11.293  PLC      signal     PX 8  OFF -> ON
+  16:16:11.560  PLC      signal     PX 8  ON -> OFF
+  16:16:12.557  PLC      signal     PX 8  OFF -> ON
+  16:16:12.819  PLC      signal     PX 8  ON -> OFF
+  16:16:13.882  PLC      signal     PX 8  OFF -> ON
+  16:16:17.447  PLC      signal     PX 8  ON -> OFF
+  16:16:17.962  PLC      signal     PX 8  OFF -> ON
+  16:16:18.211  PLC      signal     PX 8  ON -> OFF
+  16:16:19.004  PLC      signal     PX 8  OFF -> ON
+  16:16:20.063  PLC      signal     PX 8  ON -> OFF
+  16:16:20.331  PLC      signal     PX 8  OFF -> ON
+  16:16:21.361  PLC      signal     PX 8  ON -> OFF
+  16:16:21.625  PLC      signal     PX 8  OFF -> ON
+  16:16:26.580  FAULT    fault      Sequence stalled at step 7 (Block detected on conveyor 1): waiting 30.1 s for Proximity sensor 1
+  16:16:26.826  INFO     lifecycle  State AUTO_RUNNING -> FAULT
+  16:16:28.088  PLC      signal     PX 8  ON -> OFF
+  16:16:28.336  PLC      signal     PX 8  OFF -> ON
+  16:16:28.848  PLC      signal     PX 8  ON -> OFF
+  16:16:29.379  PLC      signal     PX 8  OFF -> ON
+  16:16:29.912  PLC      signal     PX 8  ON -> OFF
+  16:16:30.177  PLC      signal     PX 8  OFF -> ON
+  16:16:36.817  PLC      signal     PX 8  ON -> OFF
+  16:16:37.081  PLC      signal     PX 8  OFF -> ON

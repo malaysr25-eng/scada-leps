@@ -1,0 +1,458 @@
+"""
+The 42-step process sequence, and live inference of where the machine is in it.
+
+SOURCES
+-------
+* ``Industry 4.0_5.0 Lab data.xlsx`` sheet ``Sequencing`` -- the 42 process rows.
+* ``Factory_Simulation/factory_states.m`` -- the digital twin's 40-state table,
+  which already maps each state to its Excel row and names the sensor guard
+  that must go TRUE to advance. That mapping is reused verbatim rather than
+  re-derived, so the HMI timeline and the twin cannot drift apart.
+
+AN HONEST LIMITATION, STATED UP FRONT
+-------------------------------------
+The PLC does **not** publish a step index. There is no such tag anywhere in
+``Tag_list (1).xlsx``. The active step shown by this module is therefore
+**INFERRED** from the observable sensor/output pattern, never read. Every step
+carries ``confidence``, and the UI labels the timeline as inferred.
+
+Guards that map onto a real, documented PLC tag are marked ``observable``.
+Guards that do not -- per-cylinder reed switches (EXT/RET) have no tag in the
+list, and the camera guard lives outside the PLC -- are marked
+``unobservable`` and can never be used to claim confirmation. This is why the
+timeline shows "waiting for PX3" precisely, but says "cannot confirm cylinder
+retract: no reed-switch tag exists" instead of inventing one.
+"""
+
+from __future__ import annotations
+
+import time
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional
+
+# Guard kinds.
+GUARD_SENSOR = "sensor"        # a documented PLC input we can watch
+GUARD_IMMEDIATE = "immediate"   # no wait; the PLC falls straight through
+GUARD_TIMER = "timer"           # operator action, no duration in any source
+GUARD_OPERATOR = "operator"     # waits on an explicit operator acknowledgement
+GUARD_UNOBSERVABLE = "unobservable"  # real guard, but no tag exists for it
+GUARD_EXTERNAL = "external"     # outside the PLC (camera)
+
+# Guard semantics.
+#
+# EDGE  -- the guard describes an *event*: a part arriving at a sensor, a belt
+#          starting, the operator pressing acknowledge. Several of these tags
+#          are steady-state TRUE at rest (the plate low-limit switch is closed
+#          whenever the plate is parked down), so they are matched on a rising
+#          edge only.
+# LEVEL -- the guard describes a *precondition* that is simply required to be
+#          true, such as air pressure being healthy. Demanding an edge from a
+#          precondition would wait forever for a healthy signal to fail.
+EDGE = True
+LEVEL = False
+
+
+@dataclass
+class Step:
+    index: int
+    key: str
+    name: str
+    excel_ref: str
+    station: str
+    guard_kind: str
+    guard_label: str
+    guard_role: Optional[str] = None
+    guard_expect: Any = True
+    twin_state: Optional[str] = None
+    implicit: bool = False
+    anomaly: str = ""
+    typical_seconds: Optional[float] = None
+    edge: bool = EDGE
+
+    def to_dict(self) -> dict:
+        return {
+            "index": self.index,
+            "key": self.key,
+            "name": self.name,
+            "excelRef": self.excel_ref,
+            "station": self.station,
+            "guardKind": self.guard_kind,
+            "guardLabel": self.guard_label,
+            "guardRole": self.guard_role,
+            "guardExpect": self.guard_expect,
+            "twinState": self.twin_state,
+            "implicit": self.implicit,
+            "anomaly": self.anomaly,
+            "observable": self.guard_kind in (GUARD_SENSOR, GUARD_OPERATOR),
+            "typicalSeconds": self.typical_seconds,
+            "guardSemantics": "edge" if self.edge else "level",
+        }
+
+
+def _s(index, key, name, excel_ref, station, kind, label, role=None,
+       twin=None, implicit=False, anomaly="", typical=None, edge=EDGE) -> Step:
+    return Step(index, key, name, excel_ref, station, kind, label, role,
+                True, twin, implicit, anomaly, typical, edge)
+
+
+# ---------------------------------------------------------------------------
+# The sequence. Column order mirrors factory_states.m so the two can be diffed.
+#
+# guard_role values are semantic roles from config/tag_overlay.json. Where the
+# twin's guard has no counterpart in the documented tag list the role is None
+# and the kind is GUARD_UNOBSERVABLE -- deliberately, not by omission.
+# ---------------------------------------------------------------------------
+STEPS: List[Step] = [
+    _s(0, "S00_INIT", "Initialise", "-", "System",
+       GUARD_IMMEDIATE, "immediate", twin="S00_INIT"),
+    _s(1, "S01_CAMERA_DETECT", "Camera detects block", "1", "Feeder",
+       GUARD_EXTERNAL, "Camera detection (YOLO service, not a PLC tag)",
+       twin="S01_CAMERA_DETECT"),
+    _s(2, "S02_PUMP_CMD", "PLC commands pump", "2", "Pneumatics",
+       GUARD_IMMEDIATE, "immediate", twin="S02_PUMP_CMD"),
+    _s(3, "S03_PRESSURE_PREP", "Pressure preparation", "3", "Pneumatics",
+       GUARD_SENSOR, "Air pressure OK", "safety.air_pressure_ok",
+       twin="S03_PRESSURE_PREP", edge=LEVEL),
+    _s(4, "S04_DV_READY", "Distribution valve readiness", "4", "Pneumatics",
+       GUARD_IMMEDIATE, "immediate", twin="S04_DV_READY"),
+    _s(5, "S05_DV_SEL_FEEDER", "Select feeder branch", "5,6", "Feeder",
+       GUARD_UNOBSERVABLE, "Branch ready + charged (no branch-pressure tag)",
+       twin="S05_DV_SEL_FEEDER"),
+    _s(6, "S06_A1_EXTEND", "Feeder actuator extends", "7,8", "Feeder",
+       GUARD_UNOBSERVABLE, "Cylinder extended (no reed-switch tag)",
+       twin="S06_A1_EXTEND"),
+    _s(7, "S07_PROX1_CHECK", "Block detected on conveyor 1", "9", "Conveyor 1",
+       GUARD_SENSOR, "Proximity sensor 1", "sensor.proximity.1",
+       twin="S07_PROX1_CHECK"),
+    _s(8, "S08_A1_RETRACT", "Feeder actuator retracts", "8i", "Feeder",
+       GUARD_UNOBSERVABLE, "Cylinder retracted (no reed-switch tag)",
+       twin="S08_A1_RETRACT", implicit=True),
+    _s(9, "S09_CONV1_START", "Conveyor 1 starts", "10", "Conveyor 1",
+       GUARD_SENSOR, "Conveyor 1 run output", "conveyor.1.running",
+       twin="S09_CONV1_START"),
+    _s(10, "S10_PROX2_CHECK", "Block reaches position 2", "11", "Conveyor 1",
+        GUARD_SENSOR, "Proximity sensor 2", "sensor.proximity.2",
+        twin="S10_PROX2_CHECK"),
+    _s(11, "S11_CONV1_STOP", "Conveyor 1 stops", "12", "Conveyor 1",
+        GUARD_IMMEDIATE, "immediate", twin="S11_CONV1_STOP"),
+    _s(12, "S12_DV_SEL_FEEDER2", "Select second feeder branch", "13,14", "Feeder",
+        GUARD_UNOBSERVABLE, "Branch ready + charged (no branch-pressure tag)",
+        twin="S12_DV_SEL_FEEDER2"),
+    _s(13, "S13_A6_EXTEND", "Transfer actuator extends", "15,16", "Transfer",
+        GUARD_UNOBSERVABLE, "Cylinder extended (no reed-switch tag)",
+        twin="S13_A6_EXTEND"),
+    _s(14, "S14_A6_RETRACT", "Transfer actuator retracts", "16i", "Transfer",
+        GUARD_UNOBSERVABLE, "Cylinder retracted (no reed-switch tag)",
+        twin="S14_A6_RETRACT", implicit=True),
+    _s(15, "S15_CONV2_START", "Conveyor 2 starts", "17", "Conveyor 2",
+        GUARD_SENSOR, "Conveyor 2 run output", "conveyor.2.running",
+        twin="S15_CONV2_START"),
+    _s(16, "S16_PROX3_CHECK", "Block reaches position 3", "18", "Conveyor 2",
+        GUARD_SENSOR, "Proximity sensor 3", "sensor.proximity.3",
+        twin="S16_PROX3_CHECK"),
+    _s(17, "S17_CONV2_STOP", "Conveyor 2 stops", "19", "Conveyor 2",
+        GUARD_IMMEDIATE, "immediate", twin="S17_CONV2_STOP"),
+    _s(18, "S18_DV_SEL_SECOND", "Select engraving branch", "20,21", "Engraving",
+        GUARD_UNOBSERVABLE, "Branch ready + charged (no branch-pressure tag)",
+        twin="S18_DV_SEL_SECOND"),
+    _s(19, "S19_S2A1_EXTEND", "Push block onto engraving base", "22,23", "Engraving",
+        GUARD_UNOBSERVABLE, "Cylinder extended (no reed-switch tag)",
+        twin="S19_S2A1_EXTEND"),
+    _s(20, "S20_S2A1_FEEDBACK", "Actuator status feedback", "24", "Engraving",
+        GUARD_IMMEDIATE, "immediate", twin="S20_S2A1_FEEDBACK"),
+    _s(21, "S21_S2A1_RETRACT", "Actuator retracts", "24i", "Engraving",
+        GUARD_UNOBSERVABLE, "Cylinder retracted (no reed-switch tag)",
+        twin="S21_S2A1_RETRACT", implicit=True),
+    _s(22, "S22_BASE_UP", "Engraving base raises", "25", "Engraving",
+        GUARD_IMMEDIATE, "immediate", twin="S22_BASE_UP"),
+    _s(23, "S23_HEIGHT_TOP", "Base reaches top", "26", "Engraving",
+        GUARD_SENSOR, "Plate upper limit switch", "sensor.pgm_up_limit",
+        twin="S23_HEIGHT_TOP"),
+    _s(24, "S24_OPERATOR_NOTIFY", "Operator notified", "27", "Engraving",
+        GUARD_TIMER, "Operator notice delay (placeholder, unmeasured)",
+        twin="S24_OPERATOR_NOTIFY", typical=3.0),
+    _s(25, "S25_ENGRAVE_MANUAL", "Manual engraving in progress", "28", "Engraving",
+        GUARD_TIMER, "Engraving duration (placeholder, unmeasured)",
+        twin="S25_ENGRAVE_MANUAL", typical=8.0),
+    _s(26, "S26_ENGRAVE_CONFIRM", "Operator confirms engraving done", "29", "Engraving",
+        GUARD_OPERATOR, "Engraving Complete acknowledgement",
+        "cmd.engraving_completed", twin="S26_ENGRAVE_CONFIRM", typical=1.5),
+    _s(27, "S27_BASE_DOWN", "Engraving base lowers", "30i", "Engraving",
+        GUARD_IMMEDIATE, "immediate", twin="S27_BASE_DOWN", implicit=True),
+    _s(28, "S28_HEIGHT_BOTTOM", "Base reaches bottom", "30", "Engraving",
+        GUARD_SENSOR, "Plate lower limit switch", "sensor.pgm_low_limit",
+        twin="S28_HEIGHT_BOTTOM"),
+    _s(29, "S29_DV_SEL_THIRD", "Select third branch", "31,32", "Conveyor 3",
+        GUARD_UNOBSERVABLE, "Branch ready + charged (no branch-pressure tag)",
+        twin="S29_DV_SEL_THIRD"),
+    _s(30, "S30_S3A1_EXTEND", "Push block onto conveyor 3", "33,34", "Conveyor 3",
+        GUARD_UNOBSERVABLE, "Cylinder extended (no reed-switch tag)",
+        twin="S30_S3A1_EXTEND"),
+    _s(31, "S31_S3A1_FEEDBACK", "Actuator status feedback", "35", "Conveyor 3",
+        GUARD_IMMEDIATE, "immediate", twin="S31_S3A1_FEEDBACK"),
+    _s(32, "S32_S3A1_RETRACT", "Actuator retracts", "35i", "Conveyor 3",
+        GUARD_UNOBSERVABLE, "Cylinder retracted (no reed-switch tag)",
+        twin="S32_S3A1_RETRACT", implicit=True),
+    _s(33, "S33_CONV3_START", "Conveyor 3 starts", "36*", "Conveyor 3",
+        GUARD_SENSOR, "Conveyor 3 run output", "conveyor.3.running",
+        twin="S33_CONV3_START",
+        anomaly="Sequencing row 36 reads 'Conveyor Stop', but rows 10-12 and "
+                "17-19 establish Start -> proximity check -> Stop. Implemented "
+                "as START, matching factory_states.m. The spreadsheet text is "
+                "not silently overwritten -- the discrepancy is recorded here."),
+    _s(34, "S34_PROX4_FINAL", "Final position check", "37", "Conveyor 3",
+        GUARD_SENSOR, "Proximity sensor 4", "sensor.proximity.4",
+        twin="S34_PROX4_FINAL"),
+    _s(35, "S35_CONV3_STOP", "Conveyor 3 stops", "38", "Conveyor 3",
+        GUARD_IMMEDIATE, "immediate", twin="S35_CONV3_STOP"),
+    _s(36, "S36_DV_SEL_FOURTH", "Select ejector branch", "39,40", "Ejector",
+        GUARD_UNOBSERVABLE, "Branch ready + charged (no branch-pressure tag)",
+        twin="S36_DV_SEL_FOURTH"),
+    _s(37, "S37_S3A2_EXTEND", "Eject block into bin", "41,42", "Ejector",
+        GUARD_UNOBSERVABLE, "Cylinder extended (no reed-switch tag)",
+        twin="S37_S3A2_EXTEND"),
+    _s(38, "S38_S3A2_RETRACT", "Ejector retracts", "42i", "Ejector",
+        GUARD_UNOBSERVABLE, "Cylinder retracted (no reed-switch tag)",
+        twin="S38_S3A2_RETRACT", implicit=True),
+    _s(39, "S39_CYCLE_COMPLETE", "Cycle complete", "-", "System",
+        GUARD_SENSOR, "Cycle completed", "status.cycle_completed",
+        twin="S39_CYCLE_COMPLETE"),
+]
+
+STEP_BY_KEY = {s.key: s for s in STEPS}
+
+# Steps whose guard we can actually watch, in order. Inference walks these.
+OBSERVABLE_STEPS = [s for s in STEPS if s.guard_kind in (GUARD_SENSOR, GUARD_OPERATOR)]
+
+
+@dataclass
+class SequenceState:
+    """Live position in the sequence, plus why we believe it."""
+
+    step_index: int = 0
+    confidence: str = "none"     # none | low | inferred
+    entered_at: float = field(default_factory=time.time)
+    waiting_for: Optional[str] = None
+    waiting_role: Optional[str] = None
+    waiting_since: Optional[float] = None
+    last_confirmed_step: Optional[int] = None
+    last_confirmed_at: Optional[float] = None
+    timeout_s: float = 30.0
+    stalled: bool = False
+    awaiting_operator: bool = False
+    history: List[dict] = field(default_factory=list)
+
+    def to_dict(self, running: bool) -> dict:
+        step = STEPS[self.step_index] if 0 <= self.step_index < len(STEPS) else None
+        elapsed = time.time() - (self.waiting_since or self.entered_at)
+        return {
+            "stepIndex": self.step_index,
+            "step": step.to_dict() if step else None,
+            "confidence": self.confidence,
+            "inferred": True,
+            "enteredAt": self.entered_at,
+            "elapsedSeconds": round(elapsed, 2),
+            "waitingFor": self.waiting_for,
+            "waitingRole": self.waiting_role,
+            "waitingSince": self.waiting_since,
+            "timeoutSeconds": self.timeout_s,
+            "stalled": self.stalled and running,
+            "awaitingOperator": self.awaiting_operator and running,
+            "lastConfirmedStep": self.last_confirmed_step,
+            "lastConfirmedAt": self.last_confirmed_at,
+            "history": self.history[-30:],
+        }
+
+
+class SequenceTracker:
+    """
+    Infers the active step from observable guards.
+
+    ORDERED, COUNTED RISING EDGES
+    -----------------------------
+    Guards are matched strictly in sequence order, one at a time. Edge guards
+    are matched against *counted transitions* reported by the poller, not
+    against the current level.
+
+    All three properties are load-bearing:
+
+    * *Ordered* -- a real sequencer visits its states in order. Scanning every
+      guard at once and taking the furthest match lets an unrelated signal
+      teleport the timeline forward.
+
+    * *Edges, not levels* -- several guards are steady-state TRUE at rest. The
+      plate low-limit switch is closed whenever the plate is parked down, its
+      normal condition. A level test would satisfy S28_HEIGHT_BOTTOM on the
+      first poll of every cycle and report the machine as nearly finished
+      before it had moved.
+
+    * *Counted, not sampled* -- at 250 ms polling, PX1 rising and conveyor 1
+      starting frequently land in the *same* poll. Sampling the level when the
+      cursor arrives would see the belt already running, conclude it had always
+      been high, and then wait forever for an edge that had already happened.
+      Rises are counted wherever the cursor happens to be, and the cursor
+      consumes them in order, so nothing is missed and nothing is
+      double-counted.
+
+    Level guards (preconditions such as air pressure healthy) are matched
+    against the current value instead -- demanding an edge from a precondition
+    would mean waiting for a healthy signal to fail first.
+
+    Unobservable guards are passed through without confirmation; confidence
+    never rises above "inferred", because it is an inference.
+    """
+
+    def __init__(self, event_log, step_timeout: float = 30.0) -> None:
+        self.events = event_log
+        self.default_timeout = step_timeout
+        self.state = SequenceState(timeout_s=step_timeout)
+        self._satisfied: Dict[str, float] = {}
+        self._cursor = 0                      # index into OBSERVABLE_STEPS
+        self._rises: Dict[str, int] = {}      # role -> rises seen this cycle
+        self._consumed: Dict[str, int] = {}   # role -> rises already matched
+        self._stall_announced = False
+
+    def reset(self, reason: str = "cycle reset") -> None:
+        self.state = SequenceState(timeout_s=self.default_timeout)
+        self._satisfied.clear()
+        self._cursor = 0
+        self._rises.clear()
+        self._consumed.clear()
+        self._stall_announced = False
+        self.events.info("sequence", "Sequence tracker reset (%s)" % reason)
+
+    def observe(self, role_changes: List[dict]) -> None:
+        """
+        Count rising edges from the poller's change list.
+
+        Called every poll regardless of cursor position, so an edge occurring
+        while an earlier guard is still being confirmed is not lost.
+        """
+        for change in role_changes:
+            role = change.get("role")
+            if role and change.get("previous") is not True and change.get("value") is True:
+                self._rises[role] = self._rises.get(role, 0) + 1
+
+    def _is_satisfied(self, step: Step, roles: Dict[str, Any]) -> bool:
+        role = step.guard_role
+        if not role:
+            return False
+        if not step.edge:
+            return roles.get(role) is True
+        return self._rises.get(role, 0) > self._consumed.get(role, 0)
+
+    def update(self, roles: Dict[str, Any], running: bool) -> SequenceState:
+        now = time.time()
+
+        if not running:
+            self.state.stalled = False
+            self.state.waiting_for = None
+            self.state.waiting_role = None
+            return self.state
+
+        # Advance the cursor across every guard already satisfied. A loop, not
+        # an `if`, so a burst of fast transitions between two polls does not
+        # leave the timeline lagging behind the machine.
+        while self._cursor < len(OBSERVABLE_STEPS):
+            step = OBSERVABLE_STEPS[self._cursor]
+            if not self._is_satisfied(step, roles):
+                break
+
+            if step.edge and step.guard_role:
+                self._consumed[step.guard_role] = (
+                    self._consumed.get(step.guard_role, 0) + 1
+                )
+
+            self._satisfied[step.key] = now
+            self.state.history.append({
+                "stepIndex": step.index,
+                "name": step.name,
+                "at": now,
+                "guard": step.guard_label,
+            })
+            self.events.plc(
+                "sequence",
+                "Step %d confirmed: %s (%s)" % (step.index, step.name, step.guard_label),
+                stepIndex=step.index, guardRole=step.guard_role,
+            )
+            self.state.last_confirmed_step = step.index
+            self.state.last_confirmed_at = now
+
+            # A stall that resolves must not leave a latched fault behind,
+            # otherwise the machine sits in FAULT for the rest of the cycle.
+            if self._stall_announced:
+                self.events.clear_fault(
+                    "sequence.stalled.%s" % step.key,
+                    "Sequence resumed: %s confirmed." % step.guard_label,
+                )
+                self._stall_announced = False
+
+            self._cursor += 1
+
+        # Active step: the one after the last confirmation.
+        if self.state.last_confirmed_step is not None:
+            active_index = min(self.state.last_confirmed_step + 1, len(STEPS) - 1)
+            self.state.confidence = "inferred"
+        else:
+            active_index = 1  # camera detect, the first real step
+            self.state.confidence = "low"
+
+        if active_index != self.state.step_index:
+            self.state.step_index = active_index
+            self.state.entered_at = now
+            self.state.waiting_since = now
+            self._stall_announced = False
+            self.state.stalled = False
+
+        # What are we waiting for? Whatever the cursor is parked on.
+        pending = (
+            OBSERVABLE_STEPS[self._cursor]
+            if self._cursor < len(OBSERVABLE_STEPS) else None
+        )
+        if pending:
+            self.state.waiting_for = pending.guard_label
+            self.state.waiting_role = pending.guard_role
+            if self.state.waiting_since is None:
+                self.state.waiting_since = now
+
+            elapsed = now - (self.state.waiting_since or now)
+
+            # `typical_seconds` is the twin's NOMINAL DURATION for a step, not
+            # a timeout budget. Using it as one made the engraving step raise a
+            # fault 1.5 s after the machine started waiting for a human -- the
+            # 1.5 s being the model's placeholder estimate of how long an
+            # operator takes to press a button, which the twin's own docs flag
+            # as unmeasured. A person is not late at 1.5 s.
+            #
+            # So: waiting on an operator is never a stall. The UI shows
+            # "awaiting operator" prominently instead, which is the truthful
+            # thing to display. Machine steps keep the configured budget.
+            timeout = (
+                None if pending.guard_kind == GUARD_OPERATOR
+                else self.default_timeout
+            )
+            self.state.timeout_s = timeout or 0.0
+            self.state.awaiting_operator = pending.guard_kind == GUARD_OPERATOR
+
+            if timeout is not None and elapsed > timeout:
+                self.state.stalled = True
+                if not self._stall_announced:
+                    self._stall_announced = True
+                    self.events.raise_fault(
+                        "sequence.stalled.%s" % pending.key,
+                        "Sequence stalled at step %d (%s): waiting %.1f s for %s"
+                        % (pending.index, pending.name, elapsed, pending.guard_label),
+                        stepIndex=pending.index, guardRole=pending.guard_role,
+                    )
+            else:
+                self.state.stalled = False
+        else:
+            self.state.waiting_for = None
+            self.state.waiting_role = None
+            self.state.stalled = False
+            self.state.awaiting_operator = False
+
+        return self.state
+
+def sequence_catalogue() -> List[dict]:
+    return [s.to_dict() for s in STEPS]

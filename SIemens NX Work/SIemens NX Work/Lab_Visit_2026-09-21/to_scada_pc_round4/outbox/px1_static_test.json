@@ -1,0 +1,365 @@
+{
+ "database": "C:\\Users\\DELL\\Desktop\\new_scada\\scada_platform\\data\\scada_history.db",
+ "window": [
+  1789984195.2005017,
+  1789984555.2005017
+ ],
+ "window_local": [
+  "15:19:55.200",
+  "15:25:55.200"
+ ],
+ "match": [
+  "proximity_sensor1",
+  "proximity_sensor2",
+  "conveyor1",
+  "solenoid_valve1",
+  "solenoid_valve2"
+ ],
+ "sessions": [
+  {
+   "session_uid": "17b99f885bc848ca",
+   "label": "Recording 2026-09-21 15:02:42",
+   "started_at": 1789983162.9173074,
+   "ended_at": null,
+   "sample_interval_s": 0.1,
+   "deadband": 0.001,
+   "status": "ACTIVE"
+  }
+ ],
+ "state_before": {
+  "io_status.digital_inputs.proximity_sensor1": 0,
+  "io_status.digital_inputs.proximity_sensor10": 0,
+  "io_status.digital_inputs.proximity_sensor2": 0,
+  "io_status.digital_outputs.conveyor1": 0,
+  "io_status.digital_outputs.solenoid_valve1": 0,
+  "io_status.digital_outputs.solenoid_valve10": 0,
+  "io_status.digital_outputs.solenoid_valve11": 0,
+  "io_status.digital_outputs.solenoid_valve12": 0,
+  "io_status.digital_outputs.solenoid_valve13": 0,
+  "io_status.digital_outputs.solenoid_valve2": 0,
+  "manual_commands.conveyor1": 0,
+  "manual_commands.solenoid_valve1": 0,
+  "manual_commands.solenoid_valve10": 0,
+  "manual_commands.solenoid_valve11": 0,
+  "manual_commands.solenoid_valve12": 0,
+  "manual_commands.solenoid_valve13": 0,
+  "manual_commands.solenoid_valve2": 0
+ },
+ "changes": [
+  {
+   "t": 1789984251.7083871,
+   "tag": "io_status.digital_outputs.solenoid_valve2",
+   "from": 0,
+   "to": 1
+  },
+  {
+   "t": 1789984251.7083871,
+   "tag": "manual_commands.solenoid_valve2",
+   "from": 0,
+   "to": 1
+  },
+  {
+   "t": 1789984253.7452655,
+   "tag": "io_status.digital_inputs.proximity_sensor2",
+   "from": 0,
+   "to": 1
+  },
+  {
+   "t": 1789984256.6159058,
+   "tag": "io_status.digital_outputs.conveyor1",
+   "from": 0,
+   "to": 1
+  },
+  {
+   "t": 1789984256.6159058,
+   "tag": "manual_commands.conveyor1",
+   "from": 0,
+   "to": 1
+  },
+  {
+   "t": 1789984256.8813257,
+   "tag": "io_status.digital_inputs.proximity_sensor2",
+   "from": 1,
+   "to": 0
+  },
+  {
+   "t": 1789984257.3914657,
+   "tag": "io_status.digital_outputs.conveyor1",
+   "from": 1,
+   "to": 0
+  },
+  {
+   "t": 1789984257.3914657,
+   "tag": "manual_commands.conveyor1",
+   "from": 1,
+   "to": 0
+  },
+  {
+   "t": 1789984263.5779812,
+   "tag": "io_status.digital_outputs.solenoid_valve2",
+   "from": 1,
+   "to": 0
+  },
+  {
+   "t": 1789984263.5779812,
+   "tag": "manual_commands.solenoid_valve2",
+   "from": 1,
+   "to": 0
+  },
+  {
+   "t": 1789984456.8885944,
+   "tag": "io_status.digital_inputs.proximity_sensor1",
+   "from": 0,
+   "to": 1
+  },
+  {
+   "t": 1789984551.9766998,
+   "tag": "io_status.digital_inputs.proximity_sensor1",
+   "from": 1,
+   "to": 0
+  }
+ ],
+ "pulses": [
+  {
+   "tag": "io_status.digital_inputs.proximity_sensor1",
+   "on": 1789984456.8885944,
+   "off": 1789984551.9766998,
+   "width_s": 95.08810544013977
+  },
+  {
+   "tag": "io_status.digital_inputs.proximity_sensor2",
+   "on": 1789984253.7452655,
+   "off": 1789984256.8813257,
+   "width_s": 3.1360602378845215
+  },
+  {
+   "tag": "io_status.digital_outputs.conveyor1",
+   "on": 1789984256.6159058,
+   "off": 1789984257.3914657,
+   "width_s": 0.7755599021911621
+  },
+  {
+   "tag": "io_status.digital_outputs.solenoid_valve2",
+   "on": 1789984251.7083871,
+   "off": 1789984263.5779812,
+   "width_s": 11.869594097137451
+  },
+  {
+   "tag": "manual_commands.conveyor1",
+   "on": 1789984256.6159058,
+   "off": 1789984257.3914657,
+   "width_s": 0.7755599021911621
+  },
+  {
+   "tag": "manual_commands.solenoid_valve2",
+   "on": 1789984251.7083871,
+   "off": 1789984263.5779812,
+   "width_s": 11.869594097137451
+  }
+ ],
+ "commands": [
+  {
+   "id": 546,
+   "ts": 1789984251.3186634,
+   "command_id": "cmd-21",
+   "tag_id": "manual_commands.solenoid_valve2",
+   "address": "DB59.DBX264.1",
+   "requested": "true",
+   "observed": "true",
+   "dtype": "Bool",
+   "outcome": "CONFIRMED",
+   "latency_ms": 387.7,
+   "operator": "local",
+   "origin": "manual",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "error": null
+  },
+  {
+   "id": 547,
+   "ts": 1789984256.1157503,
+   "command_id": "cmd-22",
+   "tag_id": "manual_commands.conveyor1",
+   "address": "DB59.DBX265.5",
+   "requested": "true",
+   "observed": "true",
+   "dtype": "Bool",
+   "outcome": "CONFIRMED",
+   "latency_ms": 497.1,
+   "operator": "local",
+   "origin": "manual",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "error": null
+  },
+  {
+   "id": 548,
+   "ts": 1789984256.899887,
+   "command_id": "cmd-23",
+   "tag_id": "manual_commands.conveyor1",
+   "address": "DB59.DBX265.5",
+   "requested": "false",
+   "observed": "false",
+   "dtype": "Bool",
+   "outcome": "CONFIRMED",
+   "latency_ms": 490.6,
+   "operator": "local",
+   "origin": "manual",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "error": null
+  },
+  {
+   "id": 549,
+   "ts": 1789984263.197508,
+   "command_id": "cmd-24",
+   "tag_id": "manual_commands.solenoid_valve2",
+   "address": "DB59.DBX264.1",
+   "requested": "false",
+   "observed": "false",
+   "dtype": "Bool",
+   "outcome": "CONFIRMED",
+   "latency_ms": 378.5,
+   "operator": "local",
+   "origin": "manual",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "error": null
+  }
+ ],
+ "system_events": [
+  {
+   "id": 4559,
+   "ts": 1789984251.3186634,
+   "severity": "COMMAND",
+   "category": "manual",
+   "message": "Manual write: Manual SV 2 = True (DB59.DBX264.1)",
+   "source": "local",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"manual_commands.solenoid_valve2\", \"commandId\": \"cmd-21\"}"
+  },
+  {
+   "id": 4560,
+   "ts": 1789984251.706384,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "SV 2  OFF -> ON",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_outputs.solenoid_valve2\", \"role\": \"valve.2.state\", \"address\": \"DB59.DBX130.1\"}"
+  },
+  {
+   "id": 4561,
+   "ts": 1789984253.744262,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "PX 2  OFF -> ON",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_inputs.proximity_sensor2\", \"role\": \"sensor.proximity.2\", \"address\": \"DB59.DBX128.1\"}"
+  },
+  {
+   "id": 4562,
+   "ts": 1789984256.1157503,
+   "severity": "COMMAND",
+   "category": "manual",
+   "message": "Manual write: Manual Conveyor 1 = True (DB59.DBX265.5)",
+   "source": "local",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"manual_commands.conveyor1\", \"commandId\": \"cmd-22\"}"
+  },
+  {
+   "id": 4563,
+   "ts": 1789984256.6139114,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "Conveyor 1 Run  OFF -> ON",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_outputs.conveyor1\", \"role\": \"conveyor.1.running\", \"address\": \"DB59.DBX131.5\"}"
+  },
+  {
+   "id": 4565,
+   "ts": 1789984256.8783097,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "PX 2  ON -> OFF",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_inputs.proximity_sensor2\", \"role\": \"sensor.proximity.2\", \"address\": \"DB59.DBX128.1\"}"
+  },
+  {
+   "id": 4567,
+   "ts": 1789984256.899887,
+   "severity": "COMMAND",
+   "category": "manual",
+   "message": "Manual write: Manual Conveyor 1 = False (DB59.DBX265.5)",
+   "source": "local",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"manual_commands.conveyor1\", \"commandId\": \"cmd-23\"}"
+  },
+  {
+   "id": 4570,
+   "ts": 1789984257.3904676,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "Conveyor 1 Run  ON -> OFF",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_outputs.conveyor1\", \"role\": \"conveyor.1.running\", \"address\": \"DB59.DBX131.5\"}"
+  },
+  {
+   "id": 4573,
+   "ts": 1789984263.1985054,
+   "severity": "COMMAND",
+   "category": "manual",
+   "message": "Manual write: Manual SV 2 = False (DB59.DBX264.1)",
+   "source": "local",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"manual_commands.solenoid_valve2\", \"commandId\": \"cmd-24\"}"
+  },
+  {
+   "id": 4574,
+   "ts": 1789984263.575978,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "SV 2  ON -> OFF",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_outputs.solenoid_valve2\", \"role\": \"valve.2.state\", \"address\": \"DB59.DBX130.1\"}"
+  },
+  {
+   "id": 4597,
+   "ts": 1789984456.8865955,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "PX 1  OFF -> ON",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_inputs.proximity_sensor1\", \"role\": \"sensor.proximity.1\", \"address\": \"DB59.DBX128.0\"}"
+  },
+  {
+   "id": 4600,
+   "ts": 1789984551.9747047,
+   "severity": "PLC",
+   "category": "signal",
+   "message": "PX 1  ON -> OFF",
+   "source": "plc",
+   "source_id": "plc",
+   "cycle_id": "C0002-151511",
+   "detail": "{\"tagId\": \"io_status.digital_inputs.proximity_sensor1\", \"role\": \"sensor.proximity.1\", \"address\": \"DB59.DBX128.0\"}"
+  }
+ ],
+ "alarms": []
+}

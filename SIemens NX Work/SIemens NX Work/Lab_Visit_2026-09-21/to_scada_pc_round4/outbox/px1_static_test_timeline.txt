@@ -1,0 +1,47 @@
+WINDOW 15:19:55.200 -> 15:25:55.200   db C:\Users\DELL\Desktop\new_scada\scada_platform\data\scada_history.db
+tag_samples in window: 1958
+session 17b99f885bc848ca "Recording 2026-09-21 15:02:42" sample 0.100 s
+
+-- changes (t = seconds from window start) --
+   56.508  15:20:51.708  io_status.digital_outputs.solenoid_valve2            0 -> 1
+   56.508  15:20:51.708  manual_commands.solenoid_valve2                      0 -> 1
+   58.545  15:20:53.745  io_status.digital_inputs.proximity_sensor2           0 -> 1
+   61.415  15:20:56.615  io_status.digital_outputs.conveyor1                  0 -> 1
+   61.415  15:20:56.615  manual_commands.conveyor1                            0 -> 1
+   61.681  15:20:56.881  io_status.digital_inputs.proximity_sensor2           1 -> 0
+   62.191  15:20:57.391  io_status.digital_outputs.conveyor1                  1 -> 0
+   62.191  15:20:57.391  manual_commands.conveyor1                            1 -> 0
+   68.377  15:21:03.577  io_status.digital_outputs.solenoid_valve2            1 -> 0
+   68.377  15:21:03.577  manual_commands.solenoid_valve2                      1 -> 0
+  261.688  15:24:16.888  io_status.digital_inputs.proximity_sensor1           0 -> 1
+  356.776  15:25:51.976  io_status.digital_inputs.proximity_sensor1           1 -> 0
+
+-- boolean pulse widths --
+  io_status.digital_inputs.proximity_sensor1           15:24:16.888 -> 15:25:51.976  95.088 s
+  io_status.digital_inputs.proximity_sensor2           15:20:53.745 -> 15:20:56.881  3.136 s
+  io_status.digital_outputs.conveyor1                  15:20:56.615 -> 15:20:57.391  0.776 s
+  io_status.digital_outputs.solenoid_valve2            15:20:51.708 -> 15:21:03.577  11.870 s
+  manual_commands.conveyor1                            15:20:56.615 -> 15:20:57.391  0.776 s
+  manual_commands.solenoid_valve2                      15:20:51.708 -> 15:21:03.577  11.870 s
+
+-- manual commands --
+  15:20:51.318  manual_commands.solenoid_valve2          req=true  obs=true  CONFIRMED  387.7 ms
+  15:20:56.115  manual_commands.conveyor1                req=true  obs=true  CONFIRMED  497.1 ms
+  15:20:56.899  manual_commands.conveyor1                req=false obs=false CONFIRMED  490.6 ms
+  15:21:03.197  manual_commands.solenoid_valve2          req=false obs=false CONFIRMED  378.5 ms
+
+-- alarms --
+
+-- system events (12) --
+  15:20:51.318  COMMAND  manual     Manual write: Manual SV 2 = True (DB59.DBX264.1)
+  15:20:51.706  PLC      signal     SV 2  OFF -> ON
+  15:20:53.744  PLC      signal     PX 2  OFF -> ON
+  15:20:56.115  COMMAND  manual     Manual write: Manual Conveyor 1 = True (DB59.DBX265.5)
+  15:20:56.613  PLC      signal     Conveyor 1 Run  OFF -> ON
+  15:20:56.878  PLC      signal     PX 2  ON -> OFF
+  15:20:56.899  COMMAND  manual     Manual write: Manual Conveyor 1 = False (DB59.DBX265.5)
+  15:20:57.390  PLC      signal     Conveyor 1 Run  ON -> OFF
+  15:21:03.198  COMMAND  manual     Manual write: Manual SV 2 = False (DB59.DBX264.1)
+  15:21:03.575  PLC      signal     SV 2  ON -> OFF
+  15:24:16.886  PLC      signal     PX 1  OFF -> ON
+  15:25:51.974  PLC      signal     PX 1  ON -> OFF

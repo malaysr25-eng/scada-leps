@@ -1,0 +1,11 @@
+P = initialize_factory(FactoryParams());
+fig = figure('Visible','off','Color',[0.12 0.12 0.12],'Position',[0 0 1500 1050]);
+ax  = axes('Parent',fig,'Color',[0.08 0.08 0.08]);
+hold(ax,'on'); grid(ax,'on'); axis(ax,'equal');
+ax.XColor = [0.8 0.8 0.8]; ax.YColor = [0.8 0.8 0.8];
+S = P.SCALE;
+xlim(ax,[-1.2 18]*S); ylim(ax,[-1 13]*S);
+title(ax,'Cell layout - 11 actuators (13 coils), 10 proximity sensors','Color','w');
+draw_cell_layout(ax, P, 1);
+exportgraphics(fig, 'layout_check.png', 'Resolution', 130);
+disp('SHOT OK');

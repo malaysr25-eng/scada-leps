@@ -1,0 +1,113 @@
+{
+  "_comment": [
+    "Paths are relative to the scada_platform/ directory unless absolute.",
+    "Edit plc.plc_ip to match the controller. Everything else has a working default.",
+    "The tag list is kept inside config/ so this folder is self-contained and",
+    "can be copied to another PC on its own."
+  ],
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5050
+  },
+  "assistant": {
+    "_comment": "On start (not with --simulate) run 'cellctl start assistant' so the Assistant page's LEPS server (port 5052) is up. It does nothing if it already runs.",
+    "autostart": true,
+    "cellctl": "C:/Users/ADMIN/Desktop/smcc/nx_digital_twin/NX_Digital_Twin/cellctl.cmd"
+  },
+  "tag_list_path": "config/Tag_list (1).xlsx",
+  "tag_overlay_path": "config/tag_overlay.json",
+  "plc": {
+    "plc_ip": "172.21.30.157",
+    "rack": 0,
+    "slot": 1,
+    "poll_interval": 0.25,
+    "write_confirm_timeout": 2.0,
+    "reconnect_backoff": 1.0,
+    "reconnect_backoff_max": 10.0,
+    "degraded_after": 3.0,
+    "simulate": false
+  },
+  "camera": {
+    "detections_path": "data/camera_detections.json",
+    "counts_path": "data/camera_counts.json",
+    "frame_path": "data/camera_frame.jpg",
+    "poll_interval": 1.0,
+    "stale_after": 5.0,
+    "min_confidence": 0.25
+  },
+  "digital_twin": {
+    "enabled": true,
+    "reference_path": "data/twin_reference.json",
+    "mismatch_tolerance_s": 2.0,
+    "speed_tolerance": 0.05
+  },
+  "diagnostics": {
+    "chatter_window_s": 30.0,
+    "chatter_threshold": 8,
+    "stale_budget_s": 3.0,
+    "motion_grace_s": 2.0,
+    "position_tolerance": 0.5
+  },
+  "sequence": {
+    "step_timeout_s": 30.0
+  },
+  "max_total_quantity": null,
+  "event_capacity": 4000,
+  "sources": {
+    "_comment": "Data-source adapters. Only control-capable sources may hold machine control.",
+    "matlab": {
+      "enabled": true,
+      "transport": "mock",
+      "_transport_options": "mock | file | tcp  \u2014 see docs/DATA_SOURCES.md",
+      "data_path": "data/matlab_live.json",
+      "host": "127.0.0.1",
+      "port": 5560,
+      "poll_interval": 0.5,
+      "stale_after": 5.0,
+      "mock_cycle_seconds": 31.08
+    }
+  },
+  "db": {
+    "_comment": "SQLite by default. Nothing is written per poll; see docs/DATA_PERSISTENCE.md",
+    "enabled": true,
+    "path": "data/scada_history.db",
+    "batch_size": 200,
+    "flush_interval": 1.0,
+    "queue_capacity": 20000,
+    "sweep_interval": 3600.0,
+    "retention_days": {}
+  },
+  "ingest": {
+    "persist_watched_tags": true,
+    "watched_min_interval": 0.25,
+    "watched_burst_limit": 20,
+    "watched_burst_window": 10.0,
+    "sample_interval": 1.0,
+    "deadband": 0.001,
+    "max_interval": 30.0
+  },
+  "recording": {
+    "max_session_seconds": 3600.0,
+    "max_session_samples": 500000,
+    "snapshot_max_bytes": 2000000
+  },
+  "chat": {
+    "_comment": "provider: builtin | openai | anthropic. builtin needs no network or key.",
+    "enabled": true,
+    "provider": "builtin",
+    "openai": {
+      "base_url": "https://api.openai.com/v1",
+      "model": "gpt-4o-mini",
+      "api_key_env": "SCADA_CHAT_API_KEY",
+      "timeout": 20.0,
+      "max_tokens": 700
+    },
+    "anthropic": {
+      "base_url": "https://api.anthropic.com/v1",
+      "model": "claude-sonnet-5",
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "timeout": 20.0,
+      "max_tokens": 700
+    }
+  }
+}

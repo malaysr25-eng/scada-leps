@@ -1,0 +1,14 @@
+WINDOW 12:39:27.762 -> 12:41:27.762   db C:\Users\DELL\Desktop\new_scada\data\scada_history.db
+tag_samples in window: 0
+WARNING: NO tag_samples in this window - the recorder was not capturing
+session f449bc0e0b4b44ff "lab day wide capture 2" sample 0.200 s (ended_at NULL - may be an orphaned row, not a live session)
+
+-- changes (t = seconds from window start) --
+
+-- boolean pulse widths --
+
+-- manual commands --
+
+-- alarms --
+
+-- system events (0) --

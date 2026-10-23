@@ -1,0 +1,46 @@
+{
+  "version": "2.1",
+  "component": "Factory_Physics_Model",
+  "frontMatterHash": "621874ad36960a7352ff09851694c7cb",
+  "draftMode": false,
+  "harnessFile": "C:\\Users\\shash\\Desktop\\WILP Work\\Digital Twin\\Factory_Simulation\\Factory_Simulation\\slprj\\mbd_agent\\test\\Factory_Physics_Model\\Factory_Physics_Model_final_harness.slx",
+  "portInfo": {
+    "cmd_out": {
+      "BlockPath": "Factory_Physics_Model_final_harness/cmd_out",
+      "BlockName": "cmd_out",
+      "Port": 4,
+      "DataType": "double",
+      "PortWidth": 14,
+      "IsBus": false,
+      "BusElements": []
+    },
+    "plant_state_out": {
+      "BlockPath": "Factory_Physics_Model_final_harness/plant_state_out",
+      "BlockName": "plant_state_out",
+      "Port": 1,
+      "DataType": "double",
+      "PortWidth": 51,
+      "IsBus": false,
+      "BusElements": []
+    },
+    "plc_state_out": {
+      "BlockPath": "Factory_Physics_Model_final_harness/plc_state_out",
+      "BlockName": "plc_state_out",
+      "Port": 3,
+      "DataType": "double",
+      "PortWidth": 1,
+      "IsBus": false,
+      "BusElements": []
+    },
+    "sensors_out": {
+      "BlockPath": "Factory_Physics_Model_final_harness/sensors_out",
+      "BlockName": "sensors_out",
+      "Port": 2,
+      "DataType": "double",
+      "PortWidth": 28,
+      "IsBus": false,
+      "BusElements": []
+    }
+  },
+  "portInfoFidelity": "full"
+}
